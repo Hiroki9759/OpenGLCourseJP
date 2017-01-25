@@ -88,6 +88,10 @@
 <li class="toctree-l1 current"><a class="current reference internal" href="#">第1回 ウィンドウを開く</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#opengl">OpenGLの初期化</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#id2">ウィンドウの作成</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id3">コンテキストの生成</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id4">背景色の設定</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id5">描画ループの設定</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id6">練習</a></li>
 </ul>
 </li>
 </ul>
@@ -182,6 +186,66 @@
 重要なのは最初の3つで、先頭から順に「ウィンドウの幅」、「ウィンドウの高さ」、「ウィンドウの名前」です。</p>
 <p>残りの4つ目の引数はフルスクリーンモードにするときに使用する引数、5つ目の引数は別のウィンドウを描画内容を
 共有するときに使う引数なのですが、このコースでは使用しないので、基本は <code class="docutils literal"><span class="pre">NULL</span></code> を渡しておけば大丈夫です。</p>
+<p>この <code class="docutils literal"><span class="pre">glfwCreateWindow</span></code> 関数はウィンドウを表す <code class="docutils literal"><span class="pre">GLFWwindow</span></code> 型のポインタを返します。
+ウィンドウの作成に失敗した場合には、このポインタが <code class="docutils literal"><span class="pre">NULL</span></code> になるので、もし <code class="docutils literal"><span class="pre">NULL</span></code> であれば、
+エラーメッセージを出力してプログラムを停止します。</p>
+<p>この時、 <code class="docutils literal"><span class="pre">glfwInit</span></code> 関数を呼び出したあとであれば、必ず <code class="docutils literal"><span class="pre">glfwTerminate</span></code> 関数を呼ぶ必要があるので注意してください。</p>
+</div>
+<div class="section" id="id3">
+<h2>コンテキストの生成<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<p>OpenGLでは描画の状態を保存するためにコンテキストと呼ばれるオブジェクトを作る必要があります。
+これを今の時点で正確に説明するのは難しいのですが、概ね、OpenGLで扱う描画の状態等を保存するためのものだと思ってください。</p>
+<p>このコンテキストを生成するためのコードは以下の行になります。</p>
+<div class="highlight-cpp"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="c1">// OpenGLの描画対象にWindowを追加</span>
+<span class="n">glfwMakeContextCurrent</span><span class="p">(</span><span class="n">window</span><span class="p">);</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<div class="section" id="id4">
+<h2>背景色の設定<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
+<p>今回のプログラムでは、背景に色をつけて画面を表示します。
+その背景の描画色を決定する関数が <code class="docutils literal"><span class="pre">glClearColor</span></code> 関数です。
+対応するソースコードは以下の部分です。</p>
+<div class="highlight-cpp"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="c1">// 背景色の設定</span>
+<span class="n">glClearColor</span><span class="p">(</span><span class="mf">1.0f</span><span class="p">,</span> <span class="mf">0.0f</span><span class="p">,</span> <span class="mf">0.0f</span><span class="p">,</span> <span class="mf">1.0f</span><span class="p">);</span>
+</pre></div>
+</td></tr></table></div>
+<p><code class="docutils literal"><span class="pre">glClearColor</span></code> 関数は4つの引数を持ち、それぞれが赤、緑、青、アルファ値に対応します。
+各色ちゃんねるの値は0から1までの値を取り、例えば(1, 1, 1, 1)が与えられると白色に、
+(1, 0, 0, 0.5)が与えられると透明度が50%の赤色になります。</p>
+</div>
+<div class="section" id="id5">
+<h2>描画ループの設定<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-cpp"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="c1">// メインループ</span>
+<span class="k">while</span> <span class="p">(</span><span class="n">glfwWindowShouldClose</span><span class="p">(</span><span class="n">window</span><span class="p">)</span> <span class="o">==</span> <span class="n">GL_FALSE</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// 背景色の描画</span>
+    <span class="n">glClear</span><span class="p">(</span><span class="n">GL_COLOR_BUFFER_BIT</span><span class="p">);</span>
+
+    <span class="c1">// 描画用バッファの切り替え</span>
+    <span class="n">glfwSwapBuffers</span><span class="p">(</span><span class="n">window</span><span class="p">);</span>
+    <span class="n">glfwPollEvents</span><span class="p">();</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<div class="section" id="id6">
+<h2>練習<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple">
+<li>ウィンドウの幅や高さを変更したときの変化を調べる</li>
+<li>ウィンドウのタイトルを変更したときの変化を調べる</li>
+<li><code class="docutils literal"><span class="pre">glClearColor</span></code> に渡されている色を別の色に変更して、変化を調べる</li>
+<li><code class="docutils literal"><span class="pre">glClear</span></code> をコメントアウトしたときに背景色がどうなるかを調べる</li>
+</ol>
 </div>
 </div>
 
