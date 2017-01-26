@@ -34,6 +34,7 @@
               href="../../genindex.html"/>
         <link rel="search" title="Search" href="../../search.html"/>
     <link rel="top" title="OpenGLCourseJP 0.1.0 documentation" href="../../index.html"/>
+        <link rel="next" title="第2回 三角形を描く" href="../002/index.html"/>
         <link rel="prev" title="第0章 環境設定" href="../000/index.html"/> 
 
   
@@ -85,15 +86,17 @@
             
                 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../000/index.html">第0章 環境設定</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">第1回 ウィンドウを開く</a><ul>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">第1回 ウィンドウを開く </a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#opengl">OpenGLの初期化</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id2">ウィンドウの作成</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id3">コンテキストの生成</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id4">背景色の設定</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id5">描画ループの設定</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id1">ウィンドウの作成</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id2">コンテキストの生成</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id3">背景色の設定</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id4">描画ループの設定</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id5">描画結果</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#id6">練習</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="../002/index.html">第2回 三角形を描く </a></li>
 </ul>
 
             
@@ -124,7 +127,7 @@
   <ul class="wy-breadcrumbs">
     <li><a href="../../index.html">Docs</a> &raquo;</li>
       
-    <li>第1回 ウィンドウを開く</li>
+    <li>第1回 ウィンドウを開く </li>
       <li class="wy-breadcrumbs-aside">
         
           
@@ -138,11 +141,8 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="id1">
-<h1>第1回 ウィンドウを開く<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
-<p><a href="https://github.com/tatsy/OpenGLCourseJP/blob/master/src/001_open_window/001_open_window.cpp" target="_blank">
-  <img src="../images/octcat.png"/>
-</a></p>
+  <div class="section" id="source-code">
+<h1>第1回 ウィンドウを開く <a class="reference external" href="https://github.com/tatsy/OpenGLCourseJP/blob/master/src/001_open_window/001_open_window.cpp"><img alt="source_code" src="../../_images/octcat.png" style="width: 24px;" /></a><a class="headerlink" href="#source-code" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="opengl">
 <h2>OpenGLの初期化<a class="headerlink" href="#opengl" title="Permalink to this headline">¶</a></h2>
 <p>GLFWを通してOpenGLを使用するには初期化処理が必要です。初期化には以下のソースコードが対応します。</p>
@@ -163,8 +163,8 @@
 少し難しくなりますが <code class="docutils literal"><span class="pre">fprintf</span></code> 関数の第1引数に <code class="docutils literal"><span class="pre">stderr</span></code> と書くとエラーメッセージとして、
 第2引数に渡された文字列である <em>Initialization failed</em> が出力されます。</p>
 </div>
-<div class="section" id="id2">
-<h2>ウィンドウの作成<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id1">
+<h2>ウィンドウの作成<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
 <p>ウィンドウを作成するには <code class="docutils literal"><span class="pre">glfwCreateWindow</span></code> 関数を使います。この関数は、必ず上記の初期化の後で呼び出してください。
 対応するソースコードは以下のようになります。</p>
 <div class="highlight-cpp"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
@@ -193,8 +193,8 @@
 エラーメッセージを出力してプログラムを停止します。</p>
 <p>この時、 <code class="docutils literal"><span class="pre">glfwInit</span></code> 関数を呼び出したあとであれば、必ず <code class="docutils literal"><span class="pre">glfwTerminate</span></code> 関数を呼ぶ必要があるので注意してください。</p>
 </div>
-<div class="section" id="id3">
-<h2>コンテキストの生成<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id2">
+<h2>コンテキストの生成<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
 <p>OpenGLでは描画の状態を保存するためにコンテキストと呼ばれるオブジェクトを作る必要があります。
 これを今の時点で正確に説明するのは難しいのですが、概ね、OpenGLで扱う描画の状態等を保存するためのものだと思ってください。</p>
 <p>このコンテキストを生成するためのコードは以下の行になります。</p>
@@ -204,8 +204,8 @@
 </pre></div>
 </td></tr></table></div>
 </div>
-<div class="section" id="id4">
-<h2>背景色の設定<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id3">
+<h2>背景色の設定<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
 <p>今回のプログラムでは、背景に色をつけて画面を表示します。
 その背景の描画色を決定する関数が <code class="docutils literal"><span class="pre">glClearColor</span></code> 関数です。
 対応するソースコードは以下の部分です。</p>
@@ -218,8 +218,8 @@
 各色ちゃんねるの値は0から1までの値を取り、例えば(1, 1, 1, 1)が与えられると白色に、
 (1, 0, 0, 0.5)が与えられると透明度が50%の赤色になります。</p>
 </div>
-<div class="section" id="id5">
-<h2>描画ループの設定<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id4">
+<h2>描画ループの設定<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-cpp"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
 3
@@ -230,8 +230,8 @@
 8
 9</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="c1">// メインループ</span>
 <span class="k">while</span> <span class="p">(</span><span class="n">glfwWindowShouldClose</span><span class="p">(</span><span class="n">window</span><span class="p">)</span> <span class="o">==</span> <span class="n">GL_FALSE</span><span class="p">)</span> <span class="p">{</span>
-    <span class="c1">// 背景色の描画</span>
-    <span class="n">glClear</span><span class="p">(</span><span class="n">GL_COLOR_BUFFER_BIT</span><span class="p">);</span>
+    <span class="c1">// 描画</span>
+    <span class="n">drawOpenGL</span><span class="p">();</span>
 
     <span class="c1">// 描画用バッファの切り替え</span>
     <span class="n">glfwSwapBuffers</span><span class="p">(</span><span class="n">window</span><span class="p">);</span>
@@ -239,6 +239,31 @@
 <span class="p">}</span>
 </pre></div>
 </td></tr></table></div>
+<p>この部分ではウィンドウが表示されている限り続くwhileループが書かれています。
+まず、whileの終了判定に使われている <code class="docutils literal"><span class="pre">glfwWindowShouldClose</span></code> 関数は、
+現在ウィンドウが開かれているのか閉じられているのかを調べます。
+閉じられているときには <code class="docutils literal"><span class="pre">GL_TRUE</span></code> が返ってくるので、そうでない場合、
+すなわち <code class="docutils literal"><span class="pre">GL_FALSE</span></code> が返ってきている間は描画を継続します。</p>
+<p>描画部分は <code class="docutils literal"><span class="pre">drawOpenGL</span></code> 関数の中で処理を記述することにします。
+現在のこの関数の定義は、このようになっています。</p>
+<div class="highlight-cpp"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="c1">// ユーザ定義のOpenGL描画</span>
+<span class="kt">void</span> <span class="nf">drawOpenGL</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c1">// 背景色の描画</span>
+    <span class="n">glClear</span><span class="p">(</span><span class="n">GL_COLOR_BUFFER_BIT</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div>
+<p>ここでは、先ほど <code class="docutils literal"><span class="pre">glClearColor</span></code> 関数で設定した色を使って画面を塗りつぶす処理を書いています。
+その役割を担うのが <code class="docutils literal"><span class="pre">glClear</span></code> 関数です。この関数の引数には現在 <code class="docutils literal"><span class="pre">GL_COLOR_BUFFER_BIT</span></code> という
+定数が渡されていますが、この定数が渡されているときには <code class="docutils literal"><span class="pre">glClear</span></code> 関数により画面の色が塗りつぶされます。</p>
+</div>
+<div class="section" id="id5">
+<h2>描画結果<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
+<p>全てのソースコードが上手くかけていれば、以下のような赤一色で塗りつぶされた画面が表示されるはずです。</p>
 </div>
 <div class="section" id="id6">
 <h2>練習<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h2>
@@ -257,6 +282,8 @@
           <footer>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../002/index.html" class="btn btn-neutral float-right" title="第2回 三角形を描く" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="../000/index.html" class="btn btn-neutral" title="第0章 環境設定" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
