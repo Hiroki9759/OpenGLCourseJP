@@ -1,0 +1,497 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>第4回 座標変換 &mdash; OpenGLCourseJP 0.1.0 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../../genindex.html"/>
+        <link rel="search" title="Search" href="../../search.html"/>
+    <link rel="top" title="OpenGLCourseJP 0.1.0 documentation" href="../../index.html"/>
+        <link rel="next" title="第5回 深度テスト" href="../005/index.html"/>
+        <link rel="prev" title="第3回 メソッドによるコードの整理" href="../003/index.html"/> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> OpenGLCourseJP
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../000/index.html">第0回 環境設定</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../001/index.html">第1回 ウィンドウを開く </a></li>
+<li class="toctree-l1"><a class="reference internal" href="../002/index.html">第2回 三角形を描く </a></li>
+<li class="toctree-l1"><a class="reference internal" href="../003/index.html">第3回 メソッドによるコードの整理 </a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">第4回 座標変換 </a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id1">二次元の座標変換</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id2">練習1</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#opengl">OpenGLが管理する座標変換行列</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id3">モデルビュー変換行列の役割</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">射影変換行列の役割</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id5">三次元物体表示のための座標系</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id6">ワールド座標系</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id7">カメラ座標系</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id8">スクリーン座標系</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id9">立方体の表示</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../005/index.html">第5回 深度テスト </a></li>
+<li class="toctree-l1"><a class="reference internal" href="../006/index.html">第6回 アニメーション </a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../index.html">OpenGLCourseJP</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../index.html">Docs</a> &raquo;</li>
+      
+    <li>第4回 座標変換 </li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="https://github.com///blob/sections/004/index.rst" class="fa fa-github"> Edit on GitHub</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="source-code">
+<h1>第4回 座標変換 <a class="reference external" href="https://github.com/tatsy/OpenGLCourseJP/blob/master/src/004_coordinate_transformation/004_coordinate_transformation.cpp"><img alt="source_code" src="../../_images/octcat3.png" style="width: 24px;" /></a><a class="headerlink" href="#source-code" title="Permalink to this headline">¶</a></h1>
+<p><span style="color: #ff0000;">
+  注) この回は、全ての回の中で最も重要な回です。非常に難しい部分ですので、めげずに何度も復習しましょう。
+</span></p><div class="section" id="id1">
+<h2>二次元の座標変換<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<p>ここまでの回では、二次元座標上に三角形を描画していました。「 <span class="xref doc">../index/002</span> 」でご紹介したとおり、
+画面上の座標系は <span class="math">\((-1, 1) \times (-1, 1)\)</span> のようになっています。</p>
+<p>ですが、実用的な場面では、当然、この座標系を変更したい場面というのが出てきます。
+それでは、この座標系は変換できるのでしょうか？</p>
+<p>結論から言えば、この座標系を変換することはできません。
+ですが、描画する物体のサイズを変更することで擬似的に画面の座標系を変換することはできます。</p>
+<p>例えば、今、画面の座標系を <span class="math">\((-2, 2) \times (-2, 2)\)</span> のようにしたいとします。
+とすれば、描画する全ての物体のサイズを2分の1にしておけば、これは <span class="math">\((-1, 1) \times (-1, 1)\)</span>
+の画面上にあたかも <span class="math">\((-2, 2) \times (-2, 2)\)</span> の座標系を持つ画面上に物体を描画することができます。</p>
+<p>それでは早速試してみましょう。</p>
+<p>物体のサイズを変更する関数は <code class="docutils literal"><span class="pre">glScalef</span></code> です。この関数は引数を3つ取り、それぞれ
+x軸、y軸、z軸の方向の拡大縮小比を表します。今回はx軸方向とy軸方向を2分の1に縮小したいので、</p>
+<div class="highlight-cpp"><div class="highlight"><pre><span></span><span class="n">glScalef</span><span class="p">(</span><span class="mf">0.5f</span><span class="p">,</span> <span class="mf">0.5f</span><span class="p">,</span> <span class="mf">1.0f</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>のように書けばOKです。これをどこに書くのか、という部分についてですが、ここには少し工夫が必要です。</p>
+<p>上記の <code class="docutils literal"><span class="pre">glScalef</span></code> はOpenGLの内部で管理されている座標変換行列に対して、
+スケールを変更する行列を掛け算する、という処理をします。</p>
+<p>具体的にはOpenGLの内部に保存されている座標変換行列は4×4の行列になっていて、
+<code class="docutils literal"><span class="pre">glScalef(sx,</span> <span class="pre">sy,</span> <span class="pre">sz)</span></code> のように呼び出したとすると、</p>
+<div class="math">
+\[\begin{split}\begin{pmatrix}
+  sx &amp; 0 &amp; 0 &amp; 0 \\
+  0 &amp; sy &amp; 0 &amp; 0 \\
+  0 &amp; 0 &amp; sz &amp; 0 \\
+  0 &amp; 0 &amp; 0 &amp; 1 \\
+\end{pmatrix}\end{split}\]</div>
+<p>という行列を掛け算することになります。</p>
+<p>この行列をOpenGLの管理する行列に掛け算するには以下のように記述する必要があります。</p>
+<div class="highlight-cpp"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="n">glMatrixMode</span><span class="p">(</span><span class="n">GL_MODELVIEW</span><span class="p">);</span>
+<span class="n">glLoadIdentity</span><span class="p">();</span>
+<span class="n">glScalef</span><span class="p">(</span><span class="mf">0.5f</span><span class="p">,</span> <span class="mf">0.5f</span><span class="p">,</span> <span class="mf">1.0f</span><span class="p">);</span>
+</pre></div>
+</td></tr></table></div>
+<p>これを使って、前回作成した描画関数を次のように書き換えます。</p>
+<div class="highlight-cpp"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="c1">// OpenGLの描画関数</span>
+<span class="kt">void</span> <span class="nf">paintGL</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c1">// 背景色の描画</span>
+    <span class="n">glClear</span><span class="p">(</span><span class="n">GL_COLOR_BUFFER_BIT</span><span class="p">);</span>
+
+    <span class="c1">// 座標変換</span>
+    <span class="n">glMatrixMode</span><span class="p">(</span><span class="n">GL_MODELVIEW</span><span class="p">);</span>
+    <span class="n">glLoadIdentity</span><span class="p">();</span>
+    <span class="n">glScalef</span><span class="p">(</span><span class="mf">0.5f</span><span class="p">,</span> <span class="mf">0.5f</span><span class="p">,</span> <span class="mf">1.0f</span><span class="p">);</span>
+
+    <span class="c1">// 三角形の描画</span>
+    <span class="n">glBegin</span><span class="p">(</span><span class="n">GL_TRIANGLES</span><span class="p">);</span>
+    <span class="n">glColor3f</span><span class="p">(</span><span class="mf">1.0f</span><span class="p">,</span> <span class="mf">0.0f</span><span class="p">,</span> <span class="mf">0.0f</span><span class="p">);</span>    <span class="c1">// 赤</span>
+    <span class="n">glVertex2f</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5f</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.5f</span><span class="p">);</span>
+    <span class="n">glColor3f</span><span class="p">(</span><span class="mf">0.0f</span><span class="p">,</span> <span class="mf">1.0f</span><span class="p">,</span> <span class="mf">0.0f</span><span class="p">);</span>    <span class="c1">// 緑</span>
+    <span class="n">glVertex2f</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5f</span><span class="p">,</span>  <span class="mf">0.5f</span><span class="p">);</span>
+    <span class="n">glColor3f</span><span class="p">(</span><span class="mf">0.0f</span><span class="p">,</span> <span class="mf">0.0f</span><span class="p">,</span> <span class="mf">1.0f</span><span class="p">);</span>    <span class="c1">// 青</span>
+    <span class="n">glVertex2f</span><span class="p">(</span> <span class="mf">0.5f</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.5f</span><span class="p">);</span>
+    <span class="n">glEnd</span><span class="p">();</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div>
+<p>コードを書き換えて実行すると、左側の図のような画像が出てるはずです。
+右側に比較用の元画像を表示してあります。</p>
+<table border="1" class="colwidths-given docutils">
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="../../_images/after_scale.jpg"><img alt="after_scale" src="../../_images/after_scale.jpg" style="width: 250px;" /></a></td>
+<td><a class="reference internal" href="../../_images/before_scale.jpg"><img alt="before_scale" src="../../_images/before_scale.jpg" style="width: 250px;" /></a></td>
+</tr>
+<tr class="row-even"><td><strong>座標変換後</strong></td>
+<td>座標変換前</td>
+</tr>
+</tbody>
+</table>
+<p>ソースコードでは、特に頂点の座標を変換していませんが、実際に表示される三角形は縮小されており、
+擬似的に座標系が <span class="math">\((-2, 2) \times (-2, 2)\)</span> になっていることが分かります。</p>
+<div class="section" id="id2">
+<h3>練習1<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<p><code class="docutils literal"><span class="pre">glTranslatef</span></code> 関数は頂点を平行移動させる関数です。この関数を使って、画面の擬似的な座標系を
+<span class="math">\((0, 4) \times (0, 4)\)</span> にしてみてください。</p>
+</div>
+</div>
+<hr class="docutils" />
+<div class="section" id="opengl">
+<h2>OpenGLが管理する座標変換行列<a class="headerlink" href="#opengl" title="Permalink to this headline">¶</a></h2>
+<p>先ほど、OpenGLは座標変換のための行列を管理しており <code class="docutils literal"><span class="pre">glScalef</span></code> はその行列に対して、
+拡大縮小の行列を掛ける関数であると説明しました。</p>
+<p>実は、OpenGLが管理している行列には射影変換行列とモデルビュー変換行列の2種類があり、
+上記のコードではモデルビュー変換行列に対して掛け算をしています。</p>
+<p>その掛け算をする対象となる行列を指定する関数が、先ほど使った <code class="docutils literal"><span class="pre">glMatrixMode</span></code> 関数です。
+<code class="docutils literal"><span class="pre">glMatrixMode</span></code> 関数には <code class="docutils literal"><span class="pre">GL_MODELVIEW</span></code> と <code class="docutils literal"><span class="pre">GL_PERSPECTIVE</span></code> のどちらかを
+指定することができて、前者がモデルビュー変換行列を後者が射影変換行列を指定するための定数です
+(実際にはあと2種類 <code class="docutils literal"><span class="pre">GL_TEXTURE</span></code> と <code class="docutils literal"><span class="pre">GL_COLOR</span></code> が指定できますが、通常あまり使いません)。</p>
+<div class="section" id="id3">
+<h3>モデルビュー変換行列の役割<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="id4">
+<h3>射影変換行列の役割<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+<p>ここまで説明をしておいて、申し訳ないのですが、実はこれらの行列は利便性の観点から
+使い分けができるようになっているだけで、実際にはどちらか一方の行列だけを変換しても大丈夫です。</p>
+<p>しかしながら、これらの行列の種類を理解することが、このあとに説明する三次元物体の描画において非常に重要になります。</p>
+</div>
+</div>
+<div class="section" id="id5">
+<h2>三次元物体表示のための座標系<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id6">
+<h3>ワールド座標系<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="id7">
+<h3>カメラ座標系<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="id8">
+<h3>スクリーン座標系<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h3>
+</div>
+</div>
+<div class="section" id="id9">
+<h2>立方体の表示<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-cpp"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="c1">// 立方体の頂点位置</span>
+<span class="k">static</span> <span class="k">const</span> <span class="kt">float</span> <span class="n">positions</span><span class="p">[</span><span class="mi">8</span><span class="p">][</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="p">{</span> <span class="o">-</span><span class="mf">1.0f</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.0f</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.0f</span> <span class="p">},</span>
+    <span class="p">{</span>  <span class="mf">1.0f</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.0f</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.0f</span> <span class="p">},</span>
+    <span class="p">{</span> <span class="o">-</span><span class="mf">1.0f</span><span class="p">,</span>  <span class="mf">1.0f</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.0f</span> <span class="p">},</span>
+    <span class="p">{</span> <span class="o">-</span><span class="mf">1.0f</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.0f</span><span class="p">,</span>  <span class="mf">1.0f</span> <span class="p">},</span>
+    <span class="p">{</span>  <span class="mf">1.0f</span><span class="p">,</span>  <span class="mf">1.0f</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.0f</span> <span class="p">},</span>
+    <span class="p">{</span> <span class="o">-</span><span class="mf">1.0f</span><span class="p">,</span>  <span class="mf">1.0f</span><span class="p">,</span>  <span class="mf">1.0f</span> <span class="p">},</span>
+    <span class="p">{</span>  <span class="mf">1.0f</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.0f</span><span class="p">,</span>  <span class="mf">1.0f</span> <span class="p">},</span>
+    <span class="p">{</span>  <span class="mf">1.0f</span><span class="p">,</span>  <span class="mf">1.0f</span><span class="p">,</span>  <span class="mf">1.0f</span> <span class="p">}</span>
+<span class="p">};</span>
+
+<span class="c1">// 立方体の面の色</span>
+<span class="k">static</span> <span class="k">const</span> <span class="kt">float</span> <span class="n">colors</span><span class="p">[</span><span class="mi">6</span><span class="p">][</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="p">{</span> <span class="mf">1.0f</span><span class="p">,</span> <span class="mf">0.0f</span><span class="p">,</span> <span class="mf">0.0f</span> <span class="p">},</span>  <span class="c1">// 赤</span>
+    <span class="p">{</span> <span class="mf">0.0f</span><span class="p">,</span> <span class="mf">1.0f</span><span class="p">,</span> <span class="mf">0.0f</span> <span class="p">},</span>  <span class="c1">// 緑</span>
+    <span class="p">{</span> <span class="mf">0.0f</span><span class="p">,</span> <span class="mf">0.0f</span><span class="p">,</span> <span class="mf">1.0f</span> <span class="p">},</span>  <span class="c1">// 青</span>
+    <span class="p">{</span> <span class="mf">1.0f</span><span class="p">,</span> <span class="mf">1.0f</span><span class="p">,</span> <span class="mf">0.0f</span> <span class="p">},</span>  <span class="c1">// イエロー</span>
+    <span class="p">{</span> <span class="mf">0.0f</span><span class="p">,</span> <span class="mf">1.0f</span><span class="p">,</span> <span class="mf">1.0f</span> <span class="p">},</span>  <span class="c1">// シアン</span>
+    <span class="p">{</span> <span class="mf">1.0f</span><span class="p">,</span> <span class="mf">0.0f</span><span class="p">,</span> <span class="mf">1.0f</span> <span class="p">},</span>  <span class="c1">// マゼンタ</span>
+<span class="p">};</span>
+
+<span class="c1">// 立方体の面となる三角形の定義</span>
+<span class="k">static</span> <span class="k">const</span> <span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">indices</span><span class="p">[</span><span class="mi">12</span><span class="p">][</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="p">{</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span> <span class="p">},</span> <span class="p">{</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">4</span> <span class="p">},</span>
+    <span class="p">{</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">7</span> <span class="p">},</span> <span class="p">{</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">4</span> <span class="p">},</span>
+    <span class="p">{</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">7</span> <span class="p">},</span> <span class="p">{</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">6</span> <span class="p">},</span>
+    <span class="p">{</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">4</span> <span class="p">},</span> <span class="p">{</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">2</span> <span class="p">},</span>
+    <span class="p">{</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">6</span> <span class="p">},</span> <span class="p">{</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">3</span> <span class="p">},</span>
+    <span class="p">{</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">5</span> <span class="p">},</span> <span class="p">{</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">3</span> <span class="p">}</span>
+<span class="p">};</span>
+</pre></div>
+</td></tr></table></div>
+<div class="highlight-cpp"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="c1">// OpenGLの描画関数</span>
+<span class="kt">void</span> <span class="nf">paintGL</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c1">// 背景色の描画</span>
+    <span class="n">glClear</span><span class="p">(</span><span class="n">GL_COLOR_BUFFER_BIT</span><span class="p">);</span>
+
+    <span class="c1">// 座標の変換</span>
+    <span class="n">glMatrixMode</span><span class="p">(</span><span class="n">GL_PROJECTION</span><span class="p">);</span>
+    <span class="n">glLoadIdentity</span><span class="p">();</span>
+    <span class="n">gluPerspective</span><span class="p">(</span><span class="mf">45.0f</span><span class="p">,</span> <span class="p">(</span><span class="kt">float</span><span class="p">)</span><span class="n">WIN_WIDTH</span> <span class="o">/</span> <span class="p">(</span><span class="kt">float</span><span class="p">)</span><span class="n">WIN_HEIGHT</span><span class="p">,</span> <span class="mf">0.1f</span><span class="p">,</span> <span class="mf">1000.0f</span><span class="p">);</span>
+
+    <span class="n">glMatrixMode</span><span class="p">(</span><span class="n">GL_MODELVIEW</span><span class="p">);</span>
+    <span class="n">glLoadIdentity</span><span class="p">();</span>
+    <span class="n">gluLookAt</span><span class="p">(</span><span class="mf">3.0f</span><span class="p">,</span> <span class="mf">4.0f</span><span class="p">,</span> <span class="mf">5.0f</span><span class="p">,</span>     <span class="c1">// 視点の位置</span>
+              <span class="mf">0.0f</span><span class="p">,</span> <span class="mf">0.0f</span><span class="p">,</span> <span class="mf">0.0f</span><span class="p">,</span>     <span class="c1">// 見ている先</span>
+              <span class="mf">0.0f</span><span class="p">,</span> <span class="mf">1.0f</span><span class="p">,</span> <span class="mf">0.0f</span><span class="p">);</span>    <span class="c1">// 視界の上方向</span>
+
+    <span class="c1">// 立方体の描画</span>
+    <span class="n">glBegin</span><span class="p">(</span><span class="n">GL_TRIANGLES</span><span class="p">);</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">face</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">face</span> <span class="o">&lt;</span> <span class="mi">6</span><span class="p">;</span> <span class="n">face</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">glColor3fv</span><span class="p">(</span><span class="n">colors</span><span class="p">[</span><span class="n">face</span><span class="p">]);</span>
+        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">glVertex3fv</span><span class="p">(</span><span class="n">positions</span><span class="p">[</span><span class="n">indices</span><span class="p">[</span><span class="n">face</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">+</span> <span class="mi">0</span><span class="p">][</span><span class="n">i</span><span class="p">]]);</span>
+        <span class="p">}</span>
+
+        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">glVertex3fv</span><span class="p">(</span><span class="n">positions</span><span class="p">[</span><span class="n">indices</span><span class="p">[</span><span class="n">face</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">+</span> <span class="mi">1</span><span class="p">][</span><span class="n">i</span><span class="p">]]);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="n">glEnd</span><span class="p">();</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div>
+<a class="reference internal image-reference" href="../../_images/strange_cube.jpg"><img alt="../../_images/strange_cube.jpg" src="../../_images/strange_cube.jpg" style="width: 250px;" /></a>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../005/index.html" class="btn btn-neutral float-right" title="第5回 深度テスト" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../003/index.html" class="btn btn-neutral" title="第3回 メソッドによるコードの整理" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2017, Tatsuya Yatagawa.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'0.1.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>
