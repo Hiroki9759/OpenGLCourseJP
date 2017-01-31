@@ -96,16 +96,14 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#opengl">OpenGLが管理する座標変換行列</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#id3">モデルビュー変換行列の役割</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id4">射影変換行列の役割</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">射影変換行列の役割</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id5">平行投影変換</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id6">透視投影変換</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#id5">三次元物体表示のための座標系</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id6">ワールド座標系</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id7">カメラ座標系</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id8">スクリーン座標系</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#id9">立方体の表示</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id7">立方体の表示</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../005/index.html">第5回 深度テスト </a></li>
@@ -265,38 +263,164 @@ x軸、y軸、z軸の方向の拡大縮小比を表します。今回はx軸方�
 <hr class="docutils" />
 <div class="section" id="opengl">
 <h2>OpenGLが管理する座標変換行列<a class="headerlink" href="#opengl" title="Permalink to this headline">¶</a></h2>
+<p>ここからいよいよ、三次元の物体を表示するための方法について解説していきます。
+その際、大切になる考え方が、今回のテーマでもある座標変換行列です。</p>
 <p>先ほど、OpenGLは座標変換のための行列を管理しており <code class="docutils literal"><span class="pre">glScalef</span></code> はその行列に対して、
-拡大縮小の行列を掛ける関数であると説明しました。</p>
-<p>実は、OpenGLが管理している行列には射影変換行列とモデルビュー変換行列の2種類があり、
+拡大縮小の行列を掛ける関数であると説明しました。
+実は、OpenGLが管理している行列には射影変換行列とモデルビュー変換行列の2種類があり、
 上記のコードではモデルビュー変換行列に対して掛け算をしています。</p>
 <p>その掛け算をする対象となる行列を指定する関数が、先ほど使った <code class="docutils literal"><span class="pre">glMatrixMode</span></code> 関数です。
 <code class="docutils literal"><span class="pre">glMatrixMode</span></code> 関数には <code class="docutils literal"><span class="pre">GL_MODELVIEW</span></code> と <code class="docutils literal"><span class="pre">GL_PERSPECTIVE</span></code> のどちらかを
 指定することができて、前者がモデルビュー変換行列を後者が射影変換行列を指定するための定数です
 (実際にはあと2種類 <code class="docutils literal"><span class="pre">GL_TEXTURE</span></code> と <code class="docutils literal"><span class="pre">GL_COLOR</span></code> が指定できますが、通常あまり使いません)。</p>
+<p>以下では、射影変換行列とモデルビュー変換行列の役割を解説しながら、
+三次元物体を描画する仕組みについて考えてみたいと思います。</p>
 <div class="section" id="id3">
 <h3>モデルビュー変換行列の役割<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<p>モデルビュー変換行列は物体が持つ座標を、その物体を見ている視点(カメラ)を中心とした座標系に変換する行列です。
+このとき、変換前の物体固有の座標系のことを <strong>ワールド座標系</strong> 、カメラを中心とした座標系のことを <strong>カメラ座標系</strong> と呼びます。</p>
+<p>例えば、今、原点に半径が1の単位球がおいてあるとしましょう。この球の中心の座標は当然ながら、
+<span class="math">\((0, 0, 0)\)</span> ですが、これはワールド座標系での座標です。</p>
+<p>もしこの球を、<span class="math">\((0, 0, 10)\)</span> から見ているならば、カメラ座標系における球の座標は、
+<span class="math">\((0, 0, 10)\)</span> になります。ここで気をつけたいのは、もしこの球を <span class="math">\((10, 0, 0)\)</span>
+から見ていたとしても、カメラ座標系は <span class="math">\((0, 0, 10)\)</span> に成るという点です。</p>
+<p>これは何故かと言うと、通常カメラ座標系は水平方向右をx軸の正の方向、垂直方向上をy軸の正方向、
+そして、奥行きに対応するで、視線と反対向きの方向をz軸の正方向とするためです。</p>
+<img alt="../../_images/camera_coordinates.jpg" src="../../_images/camera_coordinates.jpg" />
+<p>なお、上記のようにx, y, z軸の並びが右手の親指、人差し指、中指の順番になっているような
+座標系を右手座標系と呼びます。OpenGLは右手座標系を使用していますが、
+Microsoft社が開発している三次元描画のライブラリであるDirectXでは、左手座標系を使用しています。</p>
 </div>
 <div class="section" id="id4">
 <h3>射影変換行列の役割<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
-<p>ここまで説明をしておいて、申し訳ないのですが、実はこれらの行列は利便性の観点から
-使い分けができるようになっているだけで、実際にはどちらか一方の行列だけを変換しても大丈夫です。</p>
-<p>しかしながら、これらの行列の種類を理解することが、このあとに説明する三次元物体の描画において非常に重要になります。</p>
-</div>
-</div>
+<p>射影変換行列はカメラ座標系に変換された行列をOpenGLのウィンドウが映し出す範囲である
+<span class="math">\((-1, 1) \times (-1, 1)\)</span> に変換する行列です。このとき変換後の座標系のことを
+<strong>スクリーン座標系</strong> と呼びます。</p>
+<p>射影変換行列には主に2種類があって、それぞれ <strong>平行投影変換</strong> (Orthographic projection) と
+<strong>透視投影変換</strong> (Perspective projection) と呼びます。
+平行投影変換は、その名前の通り、カメラ座標系のxy平面に対して平行に物体の座標を投影します。
+一方、透視投影変換はカメラ座標系の原点と、オブジェクト平面と呼ばれる平面との交点を
+スクリーン座標とします。</p>
+<p>上記の方法によりスクリーン座標のx軸、y軸に対応する値は決定できますが、実はスクリーン座標にはz軸も存在します。
+このzの値もx, yの値と同じように-1から1の値を取ります。この値を決定するために使われるのが
+<strong>近辺クリッピング面</strong> (Near clipping plane) と <strong>遠方クリッピング面</strong> (Far clipping plane) です
+(クリッピング面を指す日本語が見当たらなかったので、著者が適当につけた訳になります)。</p>
+<p>これらのクリッピング面は視線方向と直交する平面で、近辺クリッピング面と交差する位置が
+スクリーン座標における <span class="math">\(z = 0\)</span> の平面、遠方クリッピング面と交差する位置が、
+スクリーン座標における <span class="math">\(z = 1\)</span> の平面となります。</p>
 <div class="section" id="id5">
-<h2>三次元物体表示のための座標系<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
+<h4>平行投影変換<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h4>
+<p>ここからは、射影変換行列を定義する変数と、実際に出来上がる行列について見ていきたいと思います。
+まずは平行投影変換です。</p>
+<p>OpenGLの関数には平行投影変換を扱う <code class="docutils literal"><span class="pre">glOrtho</span></code> という関数 <a class="reference external" href="https://www.opengl.org/sdk/docs/man2/xhtml/glOrtho.xml"><img alt="doc_glOrtho" src="../../_images/popup.png" style="width: 16px;" /></a> が用意されていますのでこれを使います。</p>
+<div class="highlight-cpp"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="n">glOrtho</span><span class="p">(</span><span class="n">GLdouble</span> <span class="n">left</span><span class="p">,</span> <span class="n">GLdouble</span> <span class="n">right</span><span class="p">,</span> <span class="n">GLdouble</span> <span class="n">bottom</span><span class="p">,</span> <span class="n">GLdouble</span> <span class="n">top</span><span class="p">,</span> <span class="n">GLdouble</span> <span class="n">nearVal</span><span class="p">,</span> <span class="n">GLdouble</span> <span class="n">farVal</span><span class="p">);</span>
+</pre></div>
+</td></tr></table></div>
+<p>この関数は上記の通り引数を6つ取ります。最初の2つがスクリーン座標系での左端と右端に対応するカメラ座標系でのxの値、
+次の2つが下端と上端に対応するyの値、そして最後が近辺クリッピング面と遠方クリッピング面に対応するzの値です。</p>
+<p>今、平行投影変換をしたいカメラ座標が <span class="math">\((x_c, y_c, z_c)\)</span> であるとします。
+この時、変換後のスクリーン座標 <span class="math">\((x_s, y_s, z_s)\)</span> は次のように表せます。</p>
+<div class="math">
+\[\begin{split}x_s &amp;= 2 \frac{x_c - left}{right - left} - 1   &amp;= \frac{2 x_c - (right + left)}{right - left}\\
+y_s &amp;= 2 \frac{y_c - bottom}{top - bottom} - 1 &amp;= \frac{2 y_c - (top + bottom)}{top - bottom}\\
+z_s &amp;= 2 \frac{z_c - nearVal}{farVal - nearVal} - 1 &amp;= \frac{2 z_c - (farVal + nearVal)}{farVal - nearVal}\end{split}\]</div>
+<p>したがって、平行投影変換のための行列は以下のように書けます。</p>
+<div class="math">
+\[\begin{split}\begin{pmatrix}
+  \frac{2}{right - left} &amp; 0 &amp; 0 &amp; -\frac{right + left}{right - left} \\
+  0 &amp; \frac{2}{top - bottom} &amp; 0 &amp; -\frac{top + bottom}{top - bottom} \\
+  0 &amp; 0 &amp; \frac{2}{farVal - nearVal} &amp; -\frac{farVal + nearVal}{farVal - nearVal} \\
+  0 &amp; 0 &amp; 0 &amp; 1
+\end{pmatrix}\end{split}\]</div>
+<p>ここで注意したいのは、座標変換のための行列は4×4の行列だという部分です。
+これは、3次元のベクトルに対する3×3の行列による変換では平行移動などの一部の変換が
+扱えないためで、通常のx, y, zの値に対応する3次元ベクトルに4つ目の要素として1を付け加えた
+<span class="math">\((x, y, z, 1)\)</span> という行列に変換行列を作用させていくことになります。</p>
+<p>このような座標表現のことを <strong>同次座標表現</strong> と呼び、これにより様々な変換を表すことができるのですが、
+ここでは、考え方の紹介にとどめ、詳細については他の資料に譲ることとします。</p>
+</div>
 <div class="section" id="id6">
-<h3>ワールド座標系<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
+<h4>透視投影変換<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h4>
+<p>平行投影変換と異なり、透視投影変換の行列を扱う関数はOpenGLには用意されていません。
+少しややこしいのですが、OpenGLには、主に数学的な機能をまとめたGLU (GL utility) というライブラリが含まれており、
+こちらに透視投影変換を扱う関数があります。</p>
+<p>GLUライブラリを使うためには、 <code class="docutils literal"><span class="pre">GL/glu.h</span></code> というヘッダをインクルードします。</p>
+<div class="highlight-cpp"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;GL/glu.h&gt;</span><span class="cp"></span>
+</pre></div>
+</td></tr></table></div>
+<p>これをGLFWで使うためには、以下のように <code class="docutils literal"><span class="pre">GLFW_INCLUDE_GLU</span></code> を定義します。</p>
+<div class="highlight-cpp"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="cp">#define GLFW_INCLUDE_GLU</span>
+<span class="cp">#include</span> <span class="cpf">&lt;GLFW/glfw3.h&gt;</span><span class="cp"></span>
+</pre></div>
+</td></tr></table></div>
+<p>透視投影変換を扱う関数は <code class="docutils literal"><span class="pre">gluPerspective</span></code> という関数です。</p>
+<div class="highlight-cpp"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="n">gluPerspective</span><span class="p">(</span><span class="n">GLdouble</span> <span class="n">fov</span><span class="p">,</span> <span class="n">GLdouble</span> <span class="n">aspect</span><span class="p">,</span> <span class="n">GLdouble</span> <span class="n">zNear</span><span class="p">,</span> <span class="n">GLdouble</span> <span class="n">zFar</span><span class="p">);</span>
+</pre></div>
+</td></tr></table></div>
+<p>こちらの関数は4つの引数を取ります。最初の引数が、カメラから画面を見たときの上下方向の開き角、
+2つ目の引数が、画面の縦横比 (アスペクト比)、3つ目と4つ目の引数が近辺クリッピング面と
+遠方クリッピング面に対応するzの値です。</p>
+<p>平行投影変換のときと同じく、カメラ座標 <span class="math">\((x_c, y_c, z_c)\)</span> をスクリーン座標
+<span class="math">\((x_s, y_s, z_s)\)</span> に変換する操作を考えてみます。</p>
+<p>平行投影変換の場合にはx, yの値は、カメラと変換する点とを結んだ直線と近辺クリッピング面との交点により決まります。
+この時、スクリーンの上下左右の端は開き角とアスペクト比により決まります。</p>
+<p>少し複雑ではあるのですが、x, yの値は次のように変換できます。</p>
+<div class="math">
+\[\begin{split}x_s &amp;= \frac{x_c}{(-z_c) \tan \left( \frac{fov}{2} \right) aspect} \\
+y_s &amp;= \frac{y_c}{(-z_c) \tan \left( \frac{fov}{2} \right) }\end{split}\]</div>
+<p>さて、問題はzの値です。平行投影の時と同じように考えると、カメラから変換したい点までの
+距離を測って、それが <span class="math">\(nNear\)</span> から <span class="math">\(zFar\)</span> の間に収まるように
+すれば良さそうなのですが、実際には、もう少し複雑な処理をします。</p>
+<p>ここでポイントとなるのはx, yの値がどのくらい拡大縮小されているか、という点です。
+図で示すとおり、透視投影変換は四角錐台の領域を立方体に変換します。</p>
+<p>この時、四角錐台の軸に垂直な平面で切った切り口はzの絶対値が小さいときには小さく、
+zの絶対値が大きいときには大きくなっています。ところが、立方体に変換した後には、
+いずれの場合も同じ大きさの四角形に変換されます。</p>
+<p>ということは、x, yの値は、zの絶対値が小さいときには大きく、zの絶対値が大きいときには小さくなるという
+反比例の関係があることが分かります。透視投影変換では、zの拡大・縮小度合いがx, yの拡大縮小度合いと
+同じになるように変換をします。すなわち、ある未知数 <span class="math">\(a, b\)</span> を使って、</p>
+<div class="math">
+\[z_s = \frac{a}{z_c} + b\]</div>
+<p>のような関係式が成り立つことを意味します。ここで、 <span class="math">\(z_c = zNear\)</span> が-1に、
+<span class="math">\(z_c = zFar\)</span> が1に移ることを利用すると、</p>
+<div class="math">
+\[\begin{split}\begin{cases}
+  \frac{a}{zNear} + b = -1 \\
+  \frac{a}{zFar} + b  = 1
+\end{cases}\end{split}\]</div>
+<p>という連立方程式が得られます。これを解くと、</p>
+<div class="math">
+\[\begin{split}a &amp;= -\frac{2 zFar \cdot zNear}{zNear - zFar} \\
+b &amp;= -\frac{zNear + zFar}{zNear - zFar}\end{split}\]</div>
+<p>となって、 <span class="math">\(z_c\)</span> から <span class="math">\(z_s\)</span> への変換が得られます。</p>
+<p>この変換を行列として書き出したいのですが、問題は、変換後の値に <span class="math">\(z_c\)</span> の逆数が含まれるという点です。
+通常の行列による変換では、変換前の変数の逆数を表現することはできません。</p>
+<p>ですが、同時座標表現においては、常に4つ目の値が1になるようにベクトルをスケールします。
+したがって、もし <span class="math">\(z_c\)</span> で割る必要があるのならば、4つ目の値が <span class="math">\(z_c\)</span> になるように
+行列を作れば良いということになります。</p>
+<p>カメラ座標系においては、視線方向にz軸の負の方向が対応しており、上記の四角錐台が広がっている方向では
+<span class="math">\(z_c\)</span> が負であることに注意すると、変換後の4次元ベクトルは、</p>
+<div class="math">
+\[\left(
+  \frac{x_c}{ \tan \left( \frac{fov}{2} \right) aspect},
+  \frac{y_c}{ \tan \left( \frac{fov}{2} \right)},
+  \frac{zNear + zFar}{zNear - zFar} (-z_c) + \frac{2 zFar \cdot zNear}{zNear - zFar},
+  -z_c
+\right)\]</div>
+<p>したがって、透視投影変換の行列は以下のように書けます。</p>
+<div class="math">
+\[\begin{split}\begin{pmatrix}
+  \frac{1}{\tan \left( \frac{fov}{2} \right) aspect} &amp; 0 &amp; 0 &amp; 0 \\
+  0 &amp; \frac{1}{\tan \left( \frac{fov}{2} \right)} &amp; 0 &amp; 0 \\
+  0 &amp; 0 &amp; \frac{zNear + zFar}{zNear - zFar} &amp; \frac{2 zFar \cdot zNear}{zNear - zFar} \\
+  0 &amp; 0 &amp; -1 &amp; 0
+\end{pmatrix}\end{split}\]</div>
+</div>
+</div>
 </div>
 <div class="section" id="id7">
-<h3>カメラ座標系<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h3>
-</div>
-<div class="section" id="id8">
-<h3>スクリーン座標系<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h3>
-</div>
-</div>
-<div class="section" id="id9">
-<h2>立方体の表示<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h2>
+<h2>立方体の表示<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-cpp"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
  3
