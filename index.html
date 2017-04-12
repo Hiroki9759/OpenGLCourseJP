@@ -13,6 +13,8 @@
 
   
   
+  
+  
 
   
 
@@ -43,6 +45,7 @@
 
 <body class="wy-body-for-nav" role="document">
 
+   
   <div class="wy-grid-for-nav">
 
     
@@ -83,7 +86,10 @@
           
             
             
-                <ul>
+              
+            
+            
+              <ul>
 <li class="toctree-l1"><a class="reference internal" href="sections/000/index.html">第0回 環境設定</a></li>
 <li class="toctree-l1"><a class="reference internal" href="sections/001/index.html">第1回 ウィンドウを開く </a></li>
 <li class="toctree-l1"><a class="reference internal" href="sections/002/index.html">第2回 三角形を描く </a></li>
@@ -91,6 +97,20 @@
 <li class="toctree-l1"><a class="reference internal" href="sections/004/index.html">第4回 座標変換 </a></li>
 <li class="toctree-l1"><a class="reference internal" href="sections/005/index.html">第5回 深度テスト </a></li>
 <li class="toctree-l1"><a class="reference internal" href="sections/006/index.html">第6回 アニメーション </a></li>
+<li class="toctree-l1"><a class="reference internal" href="sections/007/index.html">第7回 ウィンドウサイズの変更 </a></li>
+<li class="toctree-l1"><a class="reference internal" href="sections/008/index.html">第8回 テクスチャ・マッピング </a></li>
+<li class="toctree-l1"><a class="reference internal" href="sections/009/index.html">第9回 アルファ合成 </a></li>
+<li class="toctree-l1"><a class="reference internal" href="sections/010/index.html">第10回 頂点アトリビュート </a></li>
+<li class="toctree-l1"><a class="reference internal" href="sections/011/index.html">第11回 頂点配列オブジェクト (VAO) </a></li>
+<li class="toctree-l1"><a class="reference internal" href="sections/012/index.html">第12回 シェーダの利用 </a></li>
+<li class="toctree-l1"><a class="reference internal" href="sections/013/index.html">第13回 モデルファイルのロード </a></li>
+<li class="toctree-l1"><a class="reference internal" href="sections/014/index.html">第14回 様々なシェーディングモデル </a></li>
+<li class="toctree-l1"><a class="reference internal" href="sections/015/index.html">第15回 非写実的シェーディング </a></li>
+<li class="toctree-l1"><a class="reference internal" href="sections/016/index.html">第16回 キーボード操作 </a></li>
+<li class="toctree-l1"><a class="reference internal" href="sections/017/index.html">第17回 マウス操作 </a></li>
+<li class="toctree-l1"><a class="reference internal" href="sections/018/index.html">第18回 アークボール操作 </a></li>
+<li class="toctree-l1"><a class="reference internal" href="sections/019/index.html">第19回 波動方程式の可視化 </a></li>
+<li class="toctree-l1"><a class="reference internal" href="sections/020/index.html">第20回 シューティング・ゲーム </a></li>
 </ul>
 
             
@@ -103,8 +123,10 @@
 
       
       <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
-        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="#">OpenGLCourseJP</a>
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="#">OpenGLCourseJP</a>
+        
       </nav>
 
 
@@ -113,23 +135,42 @@
         <div class="rst-content">
           
 
- 
+
+
+
+
+
+
+
+
+
+
+
 
 
 
 <div role="navigation" aria-label="breadcrumbs navigation">
+
   <ul class="wy-breadcrumbs">
-    <li><a href="#">Docs</a> &raquo;</li>
-      
-    <li>OpenGL Course</li>
+    
+      <li><a href="#">Docs</a> &raquo;</li>
+        
+      <li>OpenGL Course</li>
+    
+    
       <li class="wy-breadcrumbs-aside">
         
-          
-            <a href="https://github.com///blob/index.rst" class="fa fa-github"> Edit on GitHub</a>
+            
+            
+              <a href="https://github.com///blob/index.rst" class="fa fa-github"> Edit on GitHub</a>
+            
           
         
       </li>
+    
   </ul>
+
+  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
@@ -141,41 +182,27 @@
 <h2>目次<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
 <div class="toctree-wrapper compound">
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="sections/000/index.html">第0回 環境設定</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="sections/000/index.html#windows">Windowsの場合</a></li>
-<li class="toctree-l2"><a class="reference internal" href="sections/000/index.html#macos">MacOSの場合</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="sections/001/index.html">第1回 ウィンドウを開く </a><ul>
-<li class="toctree-l2"><a class="reference internal" href="sections/001/index.html#opengl">OpenGLの初期化</a></li>
-<li class="toctree-l2"><a class="reference internal" href="sections/001/index.html#id1">ウィンドウの作成</a></li>
-<li class="toctree-l2"><a class="reference internal" href="sections/001/index.html#id2">コンテキストの生成</a></li>
-<li class="toctree-l2"><a class="reference internal" href="sections/001/index.html#id3">背景色の設定</a></li>
-<li class="toctree-l2"><a class="reference internal" href="sections/001/index.html#id4">描画ループの設定</a></li>
-<li class="toctree-l2"><a class="reference internal" href="sections/001/index.html#id5">描画結果</a></li>
-<li class="toctree-l2"><a class="reference internal" href="sections/001/index.html#id6">練習</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="sections/002/index.html">第2回 三角形を描く </a><ul>
-<li class="toctree-l2"><a class="reference internal" href="sections/002/index.html#id1">三角形の座標指定</a></li>
-<li class="toctree-l2"><a class="reference internal" href="sections/002/index.html#opengl">OpenGLの座標系</a></li>
-<li class="toctree-l2"><a class="reference internal" href="sections/002/index.html#id2">三角形がグラデーションになる理由</a></li>
-<li class="toctree-l2"><a class="reference internal" href="sections/002/index.html#id3">練習</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="sections/003/index.html">第3回 メソッドによるコードの整理 </a><ul>
-<li class="toctree-l2"><a class="reference internal" href="sections/003/index.html#id1">コードの整理</a></li>
-<li class="toctree-l2"><a class="reference internal" href="sections/003/index.html#id2">コードを整理することのメリット</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="sections/004/index.html">第4回 座標変換 </a><ul>
-<li class="toctree-l2"><a class="reference internal" href="sections/004/index.html#id1">二次元の座標変換</a></li>
-<li class="toctree-l2"><a class="reference internal" href="sections/004/index.html#opengl">OpenGLが管理する座標変換行列</a></li>
-<li class="toctree-l2"><a class="reference internal" href="sections/004/index.html#id7">立方体の表示</a></li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="sections/000/index.html">第0回 環境設定</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sections/001/index.html">第1回 ウィンドウを開く </a></li>
+<li class="toctree-l1"><a class="reference internal" href="sections/002/index.html">第2回 三角形を描く </a></li>
+<li class="toctree-l1"><a class="reference internal" href="sections/003/index.html">第3回 メソッドによるコードの整理 </a></li>
+<li class="toctree-l1"><a class="reference internal" href="sections/004/index.html">第4回 座標変換 </a></li>
 <li class="toctree-l1"><a class="reference internal" href="sections/005/index.html">第5回 深度テスト </a></li>
 <li class="toctree-l1"><a class="reference internal" href="sections/006/index.html">第6回 アニメーション </a></li>
+<li class="toctree-l1"><a class="reference internal" href="sections/007/index.html">第7回 ウィンドウサイズの変更 </a></li>
+<li class="toctree-l1"><a class="reference internal" href="sections/008/index.html">第8回 テクスチャ・マッピング </a></li>
+<li class="toctree-l1"><a class="reference internal" href="sections/009/index.html">第9回 アルファ合成 </a></li>
+<li class="toctree-l1"><a class="reference internal" href="sections/010/index.html">第10回 頂点アトリビュート </a></li>
+<li class="toctree-l1"><a class="reference internal" href="sections/011/index.html">第11回 頂点配列オブジェクト (VAO) </a></li>
+<li class="toctree-l1"><a class="reference internal" href="sections/012/index.html">第12回 シェーダの利用 </a></li>
+<li class="toctree-l1"><a class="reference internal" href="sections/013/index.html">第13回 モデルファイルのロード </a></li>
+<li class="toctree-l1"><a class="reference internal" href="sections/014/index.html">第14回 様々なシェーディングモデル </a></li>
+<li class="toctree-l1"><a class="reference internal" href="sections/015/index.html">第15回 非写実的シェーディング </a></li>
+<li class="toctree-l1"><a class="reference internal" href="sections/016/index.html">第16回 キーボード操作 </a></li>
+<li class="toctree-l1"><a class="reference internal" href="sections/017/index.html">第17回 マウス操作 </a></li>
+<li class="toctree-l1"><a class="reference internal" href="sections/018/index.html">第18回 アークボール操作 </a></li>
+<li class="toctree-l1"><a class="reference internal" href="sections/019/index.html">第19回 波動方程式の可視化 </a></li>
+<li class="toctree-l1"><a class="reference internal" href="sections/020/index.html">第20回 シューティング・ゲーム </a></li>
 </ul>
 </div>
 </div>
@@ -190,12 +217,15 @@
 
 
            </div>
+           <div class="articleComments">
+            
+           </div>
           </div>
           <footer>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="sections/000/index.html" class="btn btn-neutral float-right" title="第0回 環境設定" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="sections/000/index.html" class="btn btn-neutral float-right" title="第0回 環境設定" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
     </div>
@@ -230,13 +260,14 @@
             VERSION:'0.1.0',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
         };
     </script>
       <script type="text/javascript" src="_static/jquery.js"></script>
       <script type="text/javascript" src="_static/underscore.js"></script>
       <script type="text/javascript" src="_static/doctools.js"></script>
-      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
   
 

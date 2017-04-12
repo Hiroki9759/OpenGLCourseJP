@@ -13,6 +13,8 @@
 
   
   
+  
+  
 
   
 
@@ -44,6 +46,7 @@
 
 <body class="wy-body-for-nav" role="document">
 
+   
   <div class="wy-grid-for-nav">
 
     
@@ -84,7 +87,10 @@
           
             
             
-                <ul class="current">
+              
+            
+            
+              <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../000/index.html">第0回 環境設定</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../001/index.html">第1回 ウィンドウを開く </a></li>
 <li class="toctree-l1"><a class="reference internal" href="../002/index.html">第2回 三角形を描く </a></li>
@@ -96,6 +102,20 @@
 <li class="toctree-l1"><a class="reference internal" href="../004/index.html">第4回 座標変換 </a></li>
 <li class="toctree-l1"><a class="reference internal" href="../005/index.html">第5回 深度テスト </a></li>
 <li class="toctree-l1"><a class="reference internal" href="../006/index.html">第6回 アニメーション </a></li>
+<li class="toctree-l1"><a class="reference internal" href="../007/index.html">第7回 ウィンドウサイズの変更 </a></li>
+<li class="toctree-l1"><a class="reference internal" href="../008/index.html">第8回 テクスチャ・マッピング </a></li>
+<li class="toctree-l1"><a class="reference internal" href="../009/index.html">第9回 アルファ合成 </a></li>
+<li class="toctree-l1"><a class="reference internal" href="../010/index.html">第10回 頂点アトリビュート </a></li>
+<li class="toctree-l1"><a class="reference internal" href="../011/index.html">第11回 頂点配列オブジェクト (VAO) </a></li>
+<li class="toctree-l1"><a class="reference internal" href="../012/index.html">第12回 シェーダの利用 </a></li>
+<li class="toctree-l1"><a class="reference internal" href="../013/index.html">第13回 モデルファイルのロード </a></li>
+<li class="toctree-l1"><a class="reference internal" href="../014/index.html">第14回 様々なシェーディングモデル </a></li>
+<li class="toctree-l1"><a class="reference internal" href="../015/index.html">第15回 非写実的シェーディング </a></li>
+<li class="toctree-l1"><a class="reference internal" href="../016/index.html">第16回 キーボード操作 </a></li>
+<li class="toctree-l1"><a class="reference internal" href="../017/index.html">第17回 マウス操作 </a></li>
+<li class="toctree-l1"><a class="reference internal" href="../018/index.html">第18回 アークボール操作 </a></li>
+<li class="toctree-l1"><a class="reference internal" href="../019/index.html">第19回 波動方程式の可視化 </a></li>
+<li class="toctree-l1"><a class="reference internal" href="../020/index.html">第20回 シューティング・ゲーム </a></li>
 </ul>
 
             
@@ -108,8 +128,10 @@
 
       
       <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
-        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="../../index.html">OpenGLCourseJP</a>
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">OpenGLCourseJP</a>
+        
       </nav>
 
 
@@ -118,30 +140,49 @@
         <div class="rst-content">
           
 
- 
+
+
+
+
+
+
+
+
+
+
+
 
 
 
 <div role="navigation" aria-label="breadcrumbs navigation">
+
   <ul class="wy-breadcrumbs">
-    <li><a href="../../index.html">Docs</a> &raquo;</li>
-      
-    <li>第3回 メソッドによるコードの整理 </li>
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+      <li>第3回 メソッドによるコードの整理 </li>
+    
+    
       <li class="wy-breadcrumbs-aside">
         
-          
-            <a href="https://github.com///blob/sections/003/index.rst" class="fa fa-github"> Edit on GitHub</a>
+            
+            
+              <a href="https://github.com///blob/sections/003/index.rst" class="fa fa-github"> Edit on GitHub</a>
+            
           
         
       </li>
+    
   </ul>
+
+  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
   <div class="section" id="source-code">
-<h1>第3回 メソッドによるコードの整理 <a class="reference external" href="https://github.com/tatsy/OpenGLCourseJP/blob/master/src/003_use_of_methods/003_use_of_methods.cpp"><img alt="source_code" src="../../_images/octcat2.png" style="width: 24px;" /></a><a class="headerlink" href="#source-code" title="Permalink to this headline">¶</a></h1>
+<h1>第3回 メソッドによるコードの整理 <a class="reference external" href="https://github.com/tatsy/OpenGLCourseJP/blob/master/src/003_use_of_methods/main.cpp"><img alt="source_code" src="../../_images/octcat2.png" style="width: 24px;" /></a><a class="headerlink" href="#source-code" title="Permalink to this headline">¶</a></h1>
 <p>前回までの内容で無事、三角形が表示できるようになりましたが、ここからプログラムを書き足していく上で
 大切になってくるのがコードの整理です。より専門的な言葉では「リファクタリング」と呼びます。</p>
 <p>今までのコードは <code class="docutils literal"><span class="pre">main</span></code> 関数の中に全ての処理が書かれていましたが、この処理の一部を
@@ -397,15 +438,18 @@
 
 
            </div>
+           <div class="articleComments">
+            
+           </div>
           </div>
           <footer>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../004/index.html" class="btn btn-neutral float-right" title="第4回 座標変換" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="../004/index.html" class="btn btn-neutral float-right" title="第4回 座標変換" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="../002/index.html" class="btn btn-neutral" title="第2回 三角形を描く" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="../002/index.html" class="btn btn-neutral" title="第2回 三角形を描く" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -439,13 +483,14 @@
             VERSION:'0.1.0',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
         };
     </script>
       <script type="text/javascript" src="../../_static/jquery.js"></script>
       <script type="text/javascript" src="../../_static/underscore.js"></script>
       <script type="text/javascript" src="../../_static/doctools.js"></script>
-      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
   
 

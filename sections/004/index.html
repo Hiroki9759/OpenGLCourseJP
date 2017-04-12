@@ -13,6 +13,8 @@
 
   
   
+  
+  
 
   
 
@@ -44,6 +46,7 @@
 
 <body class="wy-body-for-nav" role="document">
 
+   
   <div class="wy-grid-for-nav">
 
     
@@ -84,7 +87,10 @@
           
             
             
-                <ul class="current">
+              
+            
+            
+              <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../000/index.html">第0回 環境設定</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../001/index.html">第1回 ウィンドウを開く </a></li>
 <li class="toctree-l1"><a class="reference internal" href="../002/index.html">第2回 三角形を描く </a></li>
@@ -103,11 +109,28 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#id7">立方体の表示</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id7">立方体の表示</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id8">練習 2</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../005/index.html">第5回 深度テスト </a></li>
 <li class="toctree-l1"><a class="reference internal" href="../006/index.html">第6回 アニメーション </a></li>
+<li class="toctree-l1"><a class="reference internal" href="../007/index.html">第7回 ウィンドウサイズの変更 </a></li>
+<li class="toctree-l1"><a class="reference internal" href="../008/index.html">第8回 テクスチャ・マッピング </a></li>
+<li class="toctree-l1"><a class="reference internal" href="../009/index.html">第9回 アルファ合成 </a></li>
+<li class="toctree-l1"><a class="reference internal" href="../010/index.html">第10回 頂点アトリビュート </a></li>
+<li class="toctree-l1"><a class="reference internal" href="../011/index.html">第11回 頂点配列オブジェクト (VAO) </a></li>
+<li class="toctree-l1"><a class="reference internal" href="../012/index.html">第12回 シェーダの利用 </a></li>
+<li class="toctree-l1"><a class="reference internal" href="../013/index.html">第13回 モデルファイルのロード </a></li>
+<li class="toctree-l1"><a class="reference internal" href="../014/index.html">第14回 様々なシェーディングモデル </a></li>
+<li class="toctree-l1"><a class="reference internal" href="../015/index.html">第15回 非写実的シェーディング </a></li>
+<li class="toctree-l1"><a class="reference internal" href="../016/index.html">第16回 キーボード操作 </a></li>
+<li class="toctree-l1"><a class="reference internal" href="../017/index.html">第17回 マウス操作 </a></li>
+<li class="toctree-l1"><a class="reference internal" href="../018/index.html">第18回 アークボール操作 </a></li>
+<li class="toctree-l1"><a class="reference internal" href="../019/index.html">第19回 波動方程式の可視化 </a></li>
+<li class="toctree-l1"><a class="reference internal" href="../020/index.html">第20回 シューティング・ゲーム </a></li>
 </ul>
 
             
@@ -120,8 +143,10 @@
 
       
       <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
-        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="../../index.html">OpenGLCourseJP</a>
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">OpenGLCourseJP</a>
+        
       </nav>
 
 
@@ -130,30 +155,49 @@
         <div class="rst-content">
           
 
- 
+
+
+
+
+
+
+
+
+
+
+
 
 
 
 <div role="navigation" aria-label="breadcrumbs navigation">
+
   <ul class="wy-breadcrumbs">
-    <li><a href="../../index.html">Docs</a> &raquo;</li>
-      
-    <li>第4回 座標変換 </li>
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+      <li>第4回 座標変換 </li>
+    
+    
       <li class="wy-breadcrumbs-aside">
         
-          
-            <a href="https://github.com///blob/sections/004/index.rst" class="fa fa-github"> Edit on GitHub</a>
+            
+            
+              <a href="https://github.com///blob/sections/004/index.rst" class="fa fa-github"> Edit on GitHub</a>
+            
           
         
       </li>
+    
   </ul>
+
+  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
   <div class="section" id="source-code">
-<h1>第4回 座標変換 <a class="reference external" href="https://github.com/tatsy/OpenGLCourseJP/blob/master/src/004_coordinate_transformation/004_coordinate_transformation.cpp"><img alt="source_code" src="../../_images/octcat3.png" style="width: 24px;" /></a><a class="headerlink" href="#source-code" title="Permalink to this headline">¶</a></h1>
+<h1>第4回 座標変換 <a class="reference external" href="https://github.com/tatsy/OpenGLCourseJP/blob/master/src/004_coordinate_transformation/main.cpp"><img alt="source_code" src="../../_images/octcat3.png" style="width: 24px;" /></a><a class="headerlink" href="#source-code" title="Permalink to this headline">¶</a></h1>
 <p><span style="color: #ff0000;">
   注) この回は、全ての回の中で最も重要な回です。非常に難しい部分ですので、めげずに何度も復習しましょう。
 </span></p><div class="section" id="id1">
@@ -421,6 +465,11 @@ b &amp;= -\frac{zNear + zFar}{zNear - zFar}\end{split}\]</div>
 </div>
 <div class="section" id="id7">
 <h2>立方体の表示<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h2>
+<p>ここまでで立方体を表示するための基礎知識は紹介できました。そこで、早速、三次元物体の最初として
+色のついた立方体を描画してみます。ここでは、重要なコードの断片だけを説明しますが、
+第4章のまとめコードには全体のコードがありますので、そちらを参考にしながらプログラムを書いてみてください。</p>
+<p>まずは、立方体を定義している部分ですが、こちらは以下のようなコードになります。
+コメントにある通り、上から頂点の位置、面の色、頂点を結ぶ順番を表しています。</p>
 <div class="highlight-cpp"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
  3
@@ -484,6 +533,13 @@ b &amp;= -\frac{zNear + zFar}{zNear - zFar}\end{split}\]</div>
 <span class="p">};</span>
 </pre></div>
 </td></tr></table></div>
+<p>続いては、実際の描画部分です。大きく変わっている部分は、ビューポート変換の設定の部分と
+座標変換行列の設定の部分になります。</p>
+<p>以下のコードでは、まず、 <code class="docutils literal"><span class="pre">glViewport</span></code> 関数でビューポートを画面サイズと同じにしています。
+そのあとで <code class="docutils literal"><span class="pre">glMatrixMode</span></code> 関数に <code class="docutils literal"><span class="pre">GL_PROJECTION</span></code> を渡して、透視投影変換行列を
+<code class="docutils literal"><span class="pre">gluPerspective</span></code> 関数で設定しています。最後は <code class="docutils literal"><span class="pre">glMatrixMode</span></code> 関数に <code class="docutils literal"><span class="pre">GL_MODELVIEW</span></code>
+を渡して、モデルビュー行列を <code class="docutils literal"><span class="pre">gluLookAt</span></code> 関数で設定しています。</p>
+<p>ここの設定だと、カメラは <code class="docutils literal"><span class="pre">(3.0,</span> <span class="pre">4.0,</span> <span class="pre">5.0)</span></code> の位置にあり <code class="docutils literal"><span class="pre">(0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.0)</span></code> の位置を見ていることになります。</p>
 <div class="highlight-cpp"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
  3
@@ -545,21 +601,37 @@ b &amp;= -\frac{zNear + zFar}{zNear - zFar}\end{split}\]</div>
 <span class="p">}</span>
 </pre></div>
 </td></tr></table></div>
+<p>こちらのコードを実行すると以下のような画像が得られるはずです。少しおかしいのが分かるでしょうか。
+今描いている立方体の前面には赤、緑、青の面が来るはずですが、裏面にあるはずの、イエロー、マゼンタ、
+シアンの面が見えています。</p>
+<p>これは、現在の設定だと物体が視点から見てどういう順番にあるのかを考慮していないためで、
+単純に描画した順に色が塗り重ねられているためです。これを解決する方法については第5回の「深度テスト」で解説します。</p>
 <a class="reference internal image-reference" href="../../_images/strange_cube.jpg"><img alt="../../_images/strange_cube.jpg" src="../../_images/strange_cube.jpg" style="width: 250px;" /></a>
+<div class="section" id="id8">
+<h3>練習 2<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h3>
+<ol class="arabic simple">
+<li><code class="docutils literal"><span class="pre">gluOrtho</span></code> 関数を使って、投影変換行列を平行投影変換に変更してみてください。</li>
+<li>立方体の面の描画順を変更するとどうなるか試してみてください。</li>
+<li>【発展】 <code class="docutils literal"><span class="pre">glLoadMatrix</span></code> 関数は長さが16の <code class="docutils literal"><span class="pre">float</span></code> の配列を受け取って、それを現在の行列モード( <code class="docutils literal"><span class="pre">GL_MODELVIEW</span></code> や <code class="docutils literal"><span class="pre">GL_PROJECTION</span></code> )に設定する関数です。この関数を <code class="docutils literal"><span class="pre">gluPerspective</span></code> や <code class="docutils literal"><span class="pre">gluLookAt</span></code> の代わりに使って描画をしてみましょう。</li>
+</ol>
+</div>
 </div>
 </div>
 
 
+           </div>
+           <div class="articleComments">
+            
            </div>
           </div>
           <footer>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../005/index.html" class="btn btn-neutral float-right" title="第5回 深度テスト" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="../005/index.html" class="btn btn-neutral float-right" title="第5回 深度テスト" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="../003/index.html" class="btn btn-neutral" title="第3回 メソッドによるコードの整理" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="../003/index.html" class="btn btn-neutral" title="第3回 メソッドによるコードの整理" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -593,13 +665,14 @@ b &amp;= -\frac{zNear + zFar}{zNear - zFar}\end{split}\]</div>
             VERSION:'0.1.0',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
         };
     </script>
       <script type="text/javascript" src="../../_static/jquery.js"></script>
       <script type="text/javascript" src="../../_static/underscore.js"></script>
       <script type="text/javascript" src="../../_static/doctools.js"></script>
-      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
   
 
