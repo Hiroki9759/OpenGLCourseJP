@@ -276,21 +276,105 @@ Visual Studioは現在Community版が無料で使用可能なので、そちら�
 名前を「main.cpp」に変更して「追加(A)」ボタンをクリックします。</p>
 <img alt="../../_images/add_new_item.jpg" src="../../_images/add_new_item.jpg" />
 <p>作成されたファイルを開き、以下のソースコードを入力します。内容に関しては、後の章で解説をします。</p>
-<div class="highlight-cpp"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
-2
-3
-4
-5
-6
-7
-8
-9</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;cstdio&gt;</span><span class="cp"></span>
+<div class="highlight-cpp"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;cstdio&gt;</span><span class="cp"></span>
 <span class="cp">#include</span> <span class="cpf">&lt;GLFW/glfw3.h&gt;</span><span class="cp"></span>
 
+<span class="k">static</span> <span class="k">const</span> <span class="kt">int</span> <span class="n">WIN_WIDTH</span>   <span class="o">=</span> <span class="mi">500</span><span class="p">;</span>                 <span class="c1">// ウィンドウの幅</span>
+<span class="k">static</span> <span class="k">const</span> <span class="kt">int</span> <span class="n">WIN_HEIGHT</span>  <span class="o">=</span> <span class="mi">500</span><span class="p">;</span>                 <span class="c1">// ウィンドウの高さ</span>
+<span class="k">static</span> <span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">WIN_TITLE</span> <span class="o">=</span> <span class="s">&quot;OpenGL Course&quot;</span><span class="p">;</span>     <span class="c1">// ウィンドウのタイトル</span>
+
+<span class="c1">// ユーザ定義のOpenGLの初期化</span>
+<span class="kt">void</span> <span class="nf">initializeGL</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c1">// 背景色の設定</span>
+    <span class="n">glClearColor</span><span class="p">(</span><span class="mf">1.0f</span><span class="p">,</span> <span class="mf">0.0f</span><span class="p">,</span> <span class="mf">0.0f</span><span class="p">,</span> <span class="mf">1.0f</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="c1">// ユーザ定義のOpenGL描画</span>
+<span class="kt">void</span> <span class="nf">paintGL</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c1">// 背景色の描画</span>
+    <span class="n">glClear</span><span class="p">(</span><span class="n">GL_COLOR_BUFFER_BIT</span><span class="p">);</span>
+<span class="p">}</span>
+
 <span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">**</span><span class="n">argv</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// OpenGLを初期化する</span>
     <span class="k">if</span> <span class="p">(</span><span class="n">glfwInit</span><span class="p">()</span> <span class="o">==</span> <span class="n">GL_FALSE</span><span class="p">)</span> <span class="p">{</span>
         <span class="n">fprintf</span><span class="p">(</span><span class="n">stderr</span><span class="p">,</span> <span class="s">&quot;Initialization failed!</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
         <span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="c1">// Windowの作成</span>
+    <span class="n">GLFWwindow</span> <span class="o">*</span><span class="n">window</span> <span class="o">=</span> <span class="n">glfwCreateWindow</span><span class="p">(</span><span class="n">WIN_WIDTH</span><span class="p">,</span> <span class="n">WIN_HEIGHT</span><span class="p">,</span> <span class="n">WIN_TITLE</span><span class="p">,</span>
+                                          <span class="nb">NULL</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">window</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">fprintf</span><span class="p">(</span><span class="n">stderr</span><span class="p">,</span> <span class="s">&quot;Window creation failed!&quot;</span><span class="p">);</span>
+        <span class="n">glfwTerminate</span><span class="p">();</span>
+        <span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="c1">// OpenGLの描画対象にWindowを追加</span>
+    <span class="n">glfwMakeContextCurrent</span><span class="p">(</span><span class="n">window</span><span class="p">);</span>
+
+    <span class="c1">// 初期化</span>
+    <span class="n">initializeGL</span><span class="p">();</span>
+
+    <span class="c1">// メインループ</span>
+    <span class="k">while</span> <span class="p">(</span><span class="n">glfwWindowShouldClose</span><span class="p">(</span><span class="n">window</span><span class="p">)</span> <span class="o">==</span> <span class="n">GL_FALSE</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// 描画</span>
+        <span class="n">paintGL</span><span class="p">();</span>
+
+        <span class="c1">// 描画用バッファの切り替え</span>
+        <span class="n">glfwSwapBuffers</span><span class="p">(</span><span class="n">window</span><span class="p">);</span>
+        <span class="n">glfwPollEvents</span><span class="p">();</span>
     <span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
@@ -397,21 +481,105 @@ MacOSを使う場合には以下の「フレームワークの追加」が必要
 <p>Xcodeの場合には、上記のやり方でプロジェクトを作成すると、すでに「main.cpp」という
 ファイルが作成されています。このファイルを右側のファイルリストから開き、
 以下のソースコードを入力します。内容に関しては、後の章で解説をします。</p>
-<div class="highlight-cpp"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
-2
-3
-4
-5
-6
-7
-8
-9</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;cstdio&gt;</span><span class="cp"></span>
+<div class="highlight-cpp"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;cstdio&gt;</span><span class="cp"></span>
 <span class="cp">#include</span> <span class="cpf">&lt;GLFW/glfw3.h&gt;</span><span class="cp"></span>
 
+<span class="k">static</span> <span class="k">const</span> <span class="kt">int</span> <span class="n">WIN_WIDTH</span>   <span class="o">=</span> <span class="mi">500</span><span class="p">;</span>                 <span class="c1">// ウィンドウの幅</span>
+<span class="k">static</span> <span class="k">const</span> <span class="kt">int</span> <span class="n">WIN_HEIGHT</span>  <span class="o">=</span> <span class="mi">500</span><span class="p">;</span>                 <span class="c1">// ウィンドウの高さ</span>
+<span class="k">static</span> <span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">WIN_TITLE</span> <span class="o">=</span> <span class="s">&quot;OpenGL Course&quot;</span><span class="p">;</span>     <span class="c1">// ウィンドウのタイトル</span>
+
+<span class="c1">// ユーザ定義のOpenGLの初期化</span>
+<span class="kt">void</span> <span class="nf">initializeGL</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c1">// 背景色の設定</span>
+    <span class="n">glClearColor</span><span class="p">(</span><span class="mf">1.0f</span><span class="p">,</span> <span class="mf">0.0f</span><span class="p">,</span> <span class="mf">0.0f</span><span class="p">,</span> <span class="mf">1.0f</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="c1">// ユーザ定義のOpenGL描画</span>
+<span class="kt">void</span> <span class="nf">paintGL</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c1">// 背景色の描画</span>
+    <span class="n">glClear</span><span class="p">(</span><span class="n">GL_COLOR_BUFFER_BIT</span><span class="p">);</span>
+<span class="p">}</span>
+
 <span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">**</span><span class="n">argv</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// OpenGLを初期化する</span>
     <span class="k">if</span> <span class="p">(</span><span class="n">glfwInit</span><span class="p">()</span> <span class="o">==</span> <span class="n">GL_FALSE</span><span class="p">)</span> <span class="p">{</span>
         <span class="n">fprintf</span><span class="p">(</span><span class="n">stderr</span><span class="p">,</span> <span class="s">&quot;Initialization failed!</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
         <span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="c1">// Windowの作成</span>
+    <span class="n">GLFWwindow</span> <span class="o">*</span><span class="n">window</span> <span class="o">=</span> <span class="n">glfwCreateWindow</span><span class="p">(</span><span class="n">WIN_WIDTH</span><span class="p">,</span> <span class="n">WIN_HEIGHT</span><span class="p">,</span> <span class="n">WIN_TITLE</span><span class="p">,</span>
+                                          <span class="nb">NULL</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">window</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">fprintf</span><span class="p">(</span><span class="n">stderr</span><span class="p">,</span> <span class="s">&quot;Window creation failed!&quot;</span><span class="p">);</span>
+        <span class="n">glfwTerminate</span><span class="p">();</span>
+        <span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="c1">// OpenGLの描画対象にWindowを追加</span>
+    <span class="n">glfwMakeContextCurrent</span><span class="p">(</span><span class="n">window</span><span class="p">);</span>
+
+    <span class="c1">// 初期化</span>
+    <span class="n">initializeGL</span><span class="p">();</span>
+
+    <span class="c1">// メインループ</span>
+    <span class="k">while</span> <span class="p">(</span><span class="n">glfwWindowShouldClose</span><span class="p">(</span><span class="n">window</span><span class="p">)</span> <span class="o">==</span> <span class="n">GL_FALSE</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// 描画</span>
+        <span class="n">paintGL</span><span class="p">();</span>
+
+        <span class="c1">// 描画用バッファの切り替え</span>
+        <span class="n">glfwSwapBuffers</span><span class="p">(</span><span class="n">window</span><span class="p">);</span>
+        <span class="n">glfwPollEvents</span><span class="p">();</span>
     <span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
