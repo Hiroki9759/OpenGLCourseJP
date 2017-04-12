@@ -612,7 +612,7 @@ b &amp;= -\frac{zNear + zFar}{zNear - zFar}\end{split}\]</div>
 <ol class="arabic simple">
 <li><code class="docutils literal"><span class="pre">gluOrtho</span></code> 関数を使って、投影変換行列を平行投影変換に変更してみてください。</li>
 <li>立方体の面の描画順を変更するとどうなるか試してみてください。</li>
-<li>【発展】 <code class="docutils literal"><span class="pre">glLoadMatrix</span></code> 関数は長さが16の <code class="docutils literal"><span class="pre">float</span></code> の配列を受け取って、それを現在の行列モード( <code class="docutils literal"><span class="pre">GL_MODELVIEW</span></code> や <code class="docutils literal"><span class="pre">GL_PROJECTION</span></code> )に設定する関数です。この関数を <code class="docutils literal"><span class="pre">gluPerspective</span></code> や <code class="docutils literal"><span class="pre">gluLookAt</span></code> の代わりに使って描画をしてみましょう。</li>
+<li>【発展】 <code class="docutils literal"><span class="pre">glMultMatrixf</span></code> 関数は長さが16の <code class="docutils literal"><span class="pre">float</span></code> の配列を受け取って、それを現在の行列モード( <code class="docutils literal"><span class="pre">GL_MODELVIEW</span></code> や <code class="docutils literal"><span class="pre">GL_PROJECTION</span></code> )に設定する関数です。この関数を <code class="docutils literal"><span class="pre">gluPerspective</span></code> や <code class="docutils literal"><span class="pre">gluLookAt</span></code> の代わりに使って描画をしてみましょう。</li>
 </ol>
 </div>
 </div>
