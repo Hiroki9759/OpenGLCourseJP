@@ -97,7 +97,11 @@
 <li class="toctree-l1"><a class="reference internal" href="../003/index.html">第3回 メソッドによるコードの整理 </a></li>
 <li class="toctree-l1"><a class="reference internal" href="../004/index.html">第4回 座標変換 </a></li>
 <li class="toctree-l1"><a class="reference internal" href="../005/index.html">第5回 深度テスト </a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">第6回 ウィンドウサイズの変更 </a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">第6回 ウィンドウサイズの変更 </a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id1">単純な設定</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id2">より高度な設定</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="../007/index.html">第7回 アニメーション </a></li>
 <li class="toctree-l1"><a class="reference internal" href="../008/index.html">第8回 テクスチャ・マッピング </a></li>
 <li class="toctree-l1"><a class="reference internal" href="../009/index.html">第9回 アルファ合成 </a></li>
@@ -179,7 +183,67 @@
             
   <div class="section" id="source-code">
 <h1>第6回 ウィンドウサイズの変更 <a class="reference external" href="https://github.com/tatsy/OpenGLCourseJP/blob/master/src/006_window_resizing/main.cpp"><img alt="source_code" src="../../_images/octcat5.png" style="width: 24px;" /></a><a class="headerlink" href="#source-code" title="Permalink to this headline">¶</a></h1>
-<iframe src="https://player.vimeo.com/video/201603287" width="320" height="336" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></p></div>
+<div class="section" id="id1">
+<h2>単純な設定<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-cpp"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="kt">void</span> <span class="nf">resizeGL</span><span class="p">(</span><span class="n">GLFWwindow</span> <span class="o">*</span><span class="n">window</span><span class="p">,</span> <span class="kt">int</span> <span class="n">width</span><span class="p">,</span> <span class="kt">int</span> <span class="n">height</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// ユーザ管理のウィンドウサイズを変更</span>
+    <span class="n">WIN_WIDTH</span> <span class="o">=</span> <span class="n">width</span><span class="p">;</span>
+    <span class="n">WIN_HEIGHT</span> <span class="o">=</span> <span class="n">height</span><span class="p">;</span>
+
+    <span class="c1">// GLFW管理のウィンドウサイズを変更</span>
+    <span class="n">glfwSetWindowSize</span><span class="p">(</span><span class="n">window</span><span class="p">,</span> <span class="n">WIN_WIDTH</span><span class="p">,</span> <span class="n">WIN_HEIGHT</span><span class="p">);</span>
+
+    <span class="c1">// ビューポート変換の更新</span>
+    <span class="n">glViewport</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">renderBufferWidth</span><span class="p">,</span> <span class="n">renderBufferHeight</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<div class="section" id="id2">
+<h2>より高度な設定<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-cpp"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="kt">void</span> <span class="nf">resizeGL</span><span class="p">(</span><span class="n">GLFWwindow</span> <span class="o">*</span><span class="n">window</span><span class="p">,</span> <span class="kt">int</span> <span class="n">width</span><span class="p">,</span> <span class="kt">int</span> <span class="n">height</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// ユーザ管理のウィンドウサイズを変更</span>
+    <span class="n">WIN_WIDTH</span> <span class="o">=</span> <span class="n">width</span><span class="p">;</span>
+    <span class="n">WIN_HEIGHT</span> <span class="o">=</span> <span class="n">height</span><span class="p">;</span>
+
+    <span class="c1">// GLFW管理のウィンドウサイズを変更</span>
+    <span class="n">glfwSetWindowSize</span><span class="p">(</span><span class="n">window</span><span class="p">,</span> <span class="n">WIN_WIDTH</span><span class="p">,</span> <span class="n">WIN_HEIGHT</span><span class="p">);</span>
+
+    <span class="c1">// 実際のウィンドウサイズ (ピクセル数) を取得</span>
+    <span class="kt">int</span> <span class="n">renderBufferWidth</span><span class="p">,</span> <span class="n">renderBufferHeight</span><span class="p">;</span>
+    <span class="n">glfwGetFramebufferSize</span><span class="p">(</span><span class="n">window</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">renderBufferWidth</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">renderBufferHeight</span><span class="p">);</span>
+
+    <span class="c1">// ビューポート変換の更新</span>
+    <span class="n">glViewport</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">renderBufferWidth</span><span class="p">,</span> <span class="n">renderBufferHeight</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+</div>
 
 
            </div>
