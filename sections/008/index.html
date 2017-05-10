@@ -99,7 +99,17 @@
 <li class="toctree-l1"><a class="reference internal" href="../005/index.html">第5回 深度テスト </a></li>
 <li class="toctree-l1"><a class="reference internal" href="../006/index.html">第6回 ウィンドウサイズの変更 </a></li>
 <li class="toctree-l1"><a class="reference internal" href="../007/index.html">第7回 アニメーション </a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">第8回 テクスチャ・マッピング </a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">第8回 テクスチャ・マッピング </a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id1">境界の折り返し設定</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#gl-clamp">GL_CLAMP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#gl-clamp-to-edge">GL_CLAMP_TO_EDGE</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#gl-clamp-to-border">GL_CLAMP_TO_BORDER</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#gl-repeat">GL_REPEAT</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#gl-mirrored-repeat">GL_MIRRORED_REPEAT</a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="../009/index.html">第9回 アルファ合成 </a></li>
 <li class="toctree-l1"><a class="reference internal" href="../010/index.html">第10回 頂点バッファ </a></li>
 <li class="toctree-l1"><a class="reference internal" href="../011/index.html">第11回 頂点配列オブジェクト (VAO) </a></li>
@@ -179,7 +189,69 @@
             
   <div class="section" id="source-code">
 <h1>第8回 テクスチャ・マッピング <a class="reference external" href="https://github.com/tatsy/OpenGLCourseJP/blob/master/src/008_texture_mapping"><img alt="source_code" src="../../_images/octcat7.png" style="width: 24px;" /></a><a class="headerlink" href="#source-code" title="Permalink to this headline">¶</a></h1>
-<iframe src="https://player.vimeo.com/video/201603287" width="320" height="336" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></p></div>
+<div class="section" id="id1">
+<h2>境界の折り返し設定<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<p>UV座標が[0, 1]の範囲外にあるときの挙動を決定する</p>
+<div class="section" id="gl-clamp">
+<h3>GL_CLAMP<a class="headerlink" href="#gl-clamp" title="Permalink to this headline">¶</a></h3>
+<p>テクスチャ境界上の最も近い画素の色とユーザ設定の境界色の平均を取る</p>
+<div class="highlight-cpp"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="kt">float</span> <span class="n">borderColor</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span> <span class="mf">1.0f</span><span class="p">,</span> <span class="mf">0.0f</span><span class="p">,</span> <span class="mf">0.0f</span><span class="p">,</span> <span class="mf">1.0f</span> <span class="p">};</span>
+<span class="n">glTexParameterfv</span><span class="p">(</span><span class="n">GL_TEXTURE_2D</span><span class="p">,</span> <span class="n">GL_TEXTURE_BORDER_COLOR</span><span class="p">,</span> <span class="n">borderColor</span><span class="p">);</span>
+<span class="n">glTexParameteri</span><span class="p">(</span><span class="n">GL_TEXTURE_2D</span><span class="p">,</span> <span class="n">GL_TEXTURE_WRAP_S</span><span class="p">,</span> <span class="n">GL_CLAMP</span><span class="p">);</span>
+<span class="n">glTexParameteri</span><span class="p">(</span><span class="n">GL_TEXTURE_2D</span><span class="p">,</span> <span class="n">GL_TEXTURE_WRAP_T</span><span class="p">,</span> <span class="n">GL_CLAMP</span><span class="p">);</span>
+</pre></div>
+</td></tr></table></div>
+<img alt="../../_images/clamp.png" src="../../_images/clamp.png" />
+</div>
+<div class="section" id="gl-clamp-to-edge">
+<h3>GL_CLAMP_TO_EDGE<a class="headerlink" href="#gl-clamp-to-edge" title="Permalink to this headline">¶</a></h3>
+<p>テクスチャ境界上の最も近い画素の色を使う</p>
+<div class="highlight-cpp"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="n">glTexParameteri</span><span class="p">(</span><span class="n">GL_TEXTURE_2D</span><span class="p">,</span> <span class="n">GL_TEXTURE_WRAP_S</span><span class="p">,</span> <span class="n">GL_CLAMP_TO_EDGE</span><span class="p">);</span>
+<span class="n">glTexParameteri</span><span class="p">(</span><span class="n">GL_TEXTURE_2D</span><span class="p">,</span> <span class="n">GL_TEXTURE_WRAP_T</span><span class="p">,</span> <span class="n">GL_CLAMP_TO_EDGE</span><span class="p">);</span>
+</pre></div>
+</td></tr></table></div>
+<img alt="../../_images/clamp_to_edge.png" src="../../_images/clamp_to_edge.png" />
+</div>
+<div class="section" id="gl-clamp-to-border">
+<h3>GL_CLAMP_TO_BORDER<a class="headerlink" href="#gl-clamp-to-border" title="Permalink to this headline">¶</a></h3>
+<p>ユーザ設定の境界色を常に使う</p>
+<div class="highlight-cpp"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="kt">float</span> <span class="n">borderColor</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span> <span class="mf">1.0f</span><span class="p">,</span> <span class="mf">0.0f</span><span class="p">,</span> <span class="mf">0.0f</span><span class="p">,</span> <span class="mf">1.0f</span> <span class="p">};</span>
+<span class="n">glTexParameterfv</span><span class="p">(</span><span class="n">GL_TEXTURE_2D</span><span class="p">,</span> <span class="n">GL_TEXTURE_BORDER_COLOR</span><span class="p">,</span> <span class="n">borderColor</span><span class="p">);</span>
+<span class="n">glTexParameteri</span><span class="p">(</span><span class="n">GL_TEXTURE_2D</span><span class="p">,</span> <span class="n">GL_TEXTURE_WRAP_S</span><span class="p">,</span> <span class="n">GL_CLAMP_TO_BORDER</span><span class="p">);</span>
+<span class="n">glTexParameteri</span><span class="p">(</span><span class="n">GL_TEXTURE_2D</span><span class="p">,</span> <span class="n">GL_TEXTURE_WRAP_T</span><span class="p">,</span> <span class="n">GL_CLAMP_TO_BORDER</span><span class="p">);</span>
+</pre></div>
+</td></tr></table></div>
+<img alt="../../_images/clamp_to_border.png" src="../../_images/clamp_to_border.png" />
+</div>
+<div class="section" id="gl-repeat">
+<h3>GL_REPEAT<a class="headerlink" href="#gl-repeat" title="Permalink to this headline">¶</a></h3>
+<p>テクスチャを単純に繰り返す</p>
+<div class="highlight-cpp"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="n">glTexParameteri</span><span class="p">(</span><span class="n">GL_TEXTURE_2D</span><span class="p">,</span> <span class="n">GL_TEXTURE_WRAP_S</span><span class="p">,</span> <span class="n">GL_REPEAT</span><span class="p">);</span>
+<span class="n">glTexParameteri</span><span class="p">(</span><span class="n">GL_TEXTURE_2D</span><span class="p">,</span> <span class="n">GL_TEXTURE_WRAP_T</span><span class="p">,</span> <span class="n">GL_REPEAT</span><span class="p">);</span>
+</pre></div>
+</td></tr></table></div>
+<img alt="../../_images/repeat.png" src="../../_images/repeat.png" />
+</div>
+<div class="section" id="gl-mirrored-repeat">
+<h3>GL_MIRRORED_REPEAT<a class="headerlink" href="#gl-mirrored-repeat" title="Permalink to this headline">¶</a></h3>
+<p>テクスチャを反転しながら繰り返す</p>
+<div class="highlight-cpp"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="n">glTexParameteri</span><span class="p">(</span><span class="n">GL_TEXTURE_2D</span><span class="p">,</span> <span class="n">GL_TEXTURE_WRAP_S</span><span class="p">,</span> <span class="n">GL_MIRRORED_REPEAT</span><span class="p">);</span>
+<span class="n">glTexParameteri</span><span class="p">(</span><span class="n">GL_TEXTURE_2D</span><span class="p">,</span> <span class="n">GL_TEXTURE_WRAP_T</span><span class="p">,</span> <span class="n">GL_MIRRORED_REPEAT</span><span class="p">);</span>
+</pre></div>
+</td></tr></table></div>
+<img alt="../../_images/mirrored_repeat.png" src="../../_images/mirrored_repeat.png" />
+</div>
+</div>
+</div>
 
 
            </div>
