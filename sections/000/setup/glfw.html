@@ -1,0 +1,674 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>GLFWの設定 (初回の設定) &mdash; OpenGLCourseJP 0.1.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../../../genindex.html"/>
+        <link rel="search" title="Search" href="../../../search.html"/>
+    <link rel="top" title="OpenGLCourseJP 0.1.0 documentation" href="../../../index.html"/>
+        <link rel="up" title="第0回 環境設定" href="../index.html"/>
+        <link rel="next" title="GLEWとGLMの設定 (第10回以降に必要)" href="glew.html"/>
+        <link rel="prev" title="第0回 環境設定" href="../index.html"/> 
+
+  
+  <script src="../../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> OpenGLCourseJP
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">第0回 環境設定</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">GLFWの設定 (初回の設定)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#windows">Windowsの場合</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#visual-stuido">Visual Stuidoのインストール</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id1">GLFWのインストール</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#visual-studio">Visual Studioプロジェクトの作成</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id2">GLFWを使うためのプロジェクト設定</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id3">サンプルプログラムのビルド</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#macos">MacOSの場合</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#xcode">Xcodeのインストール</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id4">GLFWのインストール</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id5">Xcodeプロジェクトの作成</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id6">GLFWを使うためのプロジェクト設定</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id7">フレームワークの追加</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id8">サンプルプログラムのビルド</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="glew.html">GLEWとGLMの設定 (第10回以降に必要)</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../001/index.html">第1回 ウィンドウを開く </a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../002/index.html">第2回 三角形を描く </a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../003/index.html">第3回 メソッドによるコードの整理 </a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../004/index.html">第4回 座標変換 </a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../005/index.html">第5回 深度テスト </a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../006/index.html">第6回 ウィンドウサイズの変更 </a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../007/index.html">第7回 アニメーション </a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../008/index.html">第8回 テクスチャ・マッピング </a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../009/index.html">第9回 アルファ合成 </a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../010/index.html">第10回 頂点バッファ </a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../011/index.html">第11回 頂点配列オブジェクト (VAO) </a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../012/index.html">第12回 シェーダの利用 </a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../013/index.html">第13回 モデルファイルのロード </a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../014/index.html">第14回 様々なシェーディングモデル </a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../015/index.html">第15回 非写実的シェーディング </a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../016/index.html">第16回 キーボード操作 </a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../017/index.html">第17回 マウス操作 </a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../018/index.html">第18回 アークボール操作 </a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../019/index.html">第19回 波動方程式の可視化 </a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../020/index.html">第20回 シューティング・ゲーム </a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">OpenGLCourseJP</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../index.html">第0回 環境設定</a> &raquo;</li>
+        
+      <li>GLFWの設定 (初回の設定)</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            
+              <a href="https://github.com///blob/sections/000/setup/glfw.rst" class="fa fa-github"> Edit on GitHub</a>
+            
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="glfw">
+<h1>GLFWの設定 (初回の設定)<a class="headerlink" href="#glfw" title="Permalink to this headline">¶</a></h1>
+<p>このコースではOpenGLを利用するためにGLFW(OpenGL Frameworkの略)というライブラリを使用します。
+以下では、WindowsとMacOSでの開発環境の設定方法についてご紹介します。</p>
+<div class="section" id="windows">
+<h2>Windowsの場合<a class="headerlink" href="#windows" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="visual-stuido">
+<h3>Visual Stuidoのインストール<a class="headerlink" href="#visual-stuido" title="Permalink to this headline">¶</a></h3>
+<p>Windowsの場合にはVisual Studioを使うことをお勧めします。
+Visual Studioは現在Community版が無料で使用可能なので、そちらを利用します。</p>
+<div class="line-block">
+<div class="line"><strong>Visual Studioのダウンロードページ</strong></div>
+<div class="line"><a class="reference external" href="https://www.visualstudio.com/ja/downloads/">https://www.visualstudio.com/ja/downloads/</a></div>
+<div class="line"><br /></div>
+</div>
+<p>こちらからファイルをダウンロード後、インストーラを実行します。
+注意点として、開発に用いるプログラミング言語であるC++は、現在の初期設定では
+使用できないようになっているので、必要なコンポーネントでVisual C++にチェックを入れます。</p>
+</div>
+<div class="section" id="id1">
+<h3>GLFWのインストール<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<p>GLFWの公式ページからコンパイル済みのライブラリをダウンロードします。</p>
+<div class="line-block">
+<div class="line"><strong>GLFWのダウンロードページ</strong></div>
+<div class="line"><a class="reference external" href="http://www.glfw.org/download.html">http://www.glfw.org/download.html</a></div>
+<div class="line"><br /></div>
+</div>
+<p>上記のウェブページを開いて、中央にある「Windows pre-compiled binaries」から、
+ライブラリをダウンロードします。こちらには32bitのものと64bitのものがありますが、
+現在のコンピュータであれば、おおよそ64bitのものをダウンロードすれば大丈夫だと思います。</p>
+<p>ダウンロードが完了したら、これを適当なディレクトリに配置します。標準的には、
+<strong>C:Librariesopengl</strong> のようなディレクトリを作成して、その中に置くのが良いかと思います。</p>
+</div>
+<div class="section" id="visual-studio">
+<h3>Visual Studioプロジェクトの作成<a class="headerlink" href="#visual-studio" title="Permalink to this headline">¶</a></h3>
+<p>ここまで設定が完了したら、実際にVisual Studioでサンプルプログラムをビルドします。
+まずVisual Studioを開いて「スタートページ」から「新しいプロジェクト...」をクリックします。</p>
+<p>そこで「空のプロジェクト」を選択し、プロジェクト名、およびソリューション名を入力します。
+ここでプロジェクト名を入力するとソリューション名も、それに合わせて変更されますが、
+これらは必ずしも同じである必要はありません。</p>
+<p>今後もこのソリューションを使うことを考えて、プロジェクト名は「000_environment_setup」、
+ソリューション名は「OpenGLCourse」などにしておくと良いかと思います。</p>
+<img alt="../../../_images/project_setting.jpg" src="../../../_images/project_setting.jpg" />
+</div>
+<div class="section" id="id2">
+<h3>GLFWを使うためのプロジェクト設定<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<p>GLFWを使用するためには、プロジェクトの設定をする必要があります。設定する箇所は3か所です。</p>
+<p>まず「ソリューションエクスプローラー」からプロジェクト名「000_environment_setup」を右クリックし、
+一番下にある「プロパティ」を選びます。そうすると「000_environment_setupのプロパティページ」という
+ウィンドウが出てくると思います。</p>
+<p>この画面が出たら、左上にある「構成(C)」というドロップダウンメニューから「すべての構成」を選びます。</p>
+<img alt="../../../_images/project_property_001.jpg" src="../../../_images/project_property_001.jpg" />
+<p>続いて、画面左側の「構成プロパティ」から「VC++ディレクトリ」を選び、
+「インクルードディレクトリ」および「ライブラリディレクトリ」に以下の文字列を追加します。</p>
+<div class="line-block">
+<div class="line"><strong>インクルードディレクトリ</strong></div>
+<div class="line">C:Librariesopenglglfw-3.2.1.bin.WIN64include</div>
+<div class="line"><br /></div>
+<div class="line"><strong>ライブラリディレクトリ</strong></div>
+<div class="line">C:Librariesopenglglfw-3.2.1.bin.WIN64lib-vc2015</div>
+<div class="line"><br /></div>
+</div>
+<img alt="../../../_images/project_property_002.jpg" src="../../../_images/project_property_002.jpg" />
+<p>最後に、「構成プロパティ」の「リンカー」から「入力」を選びます。その一番上にある
+「追加の依存ファイル」に次の文字列を追加します。</p>
+<div class="line-block">
+<div class="line"><strong>追加の依存ファイル</strong></div>
+<div class="line">glfw3.lib</div>
+<div class="line"><br /></div>
+</div>
+<p>以上で設定は完了です。プロパティページ下側にある「OK」を押して、ウィンドウを閉じます。</p>
+</div>
+<div class="section" id="id3">
+<h3>サンプルプログラムのビルド<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<p>プログラムを作成するためにはソースコードを書く必要があります。ソースコードは「000_environment_setup」内の
+「ソースファイル」というフォルダのアイコンを右クリックして、「追加」→「新しい項目」の順で追加します。</p>
+<p>そうすると「新しい項目の追加」というウィンドウが表れるので、そのウィンドウで「C++ファイル」を選び、
+名前を「main.cpp」に変更して「追加(A)」ボタンをクリックします。</p>
+<img alt="../../../_images/add_new_item.jpg" src="../../../_images/add_new_item.jpg" />
+<p>作成されたファイルを開き、以下のソースコードを入力します。内容に関しては、後の章で解説をします。</p>
+<div class="highlight-cpp"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;cstdio&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;GLFW/glfw3.h&gt;</span><span class="cp"></span>
+
+<span class="k">static</span> <span class="k">const</span> <span class="kt">int</span> <span class="n">WIN_WIDTH</span>   <span class="o">=</span> <span class="mi">500</span><span class="p">;</span>                 <span class="c1">// ウィンドウの幅</span>
+<span class="k">static</span> <span class="k">const</span> <span class="kt">int</span> <span class="n">WIN_HEIGHT</span>  <span class="o">=</span> <span class="mi">500</span><span class="p">;</span>                 <span class="c1">// ウィンドウの高さ</span>
+<span class="k">static</span> <span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">WIN_TITLE</span> <span class="o">=</span> <span class="s">&quot;OpenGL Course&quot;</span><span class="p">;</span>     <span class="c1">// ウィンドウのタイトル</span>
+
+<span class="c1">// ユーザ定義のOpenGLの初期化</span>
+<span class="kt">void</span> <span class="nf">initializeGL</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c1">// 背景色の設定</span>
+    <span class="n">glClearColor</span><span class="p">(</span><span class="mf">1.0f</span><span class="p">,</span> <span class="mf">0.0f</span><span class="p">,</span> <span class="mf">0.0f</span><span class="p">,</span> <span class="mf">1.0f</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="c1">// ユーザ定義のOpenGL描画</span>
+<span class="kt">void</span> <span class="nf">paintGL</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c1">// 背景色の描画</span>
+    <span class="n">glClear</span><span class="p">(</span><span class="n">GL_COLOR_BUFFER_BIT</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">**</span><span class="n">argv</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// OpenGLを初期化する</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">glfwInit</span><span class="p">()</span> <span class="o">==</span> <span class="n">GL_FALSE</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">fprintf</span><span class="p">(</span><span class="n">stderr</span><span class="p">,</span> <span class="s">&quot;Initialization failed!</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+        <span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="c1">// Windowの作成</span>
+    <span class="n">GLFWwindow</span> <span class="o">*</span><span class="n">window</span> <span class="o">=</span> <span class="n">glfwCreateWindow</span><span class="p">(</span><span class="n">WIN_WIDTH</span><span class="p">,</span> <span class="n">WIN_HEIGHT</span><span class="p">,</span> <span class="n">WIN_TITLE</span><span class="p">,</span>
+                                          <span class="nb">NULL</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">window</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">fprintf</span><span class="p">(</span><span class="n">stderr</span><span class="p">,</span> <span class="s">&quot;Window creation failed!&quot;</span><span class="p">);</span>
+        <span class="n">glfwTerminate</span><span class="p">();</span>
+        <span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="c1">// OpenGLの描画対象にWindowを追加</span>
+    <span class="n">glfwMakeContextCurrent</span><span class="p">(</span><span class="n">window</span><span class="p">);</span>
+
+    <span class="c1">// 初期化</span>
+    <span class="n">initializeGL</span><span class="p">();</span>
+
+    <span class="c1">// メインループ</span>
+    <span class="k">while</span> <span class="p">(</span><span class="n">glfwWindowShouldClose</span><span class="p">(</span><span class="n">window</span><span class="p">)</span> <span class="o">==</span> <span class="n">GL_FALSE</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// 描画</span>
+        <span class="n">paintGL</span><span class="p">();</span>
+
+        <span class="c1">// 描画用バッファの切り替え</span>
+        <span class="n">glfwSwapBuffers</span><span class="p">(</span><span class="n">window</span><span class="p">);</span>
+        <span class="n">glfwPollEvents</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div>
+<p>特に問題がなければ、「Ctrl+Shift+B」を押すことでビルドが成功するはずです。</p>
+<p>プログラムは「Ctrl+F5」で実行でき、成功すると赤いウィンドウが表示されるはずです。</p>
+<p>ここまでできたら、実際にあとの章のサンプルコードを貼り付けるなどして、動かしてみましょう。</p>
+</div>
+</div>
+<hr class="docutils" />
+<div class="section" id="macos">
+<h2>MacOSの場合<a class="headerlink" href="#macos" title="Permalink to this headline">¶</a></h2>
+<p>MacOSをお使いの方はXcodeを使うことをおすすめします。XcodeはややVisual Studioよりも
+機能的には劣るものの、よくできた統合開発環境です。</p>
+<div class="section" id="xcode">
+<h3>Xcodeのインストール<a class="headerlink" href="#xcode" title="Permalink to this headline">¶</a></h3>
+<p>XcodeのインストールはApp Storeから行います。App Storeを開き、右上の検索窓で「Xcode」を検索します。</p>
+<img alt="../../../_images/search_xcode.jpg" src="../../../_images/search_xcode.jpg" />
+<p>すると上の図のように左上のXcodeが出てくるはずなので、「インストール」をクリックし、インストールを開始します。
+少し時間がかかるかと思いますが、単に待っていればインストールが完了するはずです。</p>
+</div>
+<div class="section" id="id4">
+<h3>GLFWのインストール<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+<p>MacOSの場合には、GLFWをソースコードからコンパイルしてインストールする必要があります。
+「ターミナル」を開いて、以下のスクリプトを1行1行実行していきます。</p>
+<div class="highlight-shell"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6</pre></div></td><td class="code"><div class="highlight"><pre><span></span>git clone https://github.com/glfw/glfw.git    <span class="c1"># ソースコードのダウンロード</span>
+<span class="nb">cd</span> glfw                                       <span class="c1"># ダウンロードしたソースのディレクトリに移動</span>
+mkdir build <span class="o">&amp;&amp;</span> <span class="nb">cd</span> build                       <span class="c1"># ビルド用のディレクトリを作成して、そこに移動</span>
+cmake ..                                      <span class="c1"># CMakeを利用したビルドの準備</span>
+make                                          <span class="c1"># ビルド</span>
+sudo make install                             <span class="c1"># インストール</span>
+</pre></div>
+</td></tr></table></div>
+<p>上記のインストール方法を使う場合にはGit, CMake, GNU Makeがインストールされている必要があります。
+通常、MacBook等を購入した段階でGitとGNU Makeはインストールされているはずですが、
+CMakeはインストールされていない可能性があるので、必要であれば以下のページからインストーラを使って、インストールしてください。</p>
+<div class="line-block">
+<div class="line">CMakeのダウンロードページ</div>
+<div class="line"><a class="reference external" href="https://cmake.org/download/">https://cmake.org/download/</a></div>
+<div class="line"><br /></div>
+</div>
+</div>
+<div class="section" id="id5">
+<h3>Xcodeプロジェクトの作成<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
+<p>インストールが完了したら早速Xcodeを起動します。起動すると以下のような画面が表示されます。</p>
+<img alt="../../../_images/xcode_splash.jpg" src="../../../_images/xcode_splash.jpg" />
+<p>左側にあるリストから「Create a new Xcode Project」をクリックします。
+すると、以下のように、どのようなプロジェクトを作成するのかを指定する画面が表示されます。</p>
+<img alt="../../../_images/choose_project_type_xcode.jpg" src="../../../_images/choose_project_type_xcode.jpg" />
+<p>今回は「macOS」の「Command Line Tool」を選択して、右下の「Next」をクリックします。
+すると、次はプロジェクトの詳細を設定する画面が現れます。ここは、どのように設定しても
+基本は問題ないのですが、一番したの「Language」を「C++」にするのだけは忘れないようにしてください。</p>
+<img alt="../../../_images/project_detail_xcode.jpg" src="../../../_images/project_detail_xcode.jpg" />
+<p>「Next」をクリックすると、プロジェクトをどこに保存するかを聞かれますが、自分の分かりやすい場所に保存しておけばOKです。
+おすすめとしては「Documents」フォルダの中に「Xcode」というディレクトリを作って、その中に保存するやり方です。</p>
+</div>
+<div class="section" id="id6">
+<h3>GLFWを使うためのプロジェクト設定<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
+<p>次にXcodeでGLFWを使うための設定をします。まずはGLFWのインクルードディレクトリと
+ライブラリディレクトリの設定です。</p>
+<p>上記のやり方でGLFWをインストールしている場合には、それぞれが以下のようなパスになっています。</p>
+<div class="line-block">
+<div class="line"><strong>インクルードディレクトリ</strong></div>
+<div class="line">/usr/local/include</div>
+<div class="line"><br /></div>
+<div class="line"><strong>ライブラリディレクトリ</strong></div>
+<div class="line">/usr/local/lib</div>
+<div class="line"><br /></div>
+</div>
+<p>Xcodeの画面左側にあるプロジェクト名 (今回の場合は「OpenGLCourse」) をクリックすると、
+設定画面が現れるので、その設定画面の「Build Settings」を開きます。</p>
+<img alt="../../../_images/project_setting_xcode.jpg" src="../../../_images/project_setting_xcode.jpg" />
+<p>この画面を下にスクロールしていくと「Search Paths」という項目が見つかるので、
+その中にある「Header Search Paths」および「Library Search Paths」を以下のように編集します。</p>
+<img alt="../../../_images/search_path_xcode.jpg" src="../../../_images/search_path_xcode.jpg" />
+<p>次はリンクするライブラリにGLFWを追加します。同じ画面で少し上に戻ると「Linking」という項目が見つかります。</p>
+<p>その項目の中段くらいにある「Other Linker Flags」という項目に「-lglfw3」という文字を以下のように設定します。</p>
+<img alt="../../../_images/library_setting_xcode.jpg" src="../../../_images/library_setting_xcode.jpg" />
+<p>これでGLFWの設定は完了です。WindowsでVisual Studioを使う場合には、この内容までで設定が終わるのですが、
+MacOSを使う場合には以下の「フレームワークの追加」が必要になります。</p>
+</div>
+<div class="section" id="id7">
+<h3>フレームワークの追加<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h3>
+<p>MacOSでGLFWを使うためには、いくつかのフレームワーク(ライブラリの集合みたいなもの)をプロジェクトに
+追加する必要があります。</p>
+<p>先ほどの設定画面上部で「Build Settings」を選んでいた箇所の一番左にある「General」を選択します。
+すると、画面下部に「Linked Frameworks and Libraries」という項目があるので、こちらに使用する
+フレームワークを追加していきます。</p>
+<p>使用するフレームワークは4種類で「OpenGL」、「Cocoa」、「CoreVideo」、「IOKit」になります。
+いずれも「Linked Frameworks and Libraries」項目の下側にある「＋」ボタンを押すと現れる、
+以下の画面で検索することにより追加できます。</p>
+<a class="reference internal image-reference" href="../../../_images/add_frameworks.jpg"><img alt="../../../_images/add_frameworks.jpg" src="../../../_images/add_frameworks.jpg" style="width: 300px;" /></a>
+<p>全てのフレームワークを設定すると、以下の画面のようになると思います。</p>
+<img alt="../../../_images/after_setting_frameworks.jpg" src="../../../_images/after_setting_frameworks.jpg" />
+<p>以上でXcodeのプロジェクト設定は完了です。</p>
+</div>
+<div class="section" id="id8">
+<h3>サンプルプログラムのビルド<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h3>
+<p>Xcodeの場合には、上記のやり方でプロジェクトを作成すると、すでに「main.cpp」という
+ファイルが作成されています。このファイルを右側のファイルリストから開き、
+以下のソースコードを入力します。内容に関しては、後の章で解説をします。</p>
+<div class="highlight-cpp"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;cstdio&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;GLFW/glfw3.h&gt;</span><span class="cp"></span>
+
+<span class="k">static</span> <span class="k">const</span> <span class="kt">int</span> <span class="n">WIN_WIDTH</span>   <span class="o">=</span> <span class="mi">500</span><span class="p">;</span>                 <span class="c1">// ウィンドウの幅</span>
+<span class="k">static</span> <span class="k">const</span> <span class="kt">int</span> <span class="n">WIN_HEIGHT</span>  <span class="o">=</span> <span class="mi">500</span><span class="p">;</span>                 <span class="c1">// ウィンドウの高さ</span>
+<span class="k">static</span> <span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">WIN_TITLE</span> <span class="o">=</span> <span class="s">&quot;OpenGL Course&quot;</span><span class="p">;</span>     <span class="c1">// ウィンドウのタイトル</span>
+
+<span class="c1">// ユーザ定義のOpenGLの初期化</span>
+<span class="kt">void</span> <span class="nf">initializeGL</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c1">// 背景色の設定</span>
+    <span class="n">glClearColor</span><span class="p">(</span><span class="mf">1.0f</span><span class="p">,</span> <span class="mf">0.0f</span><span class="p">,</span> <span class="mf">0.0f</span><span class="p">,</span> <span class="mf">1.0f</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="c1">// ユーザ定義のOpenGL描画</span>
+<span class="kt">void</span> <span class="nf">paintGL</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c1">// 背景色の描画</span>
+    <span class="n">glClear</span><span class="p">(</span><span class="n">GL_COLOR_BUFFER_BIT</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">**</span><span class="n">argv</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// OpenGLを初期化する</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">glfwInit</span><span class="p">()</span> <span class="o">==</span> <span class="n">GL_FALSE</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">fprintf</span><span class="p">(</span><span class="n">stderr</span><span class="p">,</span> <span class="s">&quot;Initialization failed!</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+        <span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="c1">// Windowの作成</span>
+    <span class="n">GLFWwindow</span> <span class="o">*</span><span class="n">window</span> <span class="o">=</span> <span class="n">glfwCreateWindow</span><span class="p">(</span><span class="n">WIN_WIDTH</span><span class="p">,</span> <span class="n">WIN_HEIGHT</span><span class="p">,</span> <span class="n">WIN_TITLE</span><span class="p">,</span>
+                                          <span class="nb">NULL</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">window</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">fprintf</span><span class="p">(</span><span class="n">stderr</span><span class="p">,</span> <span class="s">&quot;Window creation failed!&quot;</span><span class="p">);</span>
+        <span class="n">glfwTerminate</span><span class="p">();</span>
+        <span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="c1">// OpenGLの描画対象にWindowを追加</span>
+    <span class="n">glfwMakeContextCurrent</span><span class="p">(</span><span class="n">window</span><span class="p">);</span>
+
+    <span class="c1">// 初期化</span>
+    <span class="n">initializeGL</span><span class="p">();</span>
+
+    <span class="c1">// メインループ</span>
+    <span class="k">while</span> <span class="p">(</span><span class="n">glfwWindowShouldClose</span><span class="p">(</span><span class="n">window</span><span class="p">)</span> <span class="o">==</span> <span class="n">GL_FALSE</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// 描画</span>
+        <span class="n">paintGL</span><span class="p">();</span>
+
+        <span class="c1">// 描画用バッファの切り替え</span>
+        <span class="n">glfwSwapBuffers</span><span class="p">(</span><span class="n">window</span><span class="p">);</span>
+        <span class="n">glfwPollEvents</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div>
+<p>特に問題がなければ、「Command+B」を押すことでビルドが成功するはずです。</p>
+<p>プログラムは「Command+R」で実行でき、成功すると赤いウィンドウが表示されるはずです。</p>
+<p>ここまでできたら、実際にあとの章のサンプルコードを貼り付けるなどして、動かしてみましょう。</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="glew.html" class="btn btn-neutral float-right" title="GLEWとGLMの設定 (第10回以降に必要)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../index.html" class="btn btn-neutral" title="第0回 環境設定" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2017, Tatsuya Yatagawa.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../',
+            VERSION:'0.1.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

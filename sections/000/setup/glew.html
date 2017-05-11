@@ -1,0 +1,264 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>GLEWとGLMの設定 (第10回以降に必要) &mdash; OpenGLCourseJP 0.1.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../../../genindex.html"/>
+        <link rel="search" title="Search" href="../../../search.html"/>
+    <link rel="top" title="OpenGLCourseJP 0.1.0 documentation" href="../../../index.html"/>
+        <link rel="up" title="第0回 環境設定" href="../index.html"/>
+        <link rel="next" title="第1回 ウィンドウを開く" href="../../001/index.html"/>
+        <link rel="prev" title="GLFWの設定 (初回の設定)" href="glfw.html"/> 
+
+  
+  <script src="../../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> OpenGLCourseJP
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">第0回 環境設定</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="glfw.html">GLFWの設定 (初回の設定)</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">GLEWとGLMの設定 (第10回以降に必要)</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../001/index.html">第1回 ウィンドウを開く </a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../002/index.html">第2回 三角形を描く </a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../003/index.html">第3回 メソッドによるコードの整理 </a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../004/index.html">第4回 座標変換 </a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../005/index.html">第5回 深度テスト </a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../006/index.html">第6回 ウィンドウサイズの変更 </a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../007/index.html">第7回 アニメーション </a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../008/index.html">第8回 テクスチャ・マッピング </a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../009/index.html">第9回 アルファ合成 </a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../010/index.html">第10回 頂点バッファ </a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../011/index.html">第11回 頂点配列オブジェクト (VAO) </a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../012/index.html">第12回 シェーダの利用 </a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../013/index.html">第13回 モデルファイルのロード </a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../014/index.html">第14回 様々なシェーディングモデル </a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../015/index.html">第15回 非写実的シェーディング </a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../016/index.html">第16回 キーボード操作 </a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../017/index.html">第17回 マウス操作 </a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../018/index.html">第18回 アークボール操作 </a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../019/index.html">第19回 波動方程式の可視化 </a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../020/index.html">第20回 シューティング・ゲーム </a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">OpenGLCourseJP</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../index.html">第0回 環境設定</a> &raquo;</li>
+        
+      <li>GLEWとGLMの設定 (第10回以降に必要)</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            
+              <a href="https://github.com///blob/sections/000/setup/glew.rst" class="fa fa-github"> Edit on GitHub</a>
+            
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="glewglm-10">
+<h1>GLEWとGLMの設定 (第10回以降に必要)<a class="headerlink" href="#glewglm-10" title="Permalink to this headline">¶</a></h1>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../../001/index.html" class="btn btn-neutral float-right" title="第1回 ウィンドウを開く" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="glfw.html" class="btn btn-neutral" title="GLFWの設定 (初回の設定)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2017, Tatsuya Yatagawa.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../',
+            VERSION:'0.1.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>
