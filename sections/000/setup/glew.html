@@ -94,7 +94,23 @@
               <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="../index.html">第0回 環境設定</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="glfw.html">GLFWの設定 (初回の設定)</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">GLEWとGLMの設定 (第10回以降に必要)</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">GLEWとGLMの設定 (第10回以降に必要)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#windows">Windowsの場合</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#glew">GLEWのインストール</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#glm">GLMのインストール</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id1">プロパティシートの更新</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id3">サンプルプログラムの実行</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#mac">Macの場合</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id4">GLEWのインストール</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id5">GLMのインストール</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#xcode">Xcodeの設定</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id6">サンプルプログラムの実行</a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../001/index.html">第1回 ウィンドウを開く </a></li>
@@ -186,6 +202,139 @@
             
   <div class="section" id="glewglm-10">
 <h1>GLEWとGLMの設定 (第10回以降に必要)<a class="headerlink" href="#glewglm-10" title="Permalink to this headline">¶</a></h1>
+<p>第10回以降のソースコードを動かすためには, 最近のOpenGLの機能を扱うためのライブラリが必要です。
+このコースではGLEW (OpenGL Extension Wrangler Library) を使ってプログラムを作ります。</p>
+<p>合わせて、ベクトルや行列の計算を簡単に扱うためのライブラリとしてGLM (OpenGL Mathematics) も導入しておきます。</p>
+<hr class="docutils" />
+<div class="section" id="windows">
+<h2>Windowsの場合<a class="headerlink" href="#windows" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="glew">
+<h3>GLEWのインストール<a class="headerlink" href="#glew" title="Permalink to this headline">¶</a></h3>
+<p>GLEWの公式ページからコンパイル済みのライブラリをダウンロードします。</p>
+<div class="line-block">
+<div class="line"><strong>GLEWのダウンロードページ</strong></div>
+<div class="line"><a class="reference external" href="http://glew.sourceforge.net/">http://glew.sourceforge.net/</a></div>
+<div class="line"><br /></div>
+</div>
+<img alt="../../../_images/glew_download_page.jpg" src="../../../_images/glew_download_page.jpg" />
+<p>上記のウェブページを開いて、中央にある「Binaries」という文字の右側にある
+「Windows 32-bit and 64-bit」というリンクから、ZIPファイルをダウンロードします。
+ダウンロードしたファイルは「glew-2.0.0-win32.zip」という名前になっているはずです。</p>
+<p>ダウンロードが完了したら、ZIPファイルを解凍し、GLFWの時と同様に適当なディレクトリに配置します。
+この講義では、 <strong>C:\Libraries\opengl</strong> のようなディレクトリを作成して、
+その中に置くことを推奨しています。</p>
+</div>
+<div class="section" id="glm">
+<h3>GLMのインストール<a class="headerlink" href="#glm" title="Permalink to this headline">¶</a></h3>
+<p>GLMも公式のウェブページからライブラリをダウンロードします。</p>
+<div class="line-block">
+<div class="line"><strong>GLMのダウンロードページ</strong></div>
+<div class="line"><a class="reference external" href="http://glm.g-truc.net">http://glm.g-truc.net</a></div>
+<div class="line"><br /></div>
+</div>
+<img alt="../../../_images/glm_top_page.jpg" src="../../../_images/glm_top_page.jpg" />
+<p>上記のウェブページの左側にある「Downloads」というリンクをクリックします。
+するとダウンロードページに移動するので、その中から最新版である0.9.8.4をダウンロードします (2017年5月11日現在)。
+ダウンロードしたファイルは「glm-0.9.8.4.zip」という名前になっているはずです。</p>
+<img alt="../../../_images/glm_download_page.jpg" src="../../../_images/glm_download_page.jpg" />
+<p>ダウンロードが完了したら、上記と同様にZIPファイルを解凍して適当なディレクトリに配置します。</p>
+</div>
+<div class="section" id="id1">
+<h3>プロパティシートの更新<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<p>初回の準備の際に作成したプロパティシートを更新して、GLEWおよびGLMを使用できるようにします。</p>
+<p>設定方法に関しては、<a class="reference internal" href="glfw.html"><span class="doc">GLFWの設定 (初回の設定)</span></a> を参照してください。設定項目は以下の通りです。</p>
+<div class="section" id="vc">
+<h4>VC++ ディレクトリ<a class="headerlink" href="#vc" title="Permalink to this headline">¶</a></h4>
+<div class="line-block">
+<div class="line"><strong>インクルードディレクトリ</strong></div>
+<div class="line">C:\Libraries\opengl\glew-2.0.0\include  (GLEW)</div>
+<div class="line">C:\Libraries\opengl\glm-0.9.8.4  (GLM)</div>
+<div class="line"><br /></div>
+<div class="line"><strong>ライブラリディレクトリ</strong></div>
+<div class="line">C:\Libraries\opengl\glew-2.0.0\lib\Release\Win32 (GLEW, 32bitの場合)</div>
+<div class="line">C:\Libraries\opengl\glew-2.0.0\lib\Release\x64 (GLEW, 64bitの場合)</div>
+<div class="line"><br /></div>
+</div>
+</div>
+<div class="section" id="id2">
+<h4>リンカー<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h4>
+<div class="line-block">
+<div class="line"><strong>追加の依存ファイル</strong></div>
+<div class="line">glew32.lib (GLEW, 32bit, 64bitとも同じ名前)</div>
+<div class="line"><br /></div>
+</div>
+</div>
+</div>
+<div class="section" id="id3">
+<h3>サンプルプログラムの実行<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<p>サンプルプログラムは「第12回シェーダの利用」のソースコードを使用してください。</p>
+<p><a class="reference external" href="https://github.com/tatsy/OpenGLCourseJP/blob/master/src/012_hello_shader">https://github.com/tatsy/OpenGLCourseJP/blob/master/src/012_hello_shader</a></p>
+<p>なお、このソースコードを実行する際にはシェーダを書いておく必要がありますので、注意してください。
+(シェーダに関しては、上記のリンクをクリックしたのち <strong>shader</strong> フォルダ内を参照してください)。</p>
+<p>上手く実行できると、色付きの立方体が描画されるはずです。</p>
+<a class="reference internal image-reference" href="../../../_images/shader_cube.jpg"><img alt="../../../_images/shader_cube.jpg" src="../../../_images/shader_cube.jpg" style="width: 300px;" /></a>
+</div>
+</div>
+<hr class="docutils" />
+<div class="section" id="mac">
+<h2>Macの場合<a class="headerlink" href="#mac" title="Permalink to this headline">¶</a></h2>
+<p>Macを使用する場合には、GLEW、GLMともにGitを経由してダウンロードし、GNU Makeあるいは
+CMakeを使用してビルド、インストールを行います。</p>
+<div class="section" id="id4">
+<h3>GLEWのインストール<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="https://github.com/nigels-com/glew.git">GLEWのGitHub</a> からソースコードを
+ダウンロードして、ビルドとインストールを行います。ターミナルを開いて、次のコマンドを実行してください。</p>
+<div class="highlight-shell"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4</pre></div></td><td class="code"><div class="highlight"><pre><span></span>git clone https://github.com/nigels-com/glew.git
+<span class="nb">cd</span> glew
+make
+sudo make install
+</pre></div>
+</td></tr></table></div>
+<p>これだけでインストールは完了です。</p>
+</div>
+<div class="section" id="id5">
+<h3>GLMのインストール<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="https://github.com/g-truc/glm.git">GLMのGitHub</a> からソースコードを
+ダウンロードして、ビルドとインストールを行います。GLEWの時と同様に、
+次のコマンドをターミナルで実行してください。</p>
+<div class="highlight-shell"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6</pre></div></td><td class="code"><div class="highlight"><pre><span></span>git clone https://github.com/g-truc/glm.git
+<span class="nb">cd</span> glm
+mkdir build <span class="o">&amp;&amp;</span> <span class="nb">cd</span> build
+cmake ..
+make
+sudo make install
+</pre></div>
+</td></tr></table></div>
+<p>これだけでインストールは完了です。</p>
+</div>
+<div class="section" id="xcode">
+<h3>Xcodeの設定<a class="headerlink" href="#xcode" title="Permalink to this headline">¶</a></h3>
+<p>Xcodeで設定が必要な項目は1箇所で、GLEWのライブラリをリンカフラグに設定するだけです。</p>
+<p>Xcodeの画面左側にあるプロジェクト名 (今回の場合は「OpenGLCourse」) をクリックすると、
+設定画面が現れるので、その設定画面の「Build Settings」を開きます。</p>
+<img alt="../../../_images/project_setting_xcode.jpg" src="../../../_images/project_setting_xcode.jpg" />
+<p>この画面中段くらいにある「Linking」という項目の中から「Other Linker Flag」という項目を選び、
+そこに「-lglew」という文字列を追加します。</p>
+<p>これでXcode側の設定は完了です。</p>
+</div>
+<div class="section" id="id6">
+<h3>サンプルプログラムの実行<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
+<p>サンプルプログラムは「第12回シェーダの利用」のソースコードを使用してください。</p>
+<p><a class="reference external" href="https://github.com/tatsy/OpenGLCourseJP/blob/master/src/012_hello_shader">https://github.com/tatsy/OpenGLCourseJP/blob/master/src/012_hello_shader</a></p>
+<p>なお、このソースコードを実行する際にはシェーダを書いておく必要がありますので、注意してください。
+(シェーダに関しては、上記のリンクをクリックしたのち <strong>shader</strong> フォルダ内を参照してください)。</p>
+<p>上手く実行できると、色付きの立方体が描画されるはずです。</p>
+<a class="reference internal image-reference" href="../../../_images/shader_cube.jpg"><img alt="../../../_images/shader_cube.jpg" src="../../../_images/shader_cube.jpg" style="width: 300px;" /></a>
+</div>
+</div>
 </div>
 
 
