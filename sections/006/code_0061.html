@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>第7回 アニメーション まとめコード その1 &mdash; OpenGLCourseJP 0.1.0 documentation</title>
+  <title>第6回 アニメーション まとめコード その1 &mdash; OpenGLCourseJP 0.1.0 documentation</title>
   
 
   
@@ -152,7 +152,7 @@
     
       <li><a href="../../index.html">Docs</a> &raquo;</li>
         
-      <li>第7回 アニメーション まとめコード その1</li>
+      <li>第6回 アニメーション まとめコード その1</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -174,7 +174,7 @@
            <div itemprop="articleBody">
             
   <div class="section" id="id1">
-<h1>第7回 アニメーション まとめコード その1<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<h1>第6回 アニメーション まとめコード その1<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
 <div class="highlight-cpp"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>  1
   2
   3
@@ -317,7 +317,17 @@
 140
 141
 142
-143</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;cstdio&gt;</span><span class="cp"></span>
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;cstdio&gt;</span><span class="cp"></span>
 <span class="cp">#include</span> <span class="cpf">&lt;cmath&gt;</span><span class="cp"></span>
 
 <span class="cp">#define GLFW_INCLUDE_GLU  </span><span class="c1">// GLUライブラリを使用するのに必要</span>
@@ -412,9 +422,19 @@
 <span class="p">}</span>
 
 <span class="kt">void</span> <span class="nf">resizeGL</span><span class="p">(</span><span class="n">GLFWwindow</span> <span class="o">*</span><span class="n">window</span><span class="p">,</span> <span class="kt">int</span> <span class="n">width</span><span class="p">,</span> <span class="kt">int</span> <span class="n">height</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// ユーザ管理のウィンドウサイズを変更</span>
     <span class="n">WIN_WIDTH</span> <span class="o">=</span> <span class="n">width</span><span class="p">;</span>
     <span class="n">WIN_HEIGHT</span> <span class="o">=</span> <span class="n">height</span><span class="p">;</span>
+
+    <span class="c1">// GLFW管理のウィンドウサイズを変更</span>
     <span class="n">glfwSetWindowSize</span><span class="p">(</span><span class="n">window</span><span class="p">,</span> <span class="n">WIN_WIDTH</span><span class="p">,</span> <span class="n">WIN_HEIGHT</span><span class="p">);</span>
+
+    <span class="c1">// 実際のウィンドウサイズ (ピクセル数) を取得</span>
+    <span class="kt">int</span> <span class="n">renderBufferWidth</span><span class="p">,</span> <span class="n">renderBufferHeight</span><span class="p">;</span>
+    <span class="n">glfwGetFramebufferSize</span><span class="p">(</span><span class="n">window</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">renderBufferWidth</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">renderBufferHeight</span><span class="p">);</span>
+
+    <span class="c1">// ビューポート変換の更新</span>
+    <span class="n">glViewport</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">renderBufferWidth</span><span class="p">,</span> <span class="n">renderBufferHeight</span><span class="p">);</span>
 <span class="p">}</span>
 
 <span class="c1">// アニメーションのためのアップデート</span>
