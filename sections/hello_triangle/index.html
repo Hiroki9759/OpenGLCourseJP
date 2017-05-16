@@ -1,0 +1,374 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>3. 三角形を描く &mdash; OpenGLCourseJP 0.1.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../../genindex.html"/>
+        <link rel="search" title="Search" href="../../search.html"/>
+    <link rel="top" title="OpenGLCourseJP 0.1.0 documentation" href="../../index.html"/>
+        <link rel="next" title="4. 座標変換" href="../coord_transform/index.html"/>
+        <link rel="prev" title="2. ウィンドウを開く" href="../open_window/index.html"/> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> OpenGLCourseJP
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../setup/index.html">1. 環境設定</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../open_window/index.html">2. ウィンドウを開く </a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">3. 三角形を描く </a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id1">3.1. 三角形の座標指定</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#opengl">3.2. OpenGLの座標系</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id2">3.3. 三角形がグラデーションになる理由</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id3">3.4. 練習</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../coord_transform/index.html">4. 座標変換 </a></li>
+<li class="toctree-l1"><a class="reference internal" href="../depth_test/index.html">5. 深度テスト </a></li>
+<li class="toctree-l1"><a class="reference internal" href="../window_resize/index.html">6. ウィンドウサイズの変更 </a></li>
+<li class="toctree-l1"><a class="reference internal" href="../animation/index.html">7. アニメーション </a></li>
+<li class="toctree-l1"><a class="reference internal" href="../texture_mapping/index.html">8. テクスチャ・マッピング </a></li>
+<li class="toctree-l1"><a class="reference internal" href="../alpha_blending/index.html">9. アルファ合成 </a></li>
+<li class="toctree-l1"><a class="reference internal" href="../vertex_buffer/index.html">10. 頂点バッファ </a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hello_shader/index.html">11. シェーダの利用 </a></li>
+<li class="toctree-l1"><a class="reference internal" href="../model_loading/index.html">12. モデルファイルのロード </a></li>
+<li class="toctree-l1"><a class="reference internal" href="../shading_models/index.html">13. 様々なシェーディングモデル </a></li>
+<li class="toctree-l1"><a class="reference internal" href="../npr_shading/index.html">14. 非写実的シェーディング </a></li>
+<li class="toctree-l1"><a class="reference internal" href="../framebuffer/index.html">15. シェーダの利用 </a></li>
+<li class="toctree-l1"><a class="reference internal" href="../shadow_mapping/index.html">16. シャドウ・マッピング </a></li>
+<li class="toctree-l1"><a class="reference internal" href="../keyboard_and_mouse/index.html">17. キーボードとマウスの操作 </a></li>
+<li class="toctree-l1"><a class="reference internal" href="../arcball_control/index.html">18. アークボール操作 </a></li>
+<li class="toctree-l1"><a class="reference internal" href="../wave_equation/index.html">19. 流体の可視化 </a></li>
+<li class="toctree-l1"><a class="reference internal" href="../shooting_game/index.html">20. シューティングゲーム </a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">OpenGLCourseJP</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+      <li>3. 三角形を描く </li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            
+              <a href="https://github.com///blob/sections/hello_triangle/index.rst" class="fa fa-github"> Edit on GitHub</a>
+            
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="source-code">
+<h1>3. 三角形を描く <a class="reference external" href="https://github.com/tatsy/OpenGLCourseJP/blob/master/src/002_hello_triangle/main.cpp"><img alt="source_code" src="../../_images/octcat7.png" style="width: 24px;" /></a><a class="headerlink" href="#source-code" title="Permalink to this headline">¶</a></h1>
+<p>前回は、単に塗りつぶされた画面が表示されるだけのプログラムを紹介しました。
+今回は、これを少し発展させて、三角形を表示させるプログラムを作りたいと思います。</p>
+<div class="section" id="id1">
+<h2>3.1. 三角形の座標指定<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<p>三角形の頂点座標は <code class="docutils literal"><span class="pre">glVertex2f</span></code> 関数で指定します。この関数は引数を3つ取り、
+そのそれぞれがx座標、y座標に対応するものになっています。</p>
+<p>頂点を指定するためには、指定前に <code class="docutils literal"><span class="pre">glBegin</span></code> 関数、指定後に <code class="docutils literal"><span class="pre">glEnd</span></code> 関数を呼びます。
+このとき <code class="docutils literal"><span class="pre">glBegin</span></code> 関数は今から何を描画しようとしているのかを表す定数を引数に取ります。
+これから描くのは三角形なので、 <code class="docutils literal"><span class="pre">GL_TRIANGLES</span></code> を指定します。</p>
+<p>それでは、メインループの <code class="docutils literal"><span class="pre">glClear</span></code> 関数のあとに以下のようなコードを書いてみましょう。</p>
+<div class="highlight-cpp"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="n">glBegin</span><span class="p">(</span><span class="n">GL_TRIANGLES</span><span class="p">);</span>
+<span class="n">glVertex2f</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5f</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.5f</span><span class="p">);</span>
+<span class="n">glVertex2f</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5f</span><span class="p">,</span> <span class="mf">0.5f</span><span class="p">);</span>
+<span class="n">glVertex2f</span><span class="p">(</span><span class="mf">0.5f</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.5f</span><span class="p">);</span>
+<span class="n">glEnd</span><span class="p">()</span>
+</pre></div>
+</td></tr></table></div>
+<p>正しい位置にコードがかけていれば、次のような画面が表示されるはずです。この時、ビルドをやり直すのを忘れないようにしてください。</p>
+<a class="reference internal image-reference" href="../../_images/white_triangle.jpg"><img alt="../../_images/white_triangle.jpg" src="../../_images/white_triangle.jpg" style="width: 250px;" /></a>
+<p>三角形を描画するときには頂点の色を指定することもできます。この時に使う関数が <code class="docutils literal"><span class="pre">glColor3f</span></code> 関数です。
+この関数は3つの引数を取り、それぞれが赤、緑、青の成分に対応しています。
+色の指定は、頂点位置を <code class="docutils literal"><span class="pre">glVertex2f</span></code> で指定する直前のものが反映されます。
+上のコードを次のように書き換えてみましょう。</p>
+<div class="highlight-cpp"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7
+8</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="n">glBegin</span><span class="p">(</span><span class="n">GL_TRIANGLES</span><span class="p">);</span>
+<span class="n">glColor3f</span><span class="p">(</span><span class="mf">1.0f</span><span class="p">,</span> <span class="mf">0.0f</span><span class="p">,</span> <span class="mf">0.0f</span><span class="p">);</span>  <span class="c1">// 赤</span>
+<span class="n">glVertex2f</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5f</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.5f</span><span class="p">);</span>
+<span class="n">glColor3f</span><span class="p">(</span><span class="mf">0.0f</span><span class="p">,</span> <span class="mf">1.0f</span><span class="p">,</span> <span class="mf">0.0f</span><span class="p">);</span>  <span class="c1">// 緑</span>
+<span class="n">glVertex2f</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5f</span><span class="p">,</span> <span class="mf">0.5f</span><span class="p">);</span>
+<span class="n">glColor3f</span><span class="p">(</span><span class="mf">0.0f</span><span class="p">,</span> <span class="mf">0.0f</span><span class="p">,</span> <span class="mf">1.0f</span><span class="p">);</span>  <span class="c1">// 青</span>
+<span class="n">glVertex2f</span><span class="p">(</span><span class="mf">0.5f</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.5f</span><span class="p">);</span>
+<span class="n">glEnd</span><span class="p">();</span>
+</pre></div>
+</td></tr></table></div>
+<p>すると次のような色の付いた三角形が表示されるはずです。</p>
+<a class="reference internal image-reference" href="../../_images/002_hello_triangle.jpg"><img alt="../../_images/002_hello_triangle.jpg" src="../../_images/002_hello_triangle.jpg" style="width: 250px;" /></a>
+<p>さて、内容としては第2回はこれで終わりなのですが、2つほど、疑問が生じます。</p>
+<ul class="simple">
+<li>画面上の座標系はどうなっているのか？ (どこが原点？値の範囲は？)</li>
+<li>なぜ描画される三角形の色がグラデーションになるのか？</li>
+</ul>
+<p>以下では、このぞれぞれについて解説をしてみたいと思います。</p>
+</div>
+<div class="section" id="opengl">
+<h2>3.2. OpenGLの座標系<a class="headerlink" href="#opengl" title="Permalink to this headline">¶</a></h2>
+<p>先ほど三角形を描画するときに指定した座標は、 <code class="docutils literal"><span class="pre">(-0.5,</span> <span class="pre">-0.5)</span></code> , <code class="docutils literal"><span class="pre">(-0.5,</span> <span class="pre">0.5)</span></code> , <code class="docutils literal"><span class="pre">(0.5,</span> <span class="pre">-0.5)</span></code> でした。
+この時、 <code class="docutils literal"><span class="pre">(-0.5,</span> <span class="pre">-0.5)</span></code> は左下の赤色の頂点、 <code class="docutils literal"><span class="pre">(-0.5,</span> <span class="pre">0.5)</span></code> は左上の緑色の頂点、
+<code class="docutils literal"><span class="pre">(0.5,</span> <span class="pre">-0.5)</span></code> は右下の青色の頂点に対応しています。</p>
+<p>ここから考えると、画面上の座標系がどうなっているか分かりそうです。もし、頂点の座標が、
+等間隔で変わっていくと考えるならば、画面の左下が <code class="docutils literal"><span class="pre">(-1,</span> <span class="pre">-1)</span></code> になり、画面の右上が <code class="docutils literal"><span class="pre">(1,</span> <span class="pre">1)</span></code> になりそうです。</p>
+<p>では、実際に座標位置を変えて試してみましょう。上で作ったコードを以下のように書き換えます。</p>
+<div class="highlight-cpp"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7
+8</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="n">glBegin</span><span class="p">(</span><span class="n">GL_TRIANGLES</span><span class="p">);</span>
+<span class="n">glColor3f</span><span class="p">(</span><span class="mf">1.0f</span><span class="p">,</span> <span class="mf">0.0f</span><span class="p">,</span> <span class="mf">0.0f</span><span class="p">);</span>  <span class="c1">// 赤</span>
+<span class="n">glVertex2f</span><span class="p">(</span><span class="o">-</span><span class="mf">1.0f</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.0f</span><span class="p">);</span>
+<span class="n">glColor3f</span><span class="p">(</span><span class="mf">0.0f</span><span class="p">,</span> <span class="mf">1.0f</span><span class="p">,</span> <span class="mf">0.0f</span><span class="p">);</span>  <span class="c1">// 緑</span>
+<span class="n">glVertex2f</span><span class="p">(</span><span class="o">-</span><span class="mf">1.0f</span><span class="p">,</span> <span class="mf">1.0f</span><span class="p">);</span>
+<span class="n">glColor3f</span><span class="p">(</span><span class="mf">0.0f</span><span class="p">,</span> <span class="mf">0.0f</span><span class="p">,</span> <span class="mf">1.0f</span><span class="p">);</span>  <span class="c1">// 青</span>
+<span class="n">glVertex2f</span><span class="p">(</span><span class="mf">1.0f</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.0f</span><span class="p">);</span>
+<span class="n">glEnd</span><span class="p">();</span>
+</pre></div>
+</td></tr></table></div>
+<p>さっそく、描画結果を確認してみてください。おそらく、次のような画面が表示されるはずです。</p>
+<a class="reference internal image-reference" href="../../_images/large_triangle.jpg"><img alt="../../_images/large_triangle.jpg" src="../../_images/large_triangle.jpg" style="width: 250px;" /></a>
+<p>こちらの実験からも確認できる通り、OpenGLの画面における座標系は、以下の図のようになっています。</p>
+<a class="reference internal image-reference" href="../../_images/coordinate_system.jpg"><img alt="../../_images/coordinate_system.jpg" src="../../_images/coordinate_system.jpg" style="width: 250px;" /></a>
+<p>では、この座標系を変更することができるのか？という疑問が当然生じてくるわけですが、これに関しては、
+次回以降でお話できればと思っています。</p>
+</div>
+<div class="section" id="id2">
+<h2>3.3. 三角形がグラデーションになる理由<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<p>さきほどのコードでは、三角形の各頂点に違う色が指定されていました。もちろん同じ色が指定されていれば、
+その指定されている色で三角形全体を塗りつぶせば良さそうですが、違う色である場合には、
+どのように内部を塗りつぶすのが正しいのでしょうか？</p>
+<p>この問題を解決するために、OpenGLでは重心座標系という方法を使って、内部の色を決定しています。
+三角形の各頂点 <span class="math">\(\textbf{x}_0\)</span> , <span class="math">\(\textbf{x}_1\)</span> , <span class="math">\(\textbf{x}_2\)</span>
+とすると、三角形内部の位置 <span class="math">\(\textbf{x}\)</span> は内分のパラメータ <span class="math">\(s\)</span> および <span class="math">\(t\)</span> を使って、</p>
+<div class="math">
+\[\mathbf{x} = (1 - s - t) \mathbf{x}_0 + s \mathbf{x}_1 + t \mathbf{x}_2 \qquad ( 0 \leq s, t \leq 1 )\]</div>
+<p>のように書けるのは、お分かりいただけるかと思います。OpenGLでは三角形内部の色を決定するときには、
+この <span class="math">\(s, t\)</span> を使用して、頂点の色 <span class="math">\(\mathbf{c}_0\)</span> , <span class="math">\(\mathbf{c}_1\)</span> , <span class="math">\(\mathbf{c}_2\)</span>
+を同じように内分し、今描画したい位置の色 <span class="math">\(\mathbf{c}\)</span> を決定します。</p>
+<div class="math">
+\[\mathbf{c} = (1 - s - t) \mathbf{c}_0 + s \mathbf{c}_1 + t \mathbf{c}_2 \qquad ( 0 \leq s, t \leq 1 )\]</div>
+<p>このような理由から、三角形の内部の色がグラデーションのように補間されて表示されていたというわけです。
+この考え方は頂点に色以外の別の情報が与えられたときでも同様で、以後、OpenGLを使って
+三次元空間にオブジェクトを描画するときに大切な考え方になってきます。</p>
+</div>
+<div class="section" id="id3">
+<h2>3.4. 練習<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple">
+<li>三角形の頂点の位置を変えるとどうなるかを調べる</li>
+<li>三角形の頂点の色を変えるとどうなるかを調べる</li>
+<li>三角形の頂点の色を部分的にコメントアウトするとどうなるかを調べる</li>
+</ol>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../coord_transform/index.html" class="btn btn-neutral float-right" title="4. 座標変換" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../open_window/index.html" class="btn btn-neutral" title="2. ウィンドウを開く" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2017, Tatsuya Yatagawa.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'0.1.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

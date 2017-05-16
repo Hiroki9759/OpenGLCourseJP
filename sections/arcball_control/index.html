@@ -1,0 +1,256 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>18. アークボール操作 &mdash; OpenGLCourseJP 0.1.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../../genindex.html"/>
+        <link rel="search" title="Search" href="../../search.html"/>
+    <link rel="top" title="OpenGLCourseJP 0.1.0 documentation" href="../../index.html"/>
+        <link rel="next" title="19. 流体の可視化" href="../wave_equation/index.html"/>
+        <link rel="prev" title="17. キーボードとマウスの操作" href="../keyboard_and_mouse/index.html"/> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> OpenGLCourseJP
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../setup/index.html">1. 環境設定</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../open_window/index.html">2. ウィンドウを開く </a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hello_triangle/index.html">3. 三角形を描く </a></li>
+<li class="toctree-l1"><a class="reference internal" href="../coord_transform/index.html">4. 座標変換 </a></li>
+<li class="toctree-l1"><a class="reference internal" href="../depth_test/index.html">5. 深度テスト </a></li>
+<li class="toctree-l1"><a class="reference internal" href="../window_resize/index.html">6. ウィンドウサイズの変更 </a></li>
+<li class="toctree-l1"><a class="reference internal" href="../animation/index.html">7. アニメーション </a></li>
+<li class="toctree-l1"><a class="reference internal" href="../texture_mapping/index.html">8. テクスチャ・マッピング </a></li>
+<li class="toctree-l1"><a class="reference internal" href="../alpha_blending/index.html">9. アルファ合成 </a></li>
+<li class="toctree-l1"><a class="reference internal" href="../vertex_buffer/index.html">10. 頂点バッファ </a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hello_shader/index.html">11. シェーダの利用 </a></li>
+<li class="toctree-l1"><a class="reference internal" href="../model_loading/index.html">12. モデルファイルのロード </a></li>
+<li class="toctree-l1"><a class="reference internal" href="../shading_models/index.html">13. 様々なシェーディングモデル </a></li>
+<li class="toctree-l1"><a class="reference internal" href="../npr_shading/index.html">14. 非写実的シェーディング </a></li>
+<li class="toctree-l1"><a class="reference internal" href="../framebuffer/index.html">15. シェーダの利用 </a></li>
+<li class="toctree-l1"><a class="reference internal" href="../shadow_mapping/index.html">16. シャドウ・マッピング </a></li>
+<li class="toctree-l1"><a class="reference internal" href="../keyboard_and_mouse/index.html">17. キーボードとマウスの操作 </a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">18. アークボール操作 </a></li>
+<li class="toctree-l1"><a class="reference internal" href="../wave_equation/index.html">19. 流体の可視化 </a></li>
+<li class="toctree-l1"><a class="reference internal" href="../shooting_game/index.html">20. シューティングゲーム </a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">OpenGLCourseJP</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+      <li>18. アークボール操作 </li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            
+              <a href="https://github.com///blob/sections/arcball_control/index.rst" class="fa fa-github"> Edit on GitHub</a>
+            
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="source-code">
+<h1>18. アークボール操作 <a class="reference external" href="https://github.com/tatsy/OpenGLCourseJP/blob/master/src/018_arcball_control"><img alt="source_code" src="../../_images/octcat2.png" style="width: 24px;" /></a><a class="headerlink" href="#source-code" title="Permalink to this headline">¶</a></h1>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../wave_equation/index.html" class="btn btn-neutral float-right" title="19. 流体の可視化" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../keyboard_and_mouse/index.html" class="btn btn-neutral" title="17. キーボードとマウスの操作" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2017, Tatsuya Yatagawa.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'0.1.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

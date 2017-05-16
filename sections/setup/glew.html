@@ -1,0 +1,472 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>1.2. GLEWとGLMの設定 &mdash; OpenGLCourseJP 0.1.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../../genindex.html"/>
+        <link rel="search" title="Search" href="../../search.html"/>
+    <link rel="top" title="OpenGLCourseJP 0.1.0 documentation" href="../../index.html"/>
+        <link rel="up" title="1. 環境設定" href="index.html"/>
+        <link rel="next" title="2. ウィンドウを開く" href="../open_window/index.html"/>
+        <link rel="prev" title="1.1. GLFWの設定 (初回の設定)" href="glfw.html"/> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> OpenGLCourseJP
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">1. 環境設定</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="glfw.html">1.1. GLFWの設定 (初回の設定)</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">1.2. GLEWとGLMの設定</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#windows">1.2.1. Windowsの場合</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#glew">1.2.1.1. GLEWのインストール</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#glm">1.2.1.2. GLMのインストール</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id1">1.2.1.3. プロパティシートの更新</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id3">1.2.1.4. バイナリファイルの移動</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id4">1.2.1.5. サンプルプログラムの実行</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#mac">1.2.2. Macの場合</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id5">1.2.2.1. GLEWのインストール</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id7">1.2.2.2. GLMのインストール</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#xcode">1.2.2.3. Xcodeの設定</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id8">1.2.2.4. サンプルプログラムの実行</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../open_window/index.html">2. ウィンドウを開く </a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hello_triangle/index.html">3. 三角形を描く </a></li>
+<li class="toctree-l1"><a class="reference internal" href="../coord_transform/index.html">4. 座標変換 </a></li>
+<li class="toctree-l1"><a class="reference internal" href="../depth_test/index.html">5. 深度テスト </a></li>
+<li class="toctree-l1"><a class="reference internal" href="../window_resize/index.html">6. ウィンドウサイズの変更 </a></li>
+<li class="toctree-l1"><a class="reference internal" href="../animation/index.html">7. アニメーション </a></li>
+<li class="toctree-l1"><a class="reference internal" href="../texture_mapping/index.html">8. テクスチャ・マッピング </a></li>
+<li class="toctree-l1"><a class="reference internal" href="../alpha_blending/index.html">9. アルファ合成 </a></li>
+<li class="toctree-l1"><a class="reference internal" href="../vertex_buffer/index.html">10. 頂点バッファ </a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hello_shader/index.html">11. シェーダの利用 </a></li>
+<li class="toctree-l1"><a class="reference internal" href="../model_loading/index.html">12. モデルファイルのロード </a></li>
+<li class="toctree-l1"><a class="reference internal" href="../shading_models/index.html">13. 様々なシェーディングモデル </a></li>
+<li class="toctree-l1"><a class="reference internal" href="../npr_shading/index.html">14. 非写実的シェーディング </a></li>
+<li class="toctree-l1"><a class="reference internal" href="../framebuffer/index.html">15. シェーダの利用 </a></li>
+<li class="toctree-l1"><a class="reference internal" href="../shadow_mapping/index.html">16. シャドウ・マッピング </a></li>
+<li class="toctree-l1"><a class="reference internal" href="../keyboard_and_mouse/index.html">17. キーボードとマウスの操作 </a></li>
+<li class="toctree-l1"><a class="reference internal" href="../arcball_control/index.html">18. アークボール操作 </a></li>
+<li class="toctree-l1"><a class="reference internal" href="../wave_equation/index.html">19. 流体の可視化 </a></li>
+<li class="toctree-l1"><a class="reference internal" href="../shooting_game/index.html">20. シューティングゲーム </a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">OpenGLCourseJP</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">1. 環境設定</a> &raquo;</li>
+        
+      <li>1.2. GLEWとGLMの設定</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            
+              <a href="https://github.com///blob/sections/setup/glew.rst" class="fa fa-github"> Edit on GitHub</a>
+            
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="glewglm">
+<h1>1.2. GLEWとGLMの設定<a class="headerlink" href="#glewglm" title="Permalink to this headline">¶</a></h1>
+<p>(この内容は「 <a class="reference internal" href="../hello_shader/index.html"><span class="doc">シェーダの利用 </span></a> 」以降に必要になります)</p>
+<p>第10回以降のソースコードを動かすためには, 最近のOpenGLの機能を扱うためのライブラリが必要です。
+このコースではGLEW (OpenGL Extension Wrangler Library) を使ってプログラムを作ります。</p>
+<p>合わせて、ベクトルや行列の計算を簡単に扱うためのライブラリとしてGLM (OpenGL Mathematics) も導入しておきます。</p>
+<hr class="docutils" />
+<div class="section" id="windows">
+<h2>1.2.1. Windowsの場合<a class="headerlink" href="#windows" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="glew">
+<h3>1.2.1.1. GLEWのインストール<a class="headerlink" href="#glew" title="Permalink to this headline">¶</a></h3>
+<p>GLEWの公式ページからコンパイル済みのライブラリをダウンロードします。</p>
+<div class="line-block">
+<div class="line"><strong>GLEWのダウンロードページ</strong></div>
+<div class="line"><a class="reference external" href="http://glew.sourceforge.net/">http://glew.sourceforge.net/</a></div>
+<div class="line"><br /></div>
+</div>
+<img alt="../../_images/glew_download_page.jpg" src="../../_images/glew_download_page.jpg" />
+<p>上記のウェブページを開いて、中央にある「Binaries」という文字の右側にある
+「Windows 32-bit and 64-bit」というリンクから、ZIPファイルをダウンロードします。
+ダウンロードしたファイルは「glew-2.0.0-win32.zip」という名前になっているはずです。</p>
+<p>ダウンロードが完了したら、ZIPファイルを解凍し、GLFWの時と同様に適当なディレクトリに配置します。
+この講義では、 <strong>C:\Libraries\opengl</strong> のようなディレクトリを作成して、
+その中に置くことを推奨しています。</p>
+</div>
+<div class="section" id="glm">
+<h3>1.2.1.2. GLMのインストール<a class="headerlink" href="#glm" title="Permalink to this headline">¶</a></h3>
+<p>GLMも公式のウェブページからライブラリをダウンロードします。</p>
+<div class="line-block">
+<div class="line"><strong>GLMのダウンロードページ</strong></div>
+<div class="line"><a class="reference external" href="http://glm.g-truc.net">http://glm.g-truc.net</a></div>
+<div class="line"><br /></div>
+</div>
+<img alt="../../_images/glm_top_page.jpg" src="../../_images/glm_top_page.jpg" />
+<p>上記のウェブページの左側にある「Downloads」というリンクをクリックします。
+するとダウンロードページに移動するので、その中から最新版である0.9.8.4をダウンロードします (2017年5月11日現在)。
+ダウンロードしたファイルは「glm-0.9.8.4.zip」という名前になっているはずです。</p>
+<img alt="../../_images/glm_download_page.jpg" src="../../_images/glm_download_page.jpg" />
+<p>ダウンロードが完了したら、上記と同様にZIPファイルを解凍して適当なディレクトリに配置します。</p>
+</div>
+<div class="section" id="id1">
+<h3>1.2.1.3. プロパティシートの更新<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<p>初回の準備の際に作成したプロパティシートを更新して、GLEWおよびGLMを使用できるようにします。</p>
+<p>設定方法に関しては、<a class="reference internal" href="glfw.html"><span class="doc">GLFWの設定 (初回の設定)</span></a> を参照してください。設定項目は以下の通りです。</p>
+<div class="section" id="vc">
+<h4>1.2.1.3.1. VC++ ディレクトリ<a class="headerlink" href="#vc" title="Permalink to this headline">¶</a></h4>
+<div class="line-block">
+<div class="line"><strong>インクルードディレクトリ</strong></div>
+<div class="line">C:\Libraries\opengl\glew-2.0.0\include  (GLEW)</div>
+<div class="line">C:\Libraries\opengl\glm-0.9.8.4  (GLM)</div>
+<div class="line"><br /></div>
+<div class="line"><strong>ライブラリディレクトリ</strong></div>
+<div class="line">C:\Libraries\opengl\glew-2.0.0\lib\Release\Win32 (GLEW, 32bitの場合)</div>
+<div class="line">C:\Libraries\opengl\glew-2.0.0\lib\Release\x64 (GLEW, 64bitの場合)</div>
+<div class="line"><br /></div>
+</div>
+</div>
+<div class="section" id="id2">
+<h4>1.2.1.3.2. リンカー<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h4>
+<div class="line-block">
+<div class="line"><strong>追加の依存ファイル</strong></div>
+<div class="line">glew32.lib (GLEW, 32bit, 64bitとも同じ名前)</div>
+<div class="line"><br /></div>
+</div>
+</div>
+</div>
+<div class="section" id="id3">
+<h3>1.2.1.4. バイナリファイルの移動<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<p>GLEWを使用したサンプルプログラムを実行するためには、GLEWのDLLファイルが参照可能な場所に置いてある必要があります。
+自分のPCで作業をしている場合には、 <strong>C:\Windows\System32</strong> のフォルダに <strong>glew32.dll</strong> をコピーします。</p>
+<p>上記のフォルダは管理者権限がないと書き込みができないフォルダになりますので、
+もし大学のPCなど、上記のフォルダにDLLファイルを置くことが難しい場合には、
+DLLを出来上がったプログラムと同じディレクトリに移動して実行してください。</p>
+</div>
+<div class="section" id="id4">
+<h3>1.2.1.5. サンプルプログラムの実行<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+<p>サンプルプログラムは「第12回シェーダの利用」のソースコードを使用してください。</p>
+<p><a class="reference external" href="https://github.com/tatsy/OpenGLCourseJP/blob/master/src/010_hello_shader">https://github.com/tatsy/OpenGLCourseJP/blob/master/src/010_hello_shader</a></p>
+<p>コンパイルをするまではこれまで通りですが、今回のファイルにはシェーダのソースコードが含まれるので、
+そちらの置き場所を別途設定する必要があります。</p>
+<p>サンプルプログラムの中では、 <strong>common.h</strong> というシェーダの置き場所を記したヘッダファイルを
+<strong>CMake</strong> を使用して自動生成しています。その元となるファイルが <strong>common.h.in</strong> です。</p>
+<p><strong>CMake</strong> を使わずに、このファイルを作る場合には、<strong>common.h.in</strong> の内容を参考に
+以下のような内容を記述したファイルを作ってください。</p>
+<div class="highlight-cpp"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7
+8</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="cp">#ifndef _COMMON_H_</span>
+<span class="cp">#define _COMMON_H_</span>
+
+<span class="k">static</span> <span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">SOURCE_DIRECTORY</span> <span class="o">=</span> <span class="s">&quot;(ソースコード用のディレクトリ)&quot;</span><span class="p">;</span>
+<span class="k">static</span> <span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">SHADER_DIRECTORY</span> <span class="o">=</span> <span class="s">&quot;(シェーダ用のディレクトリ)&quot;</span><span class="p">;</span>
+<span class="k">static</span> <span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">DATA_DIRECTORY</span> <span class="o">=</span> <span class="s">&quot;(データ用のディレクトリ)&quot;</span><span class="p">;</span>
+
+<span class="cp">#endif  </span><span class="c1">// _COMMON_H_</span>
+</pre></div>
+</td></tr></table></div>
+<p>サンプルプログラムでは、シェーダのファイルが見つからなければエラーを返すように
+していますので、もし実行が上手くいかない場合にはシェーダの置き場所を確認してみてください。</p>
+<p>上手く実行できると、色付きの立方体が描画されるはずです。</p>
+<a class="reference internal image-reference" href="../../_images/shader_cube.jpg"><img alt="../../_images/shader_cube.jpg" src="../../_images/shader_cube.jpg" style="width: 300px;" /></a>
+</div>
+</div>
+<hr class="docutils" />
+<div class="section" id="mac">
+<h2>1.2.2. Macの場合<a class="headerlink" href="#mac" title="Permalink to this headline">¶</a></h2>
+<p>Macを使用する場合には、GLEW、GLMともにGitを経由してダウンロードし、GNU Makeあるいは
+CMakeを使用してビルド、インストールを行います。</p>
+<div class="section" id="id5">
+<h3>1.2.2.1. GLEWのインストール<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="http://glew.sourceforge.net/">GLEWの公式Webページ</a> からソースコードを
+ダウンロードして、ビルドとインストールを行います。ターミナルを開いて、次のコマンドを実行してください。</p>
+<div class="highlight-shell"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5</pre></div></td><td class="code"><div class="highlight"><pre><span></span>wget https://github.com/nigels-com/glew/releases/download/glew-2.0.0/glew-2.0.0.tgz
+<span class="nb">cd</span> glew-2.0.0/cmake
+cmake ./cmake
+make
+sudo make install
+</pre></div>
+</td></tr></table></div>
+<p>上記のコマンドではGLEWのソースコードが圧縮されたTGZファイルをwgetで落としていますが、
+<a class="reference external" href="http://glew.sourceforge.net/">GLEWの公式ウェブページ</a> からダウンロードすることも可能です。これでインストールは完了です。</p>
+</div>
+<div class="section" id="id7">
+<h3>1.2.2.2. GLMのインストール<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="https://github.com/g-truc/glm.git">GLMのGitHub</a> からソースコードを
+ダウンロードして、ビルドとインストールを行います。GLEWの時と同様に、
+次のコマンドをターミナルで実行してください。</p>
+<div class="highlight-shell"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6</pre></div></td><td class="code"><div class="highlight"><pre><span></span>git clone https://github.com/g-truc/glm.git
+<span class="nb">cd</span> glm
+mkdir build <span class="o">&amp;&amp;</span> <span class="nb">cd</span> build
+cmake ..
+make
+sudo make install
+</pre></div>
+</td></tr></table></div>
+<p>これだけでインストールは完了です。</p>
+</div>
+<div class="section" id="xcode">
+<h3>1.2.2.3. Xcodeの設定<a class="headerlink" href="#xcode" title="Permalink to this headline">¶</a></h3>
+<p>Xcodeで設定が必要な項目は1箇所で、GLEWのライブラリをリンカフラグに設定するだけです。</p>
+<p>Xcodeの画面左側にあるプロジェクト名 (今回の場合は「OpenGLCourse」) をクリックすると、
+設定画面が現れるので、その設定画面の「Build Settings」を開きます。</p>
+<img alt="../../_images/project_setting_xcode.jpg" src="../../_images/project_setting_xcode.jpg" />
+<p>この画面中段くらいにある「Linking」という項目の中から「Other Linker Flag」という項目を選び、
+そこに「-lglew」という文字列を追加します。</p>
+<p>これでXcode側の設定は完了です。</p>
+</div>
+<div class="section" id="id8">
+<h3>1.2.2.4. サンプルプログラムの実行<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h3>
+<p>サンプルプログラムは「第12回シェーダの利用」のソースコードを使用してください。</p>
+<p><a class="reference external" href="https://github.com/tatsy/OpenGLCourseJP/blob/master/src/012_hello_shader">https://github.com/tatsy/OpenGLCourseJP/blob/master/src/012_hello_shader</a></p>
+<p>このサンプルプログラムはシェーダを実行しますので、シェーダの置き場所を別途設定する必要があります。</p>
+<p>Xcodeの場合には、ビルドされた実行可能ファイルが、プログラムが置いてあるフォルダとは
+全く別の場所に保存されるので、シェーダファイルのように、実行時に必要になるファイルは、
+実行可能ファイルと同じディレクトリにコピーしてあげる必要があります。</p>
+<p>Xcodeには、このコピーを自動化する機能がありますので、その設定を行います。</p>
+<p>まず、シェーダを管理するための「Group」を画面左のソースツリー上で作成します。
+ここでいうGroupはファイルを管理するためのフォルダのようなものです。
+追加したいフォルダ(図の中ではOpenGLTest)を右クリックし、メニューの中から
+「New Group」を選びます。そうすると、フォルダの名前を入力できるようになるので、
+その名前を <strong>shaders</strong> などの名前に変更します。</p>
+<a class="reference internal image-reference" href="../../_images/create_new_group_before.png"><img alt="../../_images/create_new_group_before.png" src="../../_images/create_new_group_before.png" style="width: 300px;" /></a>
+<p>Groupが作成出来たら、そのGroupを右クリックして、「Add files to &#8220;shaders&#8221;」を選びます。
+すると、ファイルを選択する画面になるので、シェーダのソースコード (今回の場合には
+render.vertとrender.frag)を選択します。追加が完了すると以下の図のようになるはずです。</p>
+<a class="reference internal image-reference" href="../../_images/adding_shaders.png"><img alt="../../_images/adding_shaders.png" src="../../_images/adding_shaders.png" style="width: 300px;" /></a>
+<p>Groupにシェーダのソースコードが登録出来たら、次に自動コピーの設定をします。</p>
+<p>画面左側のソースツリー上でプロジェクト名をクリックし、中央上部にある項目の中から、
+「Build Phases」を選びます。すると画面下部に「Copy Files」という項目があるので、
+その項目を以下の図のように設定します。</p>
+<img alt="../../_images/after_adding_shaders.png" src="../../_images/after_adding_shaders.png" />
+<p>ファイルを新規に追加するときには、下側にある「＋」ボタンを押すと現れるダイアログ上で、
+<strong>shaders</strong> に追加したシェーダのソースコードを選べばOKです。</p>
+<p>これで、サンプルプログラムを実行するための準備は完了ですので、
+実際にプログラムをビルドして実行結果を確認してください。</p>
+<p>上手く実行できると、色付きの立方体が描画されるはずです。</p>
+<a class="reference internal image-reference" href="../../_images/shader_cube.jpg"><img alt="../../_images/shader_cube.jpg" src="../../_images/shader_cube.jpg" style="width: 300px;" /></a>
+<p>サンプルプログラムでは、シェーダのソースコードが見つからない場合にエラーを出すように
+していますので、もしシェーダが見つからない場合には「Copy Files」の設定項目を確認してみてください。</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../open_window/index.html" class="btn btn-neutral float-right" title="2. ウィンドウを開く" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="glfw.html" class="btn btn-neutral" title="1.1. GLFWの設定 (初回の設定)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2017, Tatsuya Yatagawa.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'0.1.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

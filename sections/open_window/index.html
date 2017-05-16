@@ -1,0 +1,397 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>2. ウィンドウを開く &mdash; OpenGLCourseJP 0.1.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../../genindex.html"/>
+        <link rel="search" title="Search" href="../../search.html"/>
+    <link rel="top" title="OpenGLCourseJP 0.1.0 documentation" href="../../index.html"/>
+        <link rel="next" title="3. 三角形を描く" href="../hello_triangle/index.html"/>
+        <link rel="prev" title="1.2. GLEWとGLMの設定" href="../setup/glew.html"/> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> OpenGLCourseJP
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../setup/index.html">1. 環境設定</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">2. ウィンドウを開く </a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#opengl">2.1. OpenGLの初期化</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id1">2.2. ウィンドウの作成</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id2">2.3. コンテキストの生成</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id3">2.4. 背景色の設定</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id4">2.5. 描画ループの設定</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id5">2.6. 描画結果</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id6">2.7. 練習</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../hello_triangle/index.html">3. 三角形を描く </a></li>
+<li class="toctree-l1"><a class="reference internal" href="../coord_transform/index.html">4. 座標変換 </a></li>
+<li class="toctree-l1"><a class="reference internal" href="../depth_test/index.html">5. 深度テスト </a></li>
+<li class="toctree-l1"><a class="reference internal" href="../window_resize/index.html">6. ウィンドウサイズの変更 </a></li>
+<li class="toctree-l1"><a class="reference internal" href="../animation/index.html">7. アニメーション </a></li>
+<li class="toctree-l1"><a class="reference internal" href="../texture_mapping/index.html">8. テクスチャ・マッピング </a></li>
+<li class="toctree-l1"><a class="reference internal" href="../alpha_blending/index.html">9. アルファ合成 </a></li>
+<li class="toctree-l1"><a class="reference internal" href="../vertex_buffer/index.html">10. 頂点バッファ </a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hello_shader/index.html">11. シェーダの利用 </a></li>
+<li class="toctree-l1"><a class="reference internal" href="../model_loading/index.html">12. モデルファイルのロード </a></li>
+<li class="toctree-l1"><a class="reference internal" href="../shading_models/index.html">13. 様々なシェーディングモデル </a></li>
+<li class="toctree-l1"><a class="reference internal" href="../npr_shading/index.html">14. 非写実的シェーディング </a></li>
+<li class="toctree-l1"><a class="reference internal" href="../framebuffer/index.html">15. シェーダの利用 </a></li>
+<li class="toctree-l1"><a class="reference internal" href="../shadow_mapping/index.html">16. シャドウ・マッピング </a></li>
+<li class="toctree-l1"><a class="reference internal" href="../keyboard_and_mouse/index.html">17. キーボードとマウスの操作 </a></li>
+<li class="toctree-l1"><a class="reference internal" href="../arcball_control/index.html">18. アークボール操作 </a></li>
+<li class="toctree-l1"><a class="reference internal" href="../wave_equation/index.html">19. 流体の可視化 </a></li>
+<li class="toctree-l1"><a class="reference internal" href="../shooting_game/index.html">20. シューティングゲーム </a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">OpenGLCourseJP</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+      <li>2. ウィンドウを開く </li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            
+              <a href="https://github.com///blob/sections/open_window/index.rst" class="fa fa-github"> Edit on GitHub</a>
+            
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="source-code">
+<h1>2. ウィンドウを開く <a class="reference external" href="https://github.com/tatsy/OpenGLCourseJP/blob/master/src/001_open_window/main.cpp"><img alt="source_code" src="../../_images/octcat11.png" style="width: 24px;" /></a><a class="headerlink" href="#source-code" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="opengl">
+<h2>2.1. OpenGLの初期化<a class="headerlink" href="#opengl" title="Permalink to this headline">¶</a></h2>
+<p>GLFWを通してOpenGLを使用するには初期化処理が必要です。初期化には以下のソースコードが対応します。</p>
+<div class="highlight-cpp"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="c1">// OpenGLを初期化する</span>
+<span class="k">if</span> <span class="p">(</span><span class="n">glfwInit</span><span class="p">()</span> <span class="o">==</span> <span class="n">GL_FALSE</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">fprintf</span><span class="p">(</span><span class="n">stderr</span><span class="p">,</span> <span class="s">&quot;Initialization failed!</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+    <span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div>
+<p>上記のコードの中で <code class="docutils literal"><span class="pre">glfwInit()</span></code> メソッドが初期化処理をします。もし初期化が成功すれば
+<code class="docutils literal"><span class="pre">GL_TRUE</span></code> を、失敗すれば <code class="docutils literal"><span class="pre">GL_FALSE</span></code> を返します。</p>
+<p>ここでは初期化が失敗し <code class="docutils literal"><span class="pre">GL_FALSE</span></code> が返されたときにエラーメッセージを表示して、プログラムを停止しています。
+少し難しくなりますが <code class="docutils literal"><span class="pre">fprintf</span></code> 関数の第1引数に <code class="docutils literal"><span class="pre">stderr</span></code> と書くとエラーメッセージとして、
+第2引数に渡された文字列である <em>Initialization failed</em> が出力されます。</p>
+</div>
+<div class="section" id="id1">
+<h2>2.2. ウィンドウの作成<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<p>ウィンドウを作成するには <code class="docutils literal"><span class="pre">glfwCreateWindow</span></code> 関数を使います。この関数は、必ず上記の初期化の後で呼び出してください。
+対応するソースコードは以下のようになります。</p>
+<div class="highlight-cpp"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7
+8</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="c1">// Windowの作成</span>
+<span class="n">GLFWwindow</span> <span class="o">*</span><span class="n">window</span> <span class="o">=</span> <span class="n">glfwCreateWindow</span><span class="p">(</span><span class="n">WIN_WIDTH</span><span class="p">,</span> <span class="n">WIN_HEIGHT</span><span class="p">,</span> <span class="n">WIN_TITLE</span><span class="p">,</span>
+                                      <span class="nb">NULL</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">);</span>
+<span class="k">if</span> <span class="p">(</span><span class="n">window</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">fprintf</span><span class="p">(</span><span class="n">stderr</span><span class="p">,</span> <span class="s">&quot;Window creation failed!&quot;</span><span class="p">);</span>
+    <span class="n">glfwTerminate</span><span class="p">();</span>
+    <span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div>
+<p>実際にウィンドウを作成する関数は <code class="docutils literal"><span class="pre">glfwCreateWindow</span></code> 関数です。こちらは5つの引数を取ります。
+重要なのは最初の3つで、先頭から順に「ウィンドウの幅」、「ウィンドウの高さ」、「ウィンドウの名前」です。</p>
+<p>残りの4つ目の引数はフルスクリーンモードにするときに使用する引数、5つ目の引数は別のウィンドウを描画内容を
+共有するときに使う引数なのですが、このコースでは使用しないので、基本は <code class="docutils literal"><span class="pre">NULL</span></code> を渡しておけば大丈夫です。</p>
+<p>この <code class="docutils literal"><span class="pre">glfwCreateWindow</span></code> 関数はウィンドウを表す <code class="docutils literal"><span class="pre">GLFWwindow</span></code> 型のポインタを返します。
+ウィンドウの作成に失敗した場合には、このポインタが <code class="docutils literal"><span class="pre">NULL</span></code> になるので、もし <code class="docutils literal"><span class="pre">NULL</span></code> であれば、
+エラーメッセージを出力してプログラムを停止します。</p>
+<p>この時、 <code class="docutils literal"><span class="pre">glfwInit</span></code> 関数を呼び出したあとであれば、必ず <code class="docutils literal"><span class="pre">glfwTerminate</span></code> 関数を呼ぶ必要があるので注意してください。</p>
+</div>
+<div class="section" id="id2">
+<h2>2.3. コンテキストの生成<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<p>OpenGLでは描画の状態を保存するためにコンテキストと呼ばれるオブジェクトを作る必要があります。
+これを今の時点で正確に説明するのは難しいのですが、概ね、OpenGLで扱う描画の状態等を保存するためのものだと思ってください。</p>
+<p>このコンテキストを生成するためのコードは以下の行になります。</p>
+<div class="highlight-cpp"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="c1">// OpenGLの描画対象にWindowを追加</span>
+<span class="n">glfwMakeContextCurrent</span><span class="p">(</span><span class="n">window</span><span class="p">);</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<div class="section" id="id3">
+<h2>2.4. 背景色の設定<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<p>今回のプログラムでは、背景に色をつけて画面を表示します。
+その背景の描画色を決定する関数が <code class="docutils literal"><span class="pre">glClearColor</span></code> 関数です。
+対応するソースコードは以下の部分です。</p>
+<div class="highlight-cpp"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="c1">// 背景色の設定</span>
+<span class="n">glClearColor</span><span class="p">(</span><span class="mf">1.0f</span><span class="p">,</span> <span class="mf">0.0f</span><span class="p">,</span> <span class="mf">0.0f</span><span class="p">,</span> <span class="mf">1.0f</span><span class="p">);</span>
+</pre></div>
+</td></tr></table></div>
+<p><code class="docutils literal"><span class="pre">glClearColor</span></code> 関数は4つの引数を持ち、それぞれが赤、緑、青、アルファ値に対応します。
+各色ちゃんねるの値は0から1までの値を取り、例えば(1, 1, 1, 1)が与えられると白色に、
+(1, 0, 0, 0.5)が与えられると透明度が50%の赤色になります。</p>
+</div>
+<div class="section" id="id4">
+<h2>2.5. 描画ループの設定<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-cpp"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="c1">// メインループ</span>
+<span class="k">while</span> <span class="p">(</span><span class="n">glfwWindowShouldClose</span><span class="p">(</span><span class="n">window</span><span class="p">)</span> <span class="o">==</span> <span class="n">GL_FALSE</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// 描画</span>
+    <span class="n">drawOpenGL</span><span class="p">();</span>
+
+    <span class="c1">// 描画用バッファの切り替え</span>
+    <span class="n">glfwSwapBuffers</span><span class="p">(</span><span class="n">window</span><span class="p">);</span>
+    <span class="n">glfwPollEvents</span><span class="p">();</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div>
+<p>この部分ではウィンドウが表示されている限り続くwhileループが書かれています。
+まず、whileの終了判定に使われている <code class="docutils literal"><span class="pre">glfwWindowShouldClose</span></code> 関数は、
+現在ウィンドウが開かれているのか閉じられているのかを調べます。
+閉じられているときには <code class="docutils literal"><span class="pre">GL_TRUE</span></code> が返ってくるので、そうでない場合、
+すなわち <code class="docutils literal"><span class="pre">GL_FALSE</span></code> が返ってきている間は描画を継続します。</p>
+<p>描画部分は <code class="docutils literal"><span class="pre">drawOpenGL</span></code> 関数の中で処理を記述することにします。
+現在のこの関数の定義は、このようになっています。</p>
+<div class="highlight-cpp"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="c1">// ユーザ定義のOpenGL描画</span>
+<span class="kt">void</span> <span class="nf">drawOpenGL</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c1">// 背景色の描画</span>
+    <span class="n">glClear</span><span class="p">(</span><span class="n">GL_COLOR_BUFFER_BIT</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div>
+<p>ここでは、先ほど <code class="docutils literal"><span class="pre">glClearColor</span></code> 関数で設定した色を使って画面を塗りつぶす処理を書いています。
+その役割を担うのが <code class="docutils literal"><span class="pre">glClear</span></code> 関数です。この関数の引数には現在 <code class="docutils literal"><span class="pre">GL_COLOR_BUFFER_BIT</span></code> という
+定数が渡されていますが、この定数が渡されているときには <code class="docutils literal"><span class="pre">glClear</span></code> 関数により画面の色が塗りつぶされます。</p>
+</div>
+<div class="section" id="id5">
+<h2>2.6. 描画結果<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
+<p>全てのソースコードが上手くかけていれば、以下のような赤一色で塗りつぶされた画面が表示されるはずです。</p>
+<a class="reference internal image-reference" href="../../_images/001_opengl_window.jpg"><img alt="../../_images/001_opengl_window.jpg" src="../../_images/001_opengl_window.jpg" style="width: 250px;" /></a>
+</div>
+<div class="section" id="id6">
+<h2>2.7. 練習<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple">
+<li>ウィンドウの幅や高さを変更したときの変化を調べる</li>
+<li>ウィンドウのタイトルを変更したときの変化を調べる</li>
+<li><code class="docutils literal"><span class="pre">glClearColor</span></code> に渡されている色を別の色に変更して、変化を調べる</li>
+<li><code class="docutils literal"><span class="pre">glClear</span></code> をコメントアウトしたときに背景色がどうなるかを調べる</li>
+</ol>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../hello_triangle/index.html" class="btn btn-neutral float-right" title="3. 三角形を描く" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../setup/glew.html" class="btn btn-neutral" title="1.2. GLEWとGLMの設定" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2017, Tatsuya Yatagawa.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'0.1.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>
