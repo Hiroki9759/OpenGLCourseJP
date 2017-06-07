@@ -96,20 +96,20 @@
 <li class="toctree-l1"><a class="reference internal" href="../hello_triangle/index.html">3. 三角形を描く </a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">4. 座標変換 </a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#id1">4.1. 二次元の座標変換</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id2">4.1.1. 練習1</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id2">練習1</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#opengl">4.2. OpenGLが管理する座標変換行列</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id3">4.2.1. モデルビュー変換行列の役割</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id4">4.2.2. 射影変換行列の役割</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#id5">4.2.2.1. 平行投影変換</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id6">4.2.2.2. 透視投影変換</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">モデルビュー変換行列の役割</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">射影変換行列の役割</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id5">平行投影変換</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id6">透視投影変換</a></li>
 </ul>
 </li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#id7">4.3. 立方体の表示</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id8">4.3.1. 練習 2</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id8">練習 2</a></li>
 </ul>
 </li>
 </ul>
@@ -124,10 +124,10 @@
 <li class="toctree-l1"><a class="reference internal" href="../model_loading/index.html">12. モデルファイルのロード </a></li>
 <li class="toctree-l1"><a class="reference internal" href="../shading_models/index.html">13. 様々なシェーディングモデル </a></li>
 <li class="toctree-l1"><a class="reference internal" href="../npr_shading/index.html">14. 非写実的シェーディング </a></li>
-<li class="toctree-l1"><a class="reference internal" href="../framebuffer/index.html">15. フレームバッファ・オブジェクト </a></li>
-<li class="toctree-l1"><a class="reference internal" href="../shadow_mapping/index.html">16. シャドウ・マッピング </a></li>
-<li class="toctree-l1"><a class="reference internal" href="../keyboard_and_mouse/index.html">17. キーボードとマウスの操作 </a></li>
-<li class="toctree-l1"><a class="reference internal" href="../arcball_control/index.html">18. アークボール操作 </a></li>
+<li class="toctree-l1"><a class="reference internal" href="../keyboard_and_mouse/index.html">15. キーボードとマウスの操作 </a></li>
+<li class="toctree-l1"><a class="reference internal" href="../object_selection/index.html">16. オブジェクトの選択 </a></li>
+<li class="toctree-l1"><a class="reference internal" href="../arcball_control/index.html">17. アークボール操作 </a></li>
+<li class="toctree-l1"><a class="reference internal" href="../framebuffer/index.html">18. フレームバッファ・オブジェクト </a></li>
 <li class="toctree-l1"><a class="reference internal" href="../wave_equation/index.html">19. 流体の可視化 </a></li>
 <li class="toctree-l1"><a class="reference internal" href="../shooting_game/index.html">20. シューティングゲーム </a></li>
 </ul>
@@ -201,7 +201,7 @@
   注) この回は、全ての回の中で最も重要な回です。非常に難しい部分ですので、めげずに何度も復習しましょう。
 </span></p><div class="section" id="id1">
 <h2>4.1. 二次元の座標変換<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
-<p>ここまでの回では、二次元座標上に三角形を描画していました。「 <span class="xref doc">../index/002</span> 」でご紹介したとおり、
+<p>ここまでの回では、二次元座標上に三角形を描画していました。「 <span class="xref std std-doc">../index/002</span> 」でご紹介したとおり、
 画面上の座標系は <span class="math">\((-1, 1) \times (-1, 1)\)</span> のようになっています。</p>
 <p>ですが、実用的な場面では、当然、この座標系を変更したい場面というのが出てきます。
 それでは、この座標系は変換できるのでしょうか？</p>
@@ -298,7 +298,7 @@ x軸、y軸、z軸の方向の拡大縮小比を表します。今回はx軸方�
 <p>ソースコードでは、特に頂点の座標を変換していませんが、実際に表示される三角形は縮小されており、
 擬似的に座標系が <span class="math">\((-2, 2) \times (-2, 2)\)</span> になっていることが分かります。</p>
 <div class="section" id="id2">
-<h3>4.1.1. 練習1<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<h3>練習1<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
 <p><code class="docutils literal"><span class="pre">glTranslatef</span></code> 関数は頂点を平行移動させる関数です。この関数を使って、画面の擬似的な座標系を
 <span class="math">\((0, 4) \times (0, 4)\)</span> にしてみてください。</p>
 </div>
@@ -319,7 +319,7 @@ x軸、y軸、z軸の方向の拡大縮小比を表します。今回はx軸方�
 <p>以下では、射影変換行列とモデルビュー変換行列の役割を解説しながら、
 三次元物体を描画する仕組みについて考えてみたいと思います。</p>
 <div class="section" id="id3">
-<h3>4.2.1. モデルビュー変換行列の役割<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<h3>モデルビュー変換行列の役割<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
 <p>モデルビュー変換行列は物体が持つ座標を、その物体を見ている視点(カメラ)を中心とした座標系に変換する行列です。
 このとき、変換前の物体固有の座標系のことを <strong>ワールド座標系</strong> 、カメラを中心とした座標系のことを <strong>カメラ座標系</strong> と呼びます。</p>
 <p>例えば、今、原点に半径が1の単位球がおいてあるとしましょう。この球の中心の座標は当然ながら、
@@ -335,7 +335,7 @@ x軸、y軸、z軸の方向の拡大縮小比を表します。今回はx軸方�
 Microsoft社が開発している三次元描画のライブラリであるDirectXでは、左手座標系を使用しています。</p>
 </div>
 <div class="section" id="id4">
-<h3>4.2.2. 射影変換行列の役割<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+<h3>射影変換行列の役割<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
 <p>射影変換行列はカメラ座標系に変換された行列をOpenGLのウィンドウが映し出す範囲である
 <span class="math">\((-1, 1) \times (-1, 1)\)</span> に変換する行列です。このとき変換後の座標系のことを
 <strong>スクリーン座標系</strong> と呼びます。</p>
@@ -352,7 +352,7 @@ Microsoft社が開発している三次元描画のライブラリであるDirec
 スクリーン座標における <span class="math">\(z = 0\)</span> の平面、遠方クリッピング面と交差する位置が、
 スクリーン座標における <span class="math">\(z = 1\)</span> の平面となります。</p>
 <div class="section" id="id5">
-<h4>4.2.2.1. 平行投影変換<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h4>
+<h4>平行投影変換<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h4>
 <p>ここからは、射影変換行列を定義する変数と、実際に出来上がる行列について見ていきたいと思います。
 まずは平行投影変換です。</p>
 <p>OpenGLの関数には平行投影変換を扱う <code class="docutils literal"><span class="pre">glOrtho</span></code> という関数 <a class="reference external" href="https://www.opengl.org/sdk/docs/man2/xhtml/glOrtho.xml"><img alt="doc_glOrtho" src="../../_images/popup.png" style="width: 16px;" /></a> が用意されていますのでこれを使います。</p>
@@ -383,7 +383,7 @@ z_s &amp;= 2 \frac{z_c - nearVal}{farVal - nearVal} - 1 &amp;= \frac{2 z_c - (fa
 ここでは、考え方の紹介にとどめ、詳細については他の資料に譲ることとします。</p>
 </div>
 <div class="section" id="id6">
-<h4>4.2.2.2. 透視投影変換<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h4>
+<h4>透視投影変換<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h4>
 <p>平行投影変換と異なり、透視投影変換の行列を扱う関数はOpenGLには用意されていません。
 少しややこしいのですが、OpenGLには、主に数学的な機能をまとめたGLU (GL utility) というライブラリが含まれており、
 こちらに透視投影変換を扱う関数があります。</p>
@@ -607,7 +607,7 @@ b &amp;= -\frac{zNear + zFar}{zNear - zFar}\end{split}\]</div>
 単純に描画した順に色が塗り重ねられているためです。これを解決する方法については第5回の「深度テスト」で解説します。</p>
 <a class="reference internal image-reference" href="../../_images/strange_cube.jpg"><img alt="../../_images/strange_cube.jpg" src="../../_images/strange_cube.jpg" style="width: 250px;" /></a>
 <div class="section" id="id8">
-<h3>4.3.1. 練習 2<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h3>
+<h3>練習 2<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h3>
 <ol class="arabic simple">
 <li><code class="docutils literal"><span class="pre">gluOrtho</span></code> 関数を使って、投影変換行列を平行投影変換に変更してみてください。</li>
 <li>立方体の面の描画順を変更するとどうなるか試してみてください。</li>

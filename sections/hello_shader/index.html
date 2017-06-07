@@ -101,14 +101,18 @@
 <li class="toctree-l1"><a class="reference internal" href="../texture_mapping/index.html">8. テクスチャ・マッピング </a></li>
 <li class="toctree-l1"><a class="reference internal" href="../alpha_blending/index.html">9. アルファ合成 </a></li>
 <li class="toctree-l1"><a class="reference internal" href="../vertex_buffer/index.html">10. 頂点バッファ </a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">11. シェーダの利用 </a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">11. シェーダの利用 </a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id1">11.1. 最も単純な頂点シェーダ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id2">11.2. 最も単純なフラグメントシェーダ</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="../model_loading/index.html">12. モデルファイルのロード </a></li>
 <li class="toctree-l1"><a class="reference internal" href="../shading_models/index.html">13. 様々なシェーディングモデル </a></li>
 <li class="toctree-l1"><a class="reference internal" href="../npr_shading/index.html">14. 非写実的シェーディング </a></li>
-<li class="toctree-l1"><a class="reference internal" href="../framebuffer/index.html">15. フレームバッファ・オブジェクト </a></li>
-<li class="toctree-l1"><a class="reference internal" href="../shadow_mapping/index.html">16. シャドウ・マッピング </a></li>
-<li class="toctree-l1"><a class="reference internal" href="../keyboard_and_mouse/index.html">17. キーボードとマウスの操作 </a></li>
-<li class="toctree-l1"><a class="reference internal" href="../arcball_control/index.html">18. アークボール操作 </a></li>
+<li class="toctree-l1"><a class="reference internal" href="../keyboard_and_mouse/index.html">15. キーボードとマウスの操作 </a></li>
+<li class="toctree-l1"><a class="reference internal" href="../object_selection/index.html">16. オブジェクトの選択 </a></li>
+<li class="toctree-l1"><a class="reference internal" href="../arcball_control/index.html">17. アークボール操作 </a></li>
+<li class="toctree-l1"><a class="reference internal" href="../framebuffer/index.html">18. フレームバッファ・オブジェクト </a></li>
 <li class="toctree-l1"><a class="reference internal" href="../wave_equation/index.html">19. 流体の可視化 </a></li>
 <li class="toctree-l1"><a class="reference internal" href="../shooting_game/index.html">20. シューティングゲーム </a></li>
 </ul>
@@ -177,7 +181,57 @@
            <div itemprop="articleBody">
             
   <div class="section" id="source-code">
-<h1>11. シェーダの利用 <a class="reference external" href="https://github.com/tatsy/OpenGLCourseJP/blob/master/src/010_hello_shader"><img alt="source_code" src="../../_images/octcat6.png" style="width: 24px;" /></a><a class="headerlink" href="#source-code" title="Permalink to this headline">¶</a></h1>
+<h1>11. シェーダの利用 <a class="reference external" href="https://github.com/tatsy/OpenGLCourseJP/blob/master/src/hello_shader"><img alt="source_code" src="../../_images/octcat6.png" style="width: 24px;" /></a><a class="headerlink" href="#source-code" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="id1">
+<h2>11.1. 最も単純な頂点シェーダ<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-cpp"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="cp">#version 330</span>
+
+<span class="c1">// CPUから受け取る頂点位置 (頂点バッファの中の1つ)</span>
+<span class="n">layout</span><span class="p">(</span><span class="n">location</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span> <span class="n">in</span> <span class="n">vec3</span> <span class="n">in_position</span><span class="p">;</span>
+
+<span class="c1">// どの頂点にも共通に使う変数</span>
+<span class="n">uniform</span> <span class="n">mat4</span> <span class="n">u_mvpMat</span><span class="p">;</span>
+
+<span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// 座標変換により、スクリーン上の位置を決定 (-1から1の範囲が描画される)</span>
+    <span class="n">gl_Position</span> <span class="o">=</span> <span class="n">u_mvpMat</span> <span class="o">*</span> <span class="n">vec4</span><span class="p">(</span><span class="n">in_position</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<div class="section" id="id2">
+<h2>11.2. 最も単純なフラグメントシェーダ<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-cpp"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="cp">#version 330</span>
+
+<span class="c1">// out識別子のついた1つ目の変数がディスプレイに表示される</span>
+<span class="n">out</span> <span class="n">vec4</span> <span class="n">out_color</span><span class="p">;</span>
+
+<span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// 単に黄色い色を出力する</span>
+    <span class="n">out_color</span> <span class="o">=</span> <span class="n">vec4</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div>
+</div>
 </div>
 
 

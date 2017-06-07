@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>13. 様々なシェーディングモデル &mdash; OpenGLCourseJP 0.1.0 documentation</title>
+  <title>16. オブジェクトの選択 &mdash; OpenGLCourseJP 0.1.0 documentation</title>
   
 
   
@@ -36,8 +36,8 @@
               href="../../genindex.html"/>
         <link rel="search" title="Search" href="../../search.html"/>
     <link rel="top" title="OpenGLCourseJP 0.1.0 documentation" href="../../index.html"/>
-        <link rel="next" title="14. 非写実的シェーディング" href="../npr_shading/index.html"/>
-        <link rel="prev" title="12. モデルファイルのロード" href="../model_loading/index.html"/> 
+        <link rel="next" title="17. アークボール操作" href="../arcball_control/index.html"/>
+        <link rel="prev" title="15. キーボードとマウスの操作" href="../keyboard_and_mouse/index.html"/> 
 
   
   <script src="../../_static/js/modernizr.min.js"></script>
@@ -103,10 +103,14 @@
 <li class="toctree-l1"><a class="reference internal" href="../vertex_buffer/index.html">10. 頂点バッファ </a></li>
 <li class="toctree-l1"><a class="reference internal" href="../hello_shader/index.html">11. シェーダの利用 </a></li>
 <li class="toctree-l1"><a class="reference internal" href="../model_loading/index.html">12. モデルファイルのロード </a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">13. 様々なシェーディングモデル </a></li>
+<li class="toctree-l1"><a class="reference internal" href="../shading_models/index.html">13. 様々なシェーディングモデル </a></li>
 <li class="toctree-l1"><a class="reference internal" href="../npr_shading/index.html">14. 非写実的シェーディング </a></li>
 <li class="toctree-l1"><a class="reference internal" href="../keyboard_and_mouse/index.html">15. キーボードとマウスの操作 </a></li>
-<li class="toctree-l1"><a class="reference internal" href="../object_selection/index.html">16. オブジェクトの選択 </a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">16. オブジェクトの選択 </a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id1">16.1. 安直なやり方</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id2">16.2. より良いやり方</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="../arcball_control/index.html">17. アークボール操作 </a></li>
 <li class="toctree-l1"><a class="reference internal" href="../framebuffer/index.html">18. フレームバッファ・オブジェクト </a></li>
 <li class="toctree-l1"><a class="reference internal" href="../wave_equation/index.html">19. 流体の可視化 </a></li>
@@ -155,14 +159,14 @@
     
       <li><a href="../../index.html">Docs</a> &raquo;</li>
         
-      <li>13. 様々なシェーディングモデル </li>
+      <li>16. オブジェクトの選択 </li>
     
     
       <li class="wy-breadcrumbs-aside">
         
             
             
-              <a href="https://github.com///blob/sections/shading_models/index.rst" class="fa fa-github"> Edit on GitHub</a>
+              <a href="https://github.com///blob/sections/object_selection/index.rst" class="fa fa-github"> Edit on GitHub</a>
             
           
         
@@ -177,7 +181,35 @@
            <div itemprop="articleBody">
             
   <div class="section" id="source-code">
-<h1>13. 様々なシェーディングモデル <a class="reference external" href="https://github.com/tatsy/OpenGLCourseJP/blob/master/src/012_hello_shader"><img alt="source_code" src="../../_images/octcat13.png" style="width: 24px;" /></a><a class="headerlink" href="#source-code" title="Permalink to this headline">¶</a></h1>
+<h1>16. オブジェクトの選択 <a class="reference external" href="https://github.com/tatsy/OpenGLCourseJP/blob/master/src/object_selection"><img alt="source_code" src="../../_images/octcat11.png" style="width: 24px;" /></a><a class="headerlink" href="#source-code" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="id1">
+<h2>16.1. 安直なやり方<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-cpp"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="c1">// バッファ全体を読み込んで, そのクリック位置のラベルを見る</span>
+<span class="kt">unsigned</span> <span class="kt">char</span> <span class="o">*</span><span class="n">bytes</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">unsigned</span> <span class="kt">char</span><span class="p">[</span><span class="n">WIN_WIDTH</span> <span class="o">*</span> <span class="n">WIN_HEIGHT</span> <span class="o">*</span> <span class="mi">4</span><span class="p">];</span>
+<span class="n">glReadPixels</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">WIN_WIDTH</span><span class="p">,</span> <span class="n">WIN_HEIGHT</span><span class="p">,</span> <span class="n">GL_RGBA</span><span class="p">,</span> <span class="n">GL_UNSIGNED_BYTE</span><span class="p">,</span> <span class="n">bytes</span><span class="p">);</span>
+<span class="n">printf</span><span class="p">(</span><span class="s">&quot;Mouse position: %d %d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">cx</span><span class="p">,</span> <span class="n">cy</span><span class="p">);</span>
+<span class="n">printf</span><span class="p">(</span><span class="s">&quot;Select object %d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">bytes</span><span class="p">[((</span><span class="n">WIN_HEIGHT</span> <span class="o">-</span> <span class="n">cy</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">WIN_WIDTH</span> <span class="o">+</span> <span class="n">cx</span><span class="p">)</span> <span class="o">*</span> <span class="mi">4</span><span class="p">]);</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<div class="section" id="id2">
+<h2>16.2. より良いやり方<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-cpp"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="c1">// クリック位置の情報だけを読み込んで, そのラベルを見る</span>
+<span class="kt">char</span> <span class="n">byte</span><span class="p">[</span><span class="mi">4</span><span class="p">];</span>
+<span class="n">glReadPixels</span><span class="p">(</span><span class="n">cx</span><span class="p">,</span> <span class="n">WIN_HEIGHT</span> <span class="o">-</span> <span class="n">cy</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">GL_RGBA</span><span class="p">,</span> <span class="n">GL_UNSIGNED_BYTE</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">byte</span><span class="p">);</span>
+<span class="n">printf</span><span class="p">(</span><span class="s">&quot;Mouse position: %d %d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">cx</span><span class="p">,</span> <span class="n">cy</span><span class="p">);</span>
+<span class="n">printf</span><span class="p">(</span><span class="s">&quot;Select object %d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">byte</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span>
+</pre></div>
+</td></tr></table></div>
+</div>
 </div>
 
 
@@ -190,10 +222,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../npr_shading/index.html" class="btn btn-neutral float-right" title="14. 非写実的シェーディング" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="../arcball_control/index.html" class="btn btn-neutral float-right" title="17. アークボール操作" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="../model_loading/index.html" class="btn btn-neutral" title="12. モデルファイルのロード" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="../keyboard_and_mouse/index.html" class="btn btn-neutral" title="15. キーボードとマウスの操作" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
