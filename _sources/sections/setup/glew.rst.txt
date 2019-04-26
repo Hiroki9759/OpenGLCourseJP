@@ -4,9 +4,17 @@ GLEWとGLMの設定
 
 (この内容は「 :doc:`../hello_shader/index` 」以降に必要になります)
 
-第10回以降のソースコードを動かすためには, 最近のOpenGLの機能を扱うためのライブラリが必要です。
-このコースではGLEW (OpenGL Extension Wrangler Library) を使ってプログラムを作ります。
+第10回以降のソースコードを動かすためには、最近のOpenGLの機能を扱うためのライブラリが必要です。
+以前はGLEW (OpenGL Extension Wrangler Library) というライブラリを使っていましたが、こちらのライブラリはあまり更新されていないこともあり、2019年度からGLADというライブラリを用いることにいたしました。
+新しい内容を確認したい方は、以下からGLADの準備方法をご確認ください。
 
+:doc:`glad`
+
+.. raw:: html
+
+  <span style="color: #f00; font-weight: bold;">以下の内容は過去のものになりますので、ご注意ください</span>
+
+このコースではGLEW (OpenGL Extension Wrangler Library) を使ってプログラムを作ります。
 合わせて、ベクトルや行列の計算を簡単に扱うためのライブラリとしてGLM (OpenGL Mathematics) も導入しておきます。
 
 ----
@@ -214,14 +222,14 @@ Xcodeには、このコピーを自動化する機能がありますので、そ
 「New Group」を選びます。そうすると、フォルダの名前を入力できるようになるので、
 その名前を **shaders** などの名前に変更します。
 
-.. image:: ./figures/create_new_group_before.png
+.. image:: ./figures/create_new_group_before.jpg
   :width: 300px
 
 Groupが作成出来たら、そのGroupを右クリックして、「Add files to "shaders"」を選びます。
 すると、ファイルを選択する画面になるので、シェーダのソースコード (今回の場合には
 render.vertとrender.frag)を選択します。追加が完了すると以下の図のようになるはずです。
 
-.. image:: ./figures/adding_shaders.png
+.. image:: ./figures/adding_shaders.jpg
   :width: 300px
 
 Groupにシェーダのソースコードが登録出来たら、次に自動コピーの設定をします。
@@ -230,7 +238,7 @@ Groupにシェーダのソースコードが登録出来たら、次に自動コ
 「Build Phases」を選びます。すると画面下部に「Copy Files」という項目があるので、
 その項目を以下の図のように設定します。
 
-.. image:: ./figures/after_adding_shaders.png
+.. image:: ./figures/after_adding_shaders.jpg
 
 ファイルを新規に追加するときには、下側にある「＋」ボタンを押すと現れるダイアログ上で、
 **shaders** に追加したシェーダのソースコードを選べばOKです。

@@ -1,8 +1,8 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<!--[if IE 8]><html class="no-js lt-ie9" lang="jp" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="jp" > <!--<![endif]-->
 <head>
   <meta charset="utf-8">
   
@@ -17,42 +17,37 @@
   
 
   
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../_static/language_data.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
 
-  
-  
     
 
   
-
-  
-  
-    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
-  
-
-  
-
-  
-        <link rel="index" title="Index"
-              href="../../genindex.html"/>
-        <link rel="search" title="Search" href="../../search.html"/>
-    <link rel="top" title="OpenGLCourseJP 0.1.0 documentation" href="../../index.html"/>
-        <link rel="next" title="5. 深度テスト" href="../depth_test/index.html"/>
-        <link rel="prev" title="3. 三角形を描く" href="../hello_triangle/index.html"/> 
-
-  
-  <script src="../../_static/js/modernizr.min.js"></script>
-
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="5. 深度テスト" href="../depth_test/index.html" />
+    <link rel="prev" title="3. 三角形を描く" href="../hello_triangle/index.html" /> 
 </head>
 
-<body class="wy-body-for-nav" role="document">
+<body class="wy-body-for-nav">
 
    
   <div class="wy-grid-for-nav">
-
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
-        <div class="wy-side-nav-search">
+        <div class="wy-side-nav-search" >
           
 
           
@@ -141,7 +136,7 @@
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
 
       
-      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+      <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="../../index.html">OpenGLCourseJP</a>
@@ -149,9 +144,10 @@
       </nav>
 
 
-      
       <div class="wy-nav-content">
+        
         <div class="rst-content">
+        
           
 
 
@@ -202,26 +198,26 @@
 </span></p><div class="section" id="id1">
 <h2>4.1. 二次元の座標変換<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
 <p>ここまでの回では、二次元座標上に三角形を描画していました。「 <span class="xref std std-doc">../index/002</span> 」でご紹介したとおり、
-画面上の座標系は <span class="math">\((-1, 1) \times (-1, 1)\)</span> のようになっています。</p>
+画面上の座標系は <span class="math notranslate nohighlight">\((-1, 1) \times (-1, 1)\)</span> のようになっています。</p>
 <p>ですが、実用的な場面では、当然、この座標系を変更したい場面というのが出てきます。
 それでは、この座標系は変換できるのでしょうか？</p>
 <p>結論から言えば、この座標系を変換することはできません。
 ですが、描画する物体のサイズを変更することで擬似的に画面の座標系を変換することはできます。</p>
-<p>例えば、今、画面の座標系を <span class="math">\((-2, 2) \times (-2, 2)\)</span> のようにしたいとします。
-とすれば、描画する全ての物体のサイズを2分の1にしておけば、これは <span class="math">\((-1, 1) \times (-1, 1)\)</span>
-の画面上にあたかも <span class="math">\((-2, 2) \times (-2, 2)\)</span> の座標系を持つ画面上に物体を描画することができます。</p>
+<p>例えば、今、画面の座標系を <span class="math notranslate nohighlight">\((-2, 2) \times (-2, 2)\)</span> のようにしたいとします。
+とすれば、描画する全ての物体のサイズを2分の1にしておけば、これは <span class="math notranslate nohighlight">\((-1, 1) \times (-1, 1)\)</span>
+の画面上にあたかも <span class="math notranslate nohighlight">\((-2, 2) \times (-2, 2)\)</span> の座標系を持つ画面上に物体を描画することができます。</p>
 <p>それでは早速試してみましょう。</p>
-<p>物体のサイズを変更する関数は <code class="docutils literal"><span class="pre">glScalef</span></code> です。この関数は引数を3つ取り、それぞれ
+<p>物体のサイズを変更する関数は <code class="docutils literal notranslate"><span class="pre">glScalef</span></code> です。この関数は引数を3つ取り、それぞれ
 x軸、y軸、z軸の方向の拡大縮小比を表します。今回はx軸方向とy軸方向を2分の1に縮小したいので、</p>
-<div class="highlight-cpp"><div class="highlight"><pre><span></span><span class="n">glScalef</span><span class="p">(</span><span class="mf">0.5f</span><span class="p">,</span> <span class="mf">0.5f</span><span class="p">,</span> <span class="mf">1.0f</span><span class="p">);</span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">glScalef</span><span class="p">(</span><span class="mf">0.5f</span><span class="p">,</span> <span class="mf">0.5f</span><span class="p">,</span> <span class="mf">1.0f</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>のように書けばOKです。これをどこに書くのか、という部分についてですが、ここには少し工夫が必要です。</p>
-<p>上記の <code class="docutils literal"><span class="pre">glScalef</span></code> はOpenGLの内部で管理されている座標変換行列に対して、
+<p>上記の <code class="docutils literal notranslate"><span class="pre">glScalef</span></code> はOpenGLの内部で管理されている座標変換行列に対して、
 スケールを変更する行列を掛け算する、という処理をします。</p>
 <p>具体的にはOpenGLの内部に保存されている座標変換行列は4×4の行列になっていて、
-<code class="docutils literal"><span class="pre">glScalef(sx,</span> <span class="pre">sy,</span> <span class="pre">sz)</span></code> のように呼び出したとすると、</p>
-<div class="math">
+<code class="docutils literal notranslate"><span class="pre">glScalef(sx,</span> <span class="pre">sy,</span> <span class="pre">sz)</span></code> のように呼び出したとすると、</p>
+<div class="math notranslate nohighlight">
 \[\begin{split}\begin{pmatrix}
   sx &amp; 0 &amp; 0 &amp; 0 \\
   0 &amp; sy &amp; 0 &amp; 0 \\
@@ -230,7 +226,7 @@ x軸、y軸、z軸の方向の拡大縮小比を表します。今回はx軸方�
 \end{pmatrix}\end{split}\]</div>
 <p>という行列を掛け算することになります。</p>
 <p>この行列をOpenGLの管理する行列に掛け算するには以下のように記述する必要があります。</p>
-<div class="highlight-cpp"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+<div class="highlight-cpp notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
 3</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="n">glMatrixMode</span><span class="p">(</span><span class="n">GL_MODELVIEW</span><span class="p">);</span>
 <span class="n">glLoadIdentity</span><span class="p">();</span>
@@ -238,7 +234,7 @@ x軸、y軸、z軸の方向の拡大縮小比を表します。今回はx軸方�
 </pre></div>
 </td></tr></table></div>
 <p>これを使って、前回作成した描画関数を次のように書き換えます。</p>
-<div class="highlight-cpp"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+<div class="highlight-cpp notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
  3
  4
@@ -281,26 +277,26 @@ x軸、y軸、z軸の方向の拡大縮小比を表します。今回はx軸方�
 </td></tr></table></div>
 <p>コードを書き換えて実行すると、左側の図のような画像が出てるはずです。
 右側に比較用の元画像を表示してあります。</p>
-<table border="1" class="colwidths-given docutils">
+<table class="colwidths-given docutils align-center">
 <colgroup>
-<col width="50%" />
-<col width="50%" />
+<col style="width: 50%" />
+<col style="width: 50%" />
 </colgroup>
-<tbody valign="top">
-<tr class="row-odd"><td><a class="reference internal" href="../../_images/after_scale.jpg"><img alt="after_scale" src="../../_images/after_scale.jpg" style="width: 250px;" /></a></td>
-<td><a class="reference internal" href="../../_images/before_scale.jpg"><img alt="before_scale" src="../../_images/before_scale.jpg" style="width: 250px;" /></a></td>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="../../_images/after_scale.jpg"><img alt="after_scale" src="../../_images/after_scale.jpg" style="width: 250px;" /></a></p></td>
+<td><p><a class="reference internal" href="../../_images/before_scale.jpg"><img alt="before_scale" src="../../_images/before_scale.jpg" style="width: 250px;" /></a></p></td>
 </tr>
-<tr class="row-even"><td><strong>座標変換後</strong></td>
-<td>座標変換前</td>
+<tr class="row-even"><td><p><strong>座標変換後</strong></p></td>
+<td><p>座標変換前</p></td>
 </tr>
 </tbody>
 </table>
 <p>ソースコードでは、特に頂点の座標を変換していませんが、実際に表示される三角形は縮小されており、
-擬似的に座標系が <span class="math">\((-2, 2) \times (-2, 2)\)</span> になっていることが分かります。</p>
+擬似的に座標系が <span class="math notranslate nohighlight">\((-2, 2) \times (-2, 2)\)</span> になっていることが分かります。</p>
 <div class="section" id="id2">
 <h3>練習1<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
-<p><code class="docutils literal"><span class="pre">glTranslatef</span></code> 関数は頂点を平行移動させる関数です。この関数を使って、画面の擬似的な座標系を
-<span class="math">\((0, 4) \times (0, 4)\)</span> にしてみてください。</p>
+<p><code class="docutils literal notranslate"><span class="pre">glTranslatef</span></code> 関数は頂点を平行移動させる関数です。この関数を使って、画面の擬似的な座標系を
+<span class="math notranslate nohighlight">\((0, 4) \times (0, 4)\)</span> にしてみてください。</p>
 </div>
 </div>
 <hr class="docutils" />
@@ -308,14 +304,14 @@ x軸、y軸、z軸の方向の拡大縮小比を表します。今回はx軸方�
 <h2>4.2. OpenGLが管理する座標変換行列<a class="headerlink" href="#opengl" title="Permalink to this headline">¶</a></h2>
 <p>ここからいよいよ、三次元の物体を表示するための方法について解説していきます。
 その際、大切になる考え方が、今回のテーマでもある座標変換行列です。</p>
-<p>先ほど、OpenGLは座標変換のための行列を管理しており <code class="docutils literal"><span class="pre">glScalef</span></code> はその行列に対して、
+<p>先ほど、OpenGLは座標変換のための行列を管理しており <code class="docutils literal notranslate"><span class="pre">glScalef</span></code> はその行列に対して、
 拡大縮小の行列を掛ける関数であると説明しました。
 実は、OpenGLが管理している行列には射影変換行列とモデルビュー変換行列の2種類があり、
 上記のコードではモデルビュー変換行列に対して掛け算をしています。</p>
-<p>その掛け算をする対象となる行列を指定する関数が、先ほど使った <code class="docutils literal"><span class="pre">glMatrixMode</span></code> 関数です。
-<code class="docutils literal"><span class="pre">glMatrixMode</span></code> 関数には <code class="docutils literal"><span class="pre">GL_MODELVIEW</span></code> と <code class="docutils literal"><span class="pre">GL_PERSPECTIVE</span></code> のどちらかを
+<p>その掛け算をする対象となる行列を指定する関数が、先ほど使った <code class="docutils literal notranslate"><span class="pre">glMatrixMode</span></code> 関数です。
+<code class="docutils literal notranslate"><span class="pre">glMatrixMode</span></code> 関数には <code class="docutils literal notranslate"><span class="pre">GL_MODELVIEW</span></code> と <code class="docutils literal notranslate"><span class="pre">GL_PERSPECTIVE</span></code> のどちらかを
 指定することができて、前者がモデルビュー変換行列を後者が射影変換行列を指定するための定数です
-(実際にはあと2種類 <code class="docutils literal"><span class="pre">GL_TEXTURE</span></code> と <code class="docutils literal"><span class="pre">GL_COLOR</span></code> が指定できますが、通常あまり使いません)。</p>
+(実際にはあと2種類 <code class="docutils literal notranslate"><span class="pre">GL_TEXTURE</span></code> と <code class="docutils literal notranslate"><span class="pre">GL_COLOR</span></code> が指定できますが、通常あまり使いません)。</p>
 <p>以下では、射影変換行列とモデルビュー変換行列の役割を解説しながら、
 三次元物体を描画する仕組みについて考えてみたいと思います。</p>
 <div class="section" id="id3">
@@ -323,10 +319,10 @@ x軸、y軸、z軸の方向の拡大縮小比を表します。今回はx軸方�
 <p>モデルビュー変換行列は物体が持つ座標を、その物体を見ている視点(カメラ)を中心とした座標系に変換する行列です。
 このとき、変換前の物体固有の座標系のことを <strong>ワールド座標系</strong> 、カメラを中心とした座標系のことを <strong>カメラ座標系</strong> と呼びます。</p>
 <p>例えば、今、原点に半径が1の単位球がおいてあるとしましょう。この球の中心の座標は当然ながら、
-<span class="math">\((0, 0, 0)\)</span> ですが、これはワールド座標系での座標です。</p>
-<p>もしこの球を、<span class="math">\((0, 0, 10)\)</span> から見ているならば、カメラ座標系における球の座標は、
-<span class="math">\((0, 0, 10)\)</span> になります。ここで気をつけたいのは、もしこの球を <span class="math">\((10, 0, 0)\)</span>
-から見ていたとしても、カメラ座標系は <span class="math">\((0, 0, 10)\)</span> に成るという点です。</p>
+<span class="math notranslate nohighlight">\((0, 0, 0)\)</span> ですが、これはワールド座標系での座標です。</p>
+<p>もしこの球を、<span class="math notranslate nohighlight">\((0, 0, 10)\)</span> から見ているならば、カメラ座標系における球の座標は、
+<span class="math notranslate nohighlight">\((0, 0, 10)\)</span> になります。ここで気をつけたいのは、もしこの球を <span class="math notranslate nohighlight">\((10, 0, 0)\)</span>
+から見ていたとしても、カメラ座標系は <span class="math notranslate nohighlight">\((0, 0, 10)\)</span> に成るという点です。</p>
 <p>これは何故かと言うと、通常カメラ座標系は水平方向右をx軸の正の方向、垂直方向上をy軸の正方向、
 そして、奥行きに対応するで、視線と反対向きの方向をz軸の正方向とするためです。</p>
 <img alt="../../_images/camera_coordinates.jpg" src="../../_images/camera_coordinates.jpg" />
@@ -337,7 +333,7 @@ Microsoft社が開発している三次元描画のライブラリであるDirec
 <div class="section" id="id4">
 <h3>射影変換行列の役割<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
 <p>射影変換行列はカメラ座標系に変換された行列をOpenGLのウィンドウが映し出す範囲である
-<span class="math">\((-1, 1) \times (-1, 1)\)</span> に変換する行列です。このとき変換後の座標系のことを
+<span class="math notranslate nohighlight">\((-1, 1) \times (-1, 1)\)</span> に変換する行列です。このとき変換後の座標系のことを
 <strong>スクリーン座標系</strong> と呼びます。</p>
 <p>射影変換行列には主に2種類があって、それぞれ <strong>平行投影変換</strong> (Orthographic projection) と
 <strong>透視投影変換</strong> (Perspective projection) と呼びます。
@@ -349,26 +345,26 @@ Microsoft社が開発している三次元描画のライブラリであるDirec
 <strong>近辺クリッピング面</strong> (Near clipping plane) と <strong>遠方クリッピング面</strong> (Far clipping plane) です
 (クリッピング面を指す日本語が見当たらなかったので、著者が適当につけた訳になります)。</p>
 <p>これらのクリッピング面は視線方向と直交する平面で、近辺クリッピング面と交差する位置が
-スクリーン座標における <span class="math">\(z = 0\)</span> の平面、遠方クリッピング面と交差する位置が、
-スクリーン座標における <span class="math">\(z = 1\)</span> の平面となります。</p>
+スクリーン座標における <span class="math notranslate nohighlight">\(z = 0\)</span> の平面、遠方クリッピング面と交差する位置が、
+スクリーン座標における <span class="math notranslate nohighlight">\(z = 1\)</span> の平面となります。</p>
 <div class="section" id="id5">
 <h4>平行投影変換<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h4>
 <p>ここからは、射影変換行列を定義する変数と、実際に出来上がる行列について見ていきたいと思います。
 まずは平行投影変換です。</p>
-<p>OpenGLの関数には平行投影変換を扱う <code class="docutils literal"><span class="pre">glOrtho</span></code> という関数 <a class="reference external" href="https://www.opengl.org/sdk/docs/man2/xhtml/glOrtho.xml"><img alt="doc_glOrtho" src="../../_images/popup.png" style="width: 16px;" /></a> が用意されていますのでこれを使います。</p>
-<div class="highlight-cpp"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="n">glOrtho</span><span class="p">(</span><span class="n">GLdouble</span> <span class="n">left</span><span class="p">,</span> <span class="n">GLdouble</span> <span class="n">right</span><span class="p">,</span> <span class="n">GLdouble</span> <span class="n">bottom</span><span class="p">,</span> <span class="n">GLdouble</span> <span class="n">top</span><span class="p">,</span> <span class="n">GLdouble</span> <span class="n">nearVal</span><span class="p">,</span> <span class="n">GLdouble</span> <span class="n">farVal</span><span class="p">);</span>
+<p>OpenGLの関数には平行投影変換を扱う <code class="docutils literal notranslate"><span class="pre">glOrtho</span></code> という関数 <a class="reference external" href="https://www.opengl.org/sdk/docs/man2/xhtml/glOrtho.xml"><img alt="doc_glOrtho" src="../../_images/popup.png" style="width: 16px;" /></a> が用意されていますのでこれを使います。</p>
+<div class="highlight-cpp notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="n">glOrtho</span><span class="p">(</span><span class="n">GLdouble</span> <span class="n">left</span><span class="p">,</span> <span class="n">GLdouble</span> <span class="n">right</span><span class="p">,</span> <span class="n">GLdouble</span> <span class="n">bottom</span><span class="p">,</span> <span class="n">GLdouble</span> <span class="n">top</span><span class="p">,</span> <span class="n">GLdouble</span> <span class="n">nearVal</span><span class="p">,</span> <span class="n">GLdouble</span> <span class="n">farVal</span><span class="p">);</span>
 </pre></div>
 </td></tr></table></div>
 <p>この関数は上記の通り引数を6つ取ります。最初の2つがスクリーン座標系での左端と右端に対応するカメラ座標系でのxの値、
 次の2つが下端と上端に対応するyの値、そして最後が近辺クリッピング面と遠方クリッピング面に対応するzの値です。</p>
-<p>今、平行投影変換をしたいカメラ座標が <span class="math">\((x_c, y_c, z_c)\)</span> であるとします。
-この時、変換後のスクリーン座標 <span class="math">\((x_s, y_s, z_s)\)</span> は次のように表せます。</p>
-<div class="math">
+<p>今、平行投影変換をしたいカメラ座標が <span class="math notranslate nohighlight">\((x_c, y_c, z_c)\)</span> であるとします。
+この時、変換後のスクリーン座標 <span class="math notranslate nohighlight">\((x_s, y_s, z_s)\)</span> は次のように表せます。</p>
+<div class="math notranslate nohighlight">
 \[\begin{split}x_s &amp;= 2 \frac{x_c - left}{right - left} - 1   &amp;= \frac{2 x_c - (right + left)}{right - left}\\
 y_s &amp;= 2 \frac{y_c - bottom}{top - bottom} - 1 &amp;= \frac{2 y_c - (top + bottom)}{top - bottom}\\
 z_s &amp;= 2 \frac{z_c - nearVal}{farVal - nearVal} - 1 &amp;= \frac{2 z_c - (farVal + nearVal)}{farVal - nearVal}\end{split}\]</div>
 <p>したがって、平行投影変換のための行列は以下のように書けます。</p>
-<div class="math">
+<div class="math notranslate nohighlight">
 \[\begin{split}\begin{pmatrix}
   \frac{2}{right - left} &amp; 0 &amp; 0 &amp; -\frac{right + left}{right - left} \\
   0 &amp; \frac{2}{top - bottom} &amp; 0 &amp; -\frac{top + bottom}{top - bottom} \\
@@ -378,7 +374,7 @@ z_s &amp;= 2 \frac{z_c - nearVal}{farVal - nearVal} - 1 &amp;= \frac{2 z_c - (fa
 <p>ここで注意したいのは、座標変換のための行列は4×4の行列だという部分です。
 これは、3次元のベクトルに対する3×3の行列による変換では平行移動などの一部の変換が
 扱えないためで、通常のx, y, zの値に対応する3次元ベクトルに4つ目の要素として1を付け加えた
-<span class="math">\((x, y, z, 1)\)</span> という行列に変換行列を作用させていくことになります。</p>
+<span class="math notranslate nohighlight">\((x, y, z, 1)\)</span> という行列に変換行列を作用させていくことになります。</p>
 <p>このような座標表現のことを <strong>同次座標表現</strong> と呼び、これにより様々な変換を表すことができるのですが、
 ここでは、考え方の紹介にとどめ、詳細については他の資料に譲ることとします。</p>
 </div>
@@ -387,33 +383,33 @@ z_s &amp;= 2 \frac{z_c - nearVal}{farVal - nearVal} - 1 &amp;= \frac{2 z_c - (fa
 <p>平行投影変換と異なり、透視投影変換の行列を扱う関数はOpenGLには用意されていません。
 少しややこしいのですが、OpenGLには、主に数学的な機能をまとめたGLU (GL utility) というライブラリが含まれており、
 こちらに透視投影変換を扱う関数があります。</p>
-<p>GLUライブラリを使うためには、 <code class="docutils literal"><span class="pre">GL/glu.h</span></code> というヘッダをインクルードします。</p>
-<div class="highlight-cpp"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;GL/glu.h&gt;</span><span class="cp"></span>
+<p>GLUライブラリを使うためには、 <code class="docutils literal notranslate"><span class="pre">GL/glu.h</span></code> というヘッダをインクルードします。</p>
+<div class="highlight-cpp notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;GL/glu.h&gt;</span><span class="cp"></span>
 </pre></div>
 </td></tr></table></div>
-<p>これをGLFWで使うためには、以下のように <code class="docutils literal"><span class="pre">GLFW_INCLUDE_GLU</span></code> を定義します。</p>
-<div class="highlight-cpp"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+<p>これをGLFWで使うためには、以下のように <code class="docutils literal notranslate"><span class="pre">GLFW_INCLUDE_GLU</span></code> を定義します。</p>
+<div class="highlight-cpp notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="cp">#define GLFW_INCLUDE_GLU</span>
 <span class="cp">#include</span> <span class="cpf">&lt;GLFW/glfw3.h&gt;</span><span class="cp"></span>
 </pre></div>
 </td></tr></table></div>
-<p>透視投影変換を扱う関数は <code class="docutils literal"><span class="pre">gluPerspective</span></code> という関数です。</p>
-<div class="highlight-cpp"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="n">gluPerspective</span><span class="p">(</span><span class="n">GLdouble</span> <span class="n">fov</span><span class="p">,</span> <span class="n">GLdouble</span> <span class="n">aspect</span><span class="p">,</span> <span class="n">GLdouble</span> <span class="n">zNear</span><span class="p">,</span> <span class="n">GLdouble</span> <span class="n">zFar</span><span class="p">);</span>
+<p>透視投影変換を扱う関数は <code class="docutils literal notranslate"><span class="pre">gluPerspective</span></code> という関数です。</p>
+<div class="highlight-cpp notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="n">gluPerspective</span><span class="p">(</span><span class="n">GLdouble</span> <span class="n">fov</span><span class="p">,</span> <span class="n">GLdouble</span> <span class="n">aspect</span><span class="p">,</span> <span class="n">GLdouble</span> <span class="n">zNear</span><span class="p">,</span> <span class="n">GLdouble</span> <span class="n">zFar</span><span class="p">);</span>
 </pre></div>
 </td></tr></table></div>
 <p>こちらの関数は4つの引数を取ります。最初の引数が、カメラから画面を見たときの上下方向の開き角、
 2つ目の引数が、画面の縦横比 (アスペクト比)、3つ目と4つ目の引数が近辺クリッピング面と
 遠方クリッピング面に対応するzの値です。</p>
-<p>平行投影変換のときと同じく、カメラ座標 <span class="math">\((x_c, y_c, z_c)\)</span> をスクリーン座標
-<span class="math">\((x_s, y_s, z_s)\)</span> に変換する操作を考えてみます。</p>
+<p>平行投影変換のときと同じく、カメラ座標 <span class="math notranslate nohighlight">\((x_c, y_c, z_c)\)</span> をスクリーン座標
+<span class="math notranslate nohighlight">\((x_s, y_s, z_s)\)</span> に変換する操作を考えてみます。</p>
 <p>平行投影変換の場合にはx, yの値は、カメラと変換する点とを結んだ直線と近辺クリッピング面との交点により決まります。
 この時、スクリーンの上下左右の端は開き角とアスペクト比により決まります。</p>
 <p>少し複雑ではあるのですが、x, yの値は次のように変換できます。</p>
-<div class="math">
+<div class="math notranslate nohighlight">
 \[\begin{split}x_s &amp;= \frac{x_c}{(-z_c) \tan \left( \frac{fov}{2} \right) aspect} \\
 y_s &amp;= \frac{y_c}{(-z_c) \tan \left( \frac{fov}{2} \right) }\end{split}\]</div>
 <p>さて、問題はzの値です。平行投影の時と同じように考えると、カメラから変換したい点までの
-距離を測って、それが <span class="math">\(nNear\)</span> から <span class="math">\(zFar\)</span> の間に収まるように
+距離を測って、それが <span class="math notranslate nohighlight">\(nNear\)</span> から <span class="math notranslate nohighlight">\(zFar\)</span> の間に収まるように
 すれば良さそうなのですが、実際には、もう少し複雑な処理をします。</p>
 <p>ここでポイントとなるのはx, yの値がどのくらい拡大縮小されているか、という点です。
 図で示すとおり、透視投影変換は四角錐台の領域を立方体に変換します。</p>
@@ -422,29 +418,29 @@ zの絶対値が大きいときには大きくなっています。ところが�
 いずれの場合も同じ大きさの四角形に変換されます。</p>
 <p>ということは、x, yの値は、zの絶対値が小さいときには大きく、zの絶対値が大きいときには小さくなるという
 反比例の関係があることが分かります。透視投影変換では、zの拡大・縮小度合いがx, yの拡大縮小度合いと
-同じになるように変換をします。すなわち、ある未知数 <span class="math">\(a, b\)</span> を使って、</p>
-<div class="math">
+同じになるように変換をします。すなわち、ある未知数 <span class="math notranslate nohighlight">\(a, b\)</span> を使って、</p>
+<div class="math notranslate nohighlight">
 \[z_s = \frac{a}{z_c} + b\]</div>
-<p>のような関係式が成り立つことを意味します。ここで、 <span class="math">\(z_c = zNear\)</span> が-1に、
-<span class="math">\(z_c = zFar\)</span> が1に移ることを利用すると、</p>
-<div class="math">
+<p>のような関係式が成り立つことを意味します。ここで、 <span class="math notranslate nohighlight">\(z_c = zNear\)</span> が-1に、
+<span class="math notranslate nohighlight">\(z_c = zFar\)</span> が1に移ることを利用すると、</p>
+<div class="math notranslate nohighlight">
 \[\begin{split}\begin{cases}
   \frac{a}{zNear} + b = -1 \\
   \frac{a}{zFar} + b  = 1
 \end{cases}\end{split}\]</div>
 <p>という連立方程式が得られます。これを解くと、</p>
-<div class="math">
+<div class="math notranslate nohighlight">
 \[\begin{split}a &amp;= -\frac{2 zFar \cdot zNear}{zNear - zFar} \\
 b &amp;= -\frac{zNear + zFar}{zNear - zFar}\end{split}\]</div>
-<p>となって、 <span class="math">\(z_c\)</span> から <span class="math">\(z_s\)</span> への変換が得られます。</p>
-<p>この変換を行列として書き出したいのですが、問題は、変換後の値に <span class="math">\(z_c\)</span> の逆数が含まれるという点です。
+<p>となって、 <span class="math notranslate nohighlight">\(z_c\)</span> から <span class="math notranslate nohighlight">\(z_s\)</span> への変換が得られます。</p>
+<p>この変換を行列として書き出したいのですが、問題は、変換後の値に <span class="math notranslate nohighlight">\(z_c\)</span> の逆数が含まれるという点です。
 通常の行列による変換では、変換前の変数の逆数を表現することはできません。</p>
 <p>ですが、同時座標表現においては、常に4つ目の値が1になるようにベクトルをスケールします。
-したがって、もし <span class="math">\(z_c\)</span> で割る必要があるのならば、4つ目の値が <span class="math">\(z_c\)</span> になるように
+したがって、もし <span class="math notranslate nohighlight">\(z_c\)</span> で割る必要があるのならば、4つ目の値が <span class="math notranslate nohighlight">\(z_c\)</span> になるように
 行列を作れば良いということになります。</p>
 <p>カメラ座標系においては、視線方向にz軸の負の方向が対応しており、上記の四角錐台が広がっている方向では
-<span class="math">\(z_c\)</span> が負であることに注意すると、変換後の4次元ベクトルは、</p>
-<div class="math">
+<span class="math notranslate nohighlight">\(z_c\)</span> が負であることに注意すると、変換後の4次元ベクトルは、</p>
+<div class="math notranslate nohighlight">
 \[\left(
   \frac{x_c}{ \tan \left( \frac{fov}{2} \right) aspect},
   \frac{y_c}{ \tan \left( \frac{fov}{2} \right)},
@@ -452,7 +448,7 @@ b &amp;= -\frac{zNear + zFar}{zNear - zFar}\end{split}\]</div>
   -z_c
 \right)\]</div>
 <p>したがって、透視投影変換の行列は以下のように書けます。</p>
-<div class="math">
+<div class="math notranslate nohighlight">
 \[\begin{split}\begin{pmatrix}
   \frac{1}{\tan \left( \frac{fov}{2} \right) aspect} &amp; 0 &amp; 0 &amp; 0 \\
   0 &amp; \frac{1}{\tan \left( \frac{fov}{2} \right)} &amp; 0 &amp; 0 \\
@@ -469,7 +465,7 @@ b &amp;= -\frac{zNear + zFar}{zNear - zFar}\end{split}\]</div>
 第4章のまとめコードには全体のコードがありますので、そちらを参考にしながらプログラムを書いてみてください。</p>
 <p>まずは、立方体を定義している部分ですが、こちらは以下のようなコードになります。
 コメントにある通り、上から頂点の位置、面の色、頂点を結ぶ順番を表しています。</p>
-<div class="highlight-cpp"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+<div class="highlight-cpp notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
  3
  4
@@ -534,12 +530,12 @@ b &amp;= -\frac{zNear + zFar}{zNear - zFar}\end{split}\]</div>
 </td></tr></table></div>
 <p>続いては、実際の描画部分です。大きく変わっている部分は、ビューポート変換の設定の部分と
 座標変換行列の設定の部分になります。</p>
-<p>以下のコードでは、まず、 <code class="docutils literal"><span class="pre">glViewport</span></code> 関数でビューポートを画面サイズと同じにしています。
-そのあとで <code class="docutils literal"><span class="pre">glMatrixMode</span></code> 関数に <code class="docutils literal"><span class="pre">GL_PROJECTION</span></code> を渡して、透視投影変換行列を
-<code class="docutils literal"><span class="pre">gluPerspective</span></code> 関数で設定しています。最後は <code class="docutils literal"><span class="pre">glMatrixMode</span></code> 関数に <code class="docutils literal"><span class="pre">GL_MODELVIEW</span></code>
-を渡して、モデルビュー行列を <code class="docutils literal"><span class="pre">gluLookAt</span></code> 関数で設定しています。</p>
-<p>ここの設定だと、カメラは <code class="docutils literal"><span class="pre">(3.0,</span> <span class="pre">4.0,</span> <span class="pre">5.0)</span></code> の位置にあり <code class="docutils literal"><span class="pre">(0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.0)</span></code> の位置を見ていることになります。</p>
-<div class="highlight-cpp"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+<p>以下のコードでは、まず、 <code class="docutils literal notranslate"><span class="pre">glViewport</span></code> 関数でビューポートを画面サイズと同じにしています。
+そのあとで <code class="docutils literal notranslate"><span class="pre">glMatrixMode</span></code> 関数に <code class="docutils literal notranslate"><span class="pre">GL_PROJECTION</span></code> を渡して、透視投影変換行列を
+<code class="docutils literal notranslate"><span class="pre">gluPerspective</span></code> 関数で設定しています。最後は <code class="docutils literal notranslate"><span class="pre">glMatrixMode</span></code> 関数に <code class="docutils literal notranslate"><span class="pre">GL_MODELVIEW</span></code>
+を渡して、モデルビュー行列を <code class="docutils literal notranslate"><span class="pre">gluLookAt</span></code> 関数で設定しています。</p>
+<p>ここの設定だと、カメラは <code class="docutils literal notranslate"><span class="pre">(3.0,</span> <span class="pre">4.0,</span> <span class="pre">5.0)</span></code> の位置にあり <code class="docutils literal notranslate"><span class="pre">(0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.0)</span></code> の位置を見ていることになります。</p>
+<div class="highlight-cpp notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
  3
  4
@@ -609,9 +605,9 @@ b &amp;= -\frac{zNear + zFar}{zNear - zFar}\end{split}\]</div>
 <div class="section" id="id8">
 <h3>練習 2<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h3>
 <ol class="arabic simple">
-<li><code class="docutils literal"><span class="pre">gluOrtho</span></code> 関数を使って、投影変換行列を平行投影変換に変更してみてください。</li>
-<li>立方体の面の描画順を変更するとどうなるか試してみてください。</li>
-<li>【発展】 <code class="docutils literal"><span class="pre">glMultMatrixf</span></code> 関数は長さが16の <code class="docutils literal"><span class="pre">float</span></code> の配列を受け取って、それを現在の行列モード( <code class="docutils literal"><span class="pre">GL_MODELVIEW</span></code> や <code class="docutils literal"><span class="pre">GL_PROJECTION</span></code> )に設定する関数です。この関数を <code class="docutils literal"><span class="pre">gluPerspective</span></code> や <code class="docutils literal"><span class="pre">gluLookAt</span></code> の代わりに使って描画をしてみましょう。</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">gluOrtho</span></code> 関数を使って、投影変換行列を平行投影変換に変更してみてください。</p></li>
+<li><p>立方体の面の描画順を変更するとどうなるか試してみてください。</p></li>
+<li><p>【発展】 <code class="docutils literal notranslate"><span class="pre">glMultMatrixf</span></code> 関数は長さが16の <code class="docutils literal notranslate"><span class="pre">float</span></code> の配列を受け取って、それを現在の行列モード( <code class="docutils literal notranslate"><span class="pre">GL_MODELVIEW</span></code> や <code class="docutils literal notranslate"><span class="pre">GL_PROJECTION</span></code> )に設定する関数です。この関数を <code class="docutils literal notranslate"><span class="pre">gluPerspective</span></code> や <code class="docutils literal notranslate"><span class="pre">gluLookAt</span></code> の代わりに使って描画をしてみましょう。</p></li>
 </ol>
 </div>
 </div>
@@ -619,9 +615,7 @@ b &amp;= -\frac{zNear + zFar}{zNear - zFar}\end{split}\]</div>
 
 
            </div>
-           <div class="articleComments">
-            
-           </div>
+           
           </div>
           <footer>
   
@@ -630,7 +624,7 @@ b &amp;= -\frac{zNear + zFar}{zNear - zFar}\end{split}\]</div>
         <a href="../depth_test/index.html" class="btn btn-neutral float-right" title="5. 深度テスト" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="../hello_triangle/index.html" class="btn btn-neutral" title="3. 三角形を描く" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="../hello_triangle/index.html" class="btn btn-neutral float-left" title="3. 三角形を描く" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -639,11 +633,11 @@ b &amp;= -\frac{zNear + zFar}{zNear - zFar}\end{split}\]</div>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2017, Tatsuya Yatagawa.
+        &copy; Copyright 2017, Tatsuya Yatagawa
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -656,37 +650,15 @@ b &amp;= -\frac{zNear + zFar}{zNear - zFar}\end{split}\]</div>
   
 
 
-  
-
-    <script type="text/javascript">
-        var DOCUMENTATION_OPTIONS = {
-            URL_ROOT:'../../',
-            VERSION:'0.1.0',
-            COLLAPSE_INDEX:false,
-            FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: '.txt'
-        };
-    </script>
-      <script type="text/javascript" src="../../_static/jquery.js"></script>
-      <script type="text/javascript" src="../../_static/underscore.js"></script>
-      <script type="text/javascript" src="../../_static/doctools.js"></script>
-      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-
-  
-
-  
-  
-    <script type="text/javascript" src="../../_static/js/theme.js"></script>
-  
-
-  
-  
   <script type="text/javascript">
       jQuery(function () {
-          SphinxRtdTheme.StickyNav.enable();
+          SphinxRtdTheme.Navigation.enable(true);
       });
   </script>
+
+  
+  
+    
    
 
 </body>

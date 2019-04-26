@@ -1,14 +1,14 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<!--[if IE 8]><html class="no-js lt-ie9" lang="jp" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="jp" > <!--<![endif]-->
 <head>
   <meta charset="utf-8">
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>1.2. GLEWとGLMの設定 &mdash; OpenGLCourseJP 0.1.0 documentation</title>
+  <title>GLEWとGLMの設定 &mdash; OpenGLCourseJP 0.1.0 documentation</title>
   
 
   
@@ -17,43 +17,35 @@
   
 
   
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../_static/language_data.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
 
-  
-  
     
 
   
-
-  
-  
-    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
-  
-
-  
-
-  
-        <link rel="index" title="Index"
-              href="../../genindex.html"/>
-        <link rel="search" title="Search" href="../../search.html"/>
-    <link rel="top" title="OpenGLCourseJP 0.1.0 documentation" href="../../index.html"/>
-        <link rel="up" title="1. 環境設定" href="index.html"/>
-        <link rel="next" title="2. ウィンドウを開く" href="../open_window/index.html"/>
-        <link rel="prev" title="1.1. GLFWの設定 (初回の設定)" href="glfw.html"/> 
-
-  
-  <script src="../../_static/js/modernizr.min.js"></script>
-
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
 </head>
 
-<body class="wy-body-for-nav" role="document">
+<body class="wy-body-for-nav">
 
    
   <div class="wy-grid-for-nav">
-
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
-        <div class="wy-side-nav-search">
+        <div class="wy-side-nav-search" >
           
 
           
@@ -91,29 +83,8 @@
               
             
             
-              <ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="index.html">1. 環境設定</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="glfw.html">1.1. GLFWの設定 (初回の設定)</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">1.2. GLEWとGLMの設定</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#windows">Windowsの場合</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#glew">GLEWのインストール</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#glm">GLMのインストール</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id1">プロパティシートの更新</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id3">バイナリファイルの移動</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id4">サンプルプログラムの実行</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#mac">Macの場合</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#id5">GLEWのインストール</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id7">GLMのインストール</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#xcode">Xcodeの設定</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id8">サンプルプログラムの実行</a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="index.html">1. 環境設定</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../open_window/index.html">2. ウィンドウを開く </a></li>
 <li class="toctree-l1"><a class="reference internal" href="../hello_triangle/index.html">3. 三角形を描く </a></li>
 <li class="toctree-l1"><a class="reference internal" href="../coord_transform/index.html">4. 座標変換 </a></li>
@@ -144,7 +115,7 @@
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
 
       
-      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+      <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="../../index.html">OpenGLCourseJP</a>
@@ -152,9 +123,10 @@
       </nav>
 
 
-      
       <div class="wy-nav-content">
+        
         <div class="rst-content">
+        
           
 
 
@@ -177,9 +149,7 @@
     
       <li><a href="../../index.html">Docs</a> &raquo;</li>
         
-          <li><a href="index.html">1. 環境設定</a> &raquo;</li>
-        
-      <li>1.2. GLEWとGLMの設定</li>
+      <li>GLEWとGLMの設定</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -201,11 +171,14 @@
            <div itemprop="articleBody">
             
   <div class="section" id="glewglm">
-<h1>1.2. GLEWとGLMの設定<a class="headerlink" href="#glewglm" title="Permalink to this headline">¶</a></h1>
+<h1>GLEWとGLMの設定<a class="headerlink" href="#glewglm" title="Permalink to this headline">¶</a></h1>
 <p>(この内容は「 <a class="reference internal" href="../hello_shader/index.html"><span class="doc">シェーダの利用 </span></a> 」以降に必要になります)</p>
-<p>第10回以降のソースコードを動かすためには, 最近のOpenGLの機能を扱うためのライブラリが必要です。
-このコースではGLEW (OpenGL Extension Wrangler Library) を使ってプログラムを作ります。</p>
-<p>合わせて、ベクトルや行列の計算を簡単に扱うためのライブラリとしてGLM (OpenGL Mathematics) も導入しておきます。</p>
+<p>第10回以降のソースコードを動かすためには、最近のOpenGLの機能を扱うためのライブラリが必要です。
+以前はGLEW (OpenGL Extension Wrangler Library) というライブラリを使っていましたが、こちらのライブラリはあまり更新されていないこともあり、2019年度からGLADというライブラリを用いることにいたしました。
+新しい内容を確認したい方は、以下からGLADの準備方法をご確認ください。</p>
+<p><a class="reference internal" href="glad.html"><span class="doc">OpenGL 3.x/4.xのローダとGLMの設定</span></a></p>
+<span style="color: #f00; font-weight: bold;">以下の内容は過去のものになりますので、ご注意ください</span><p>このコースではGLEW (OpenGL Extension Wrangler Library) を使ってプログラムを作ります。
+合わせて、ベクトルや行列の計算を簡単に扱うためのライブラリとしてGLM (OpenGL Mathematics) も導入しておきます。</p>
 <hr class="docutils" />
 <div class="section" id="windows">
 <h2>Windowsの場合<a class="headerlink" href="#windows" title="Permalink to this headline">¶</a></h2>
@@ -284,7 +257,7 @@ DLLを出来上がったプログラムと同じディレクトリに移動し�
 <strong>CMake</strong> を使用して自動生成しています。その元となるファイルが <strong>common.h.in</strong> です。</p>
 <p><strong>CMake</strong> を使わずに、このファイルを作る場合には、<strong>common.h.in</strong> の内容を参考に
 以下のような内容を記述したファイルを作ってください。</p>
-<div class="highlight-cpp"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+<div class="highlight-cpp notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
 3
 4
@@ -316,7 +289,7 @@ CMakeを使用してビルド、インストールを行います。</p>
 <h3>GLEWのインストール<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
 <p><a class="reference external" href="http://glew.sourceforge.net/">GLEWの公式Webページ</a> からソースコードを
 ダウンロードして、ビルドとインストールを行います。ターミナルを開いて、次のコマンドを実行してください。</p>
-<div class="highlight-shell"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+<div class="highlight-shell notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
 3
 4
@@ -337,7 +310,7 @@ sudo make install
 <p><a class="reference external" href="https://github.com/g-truc/glm.git">GLMのGitHub</a> からソースコードを
 ダウンロードして、ビルドとインストールを行います。GLEWの時と同様に、
 次のコマンドをターミナルで実行してください。</p>
-<div class="highlight-shell"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+<div class="highlight-shell notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
 3
 4
@@ -376,16 +349,16 @@ sudo make install
 追加したいフォルダ(図の中ではOpenGLTest)を右クリックし、メニューの中から
 「New Group」を選びます。そうすると、フォルダの名前を入力できるようになるので、
 その名前を <strong>shaders</strong> などの名前に変更します。</p>
-<a class="reference internal image-reference" href="../../_images/create_new_group_before.png"><img alt="../../_images/create_new_group_before.png" src="../../_images/create_new_group_before.png" style="width: 300px;" /></a>
+<a class="reference internal image-reference" href="../../_images/create_new_group_before.jpg"><img alt="../../_images/create_new_group_before.jpg" src="../../_images/create_new_group_before.jpg" style="width: 300px;" /></a>
 <p>Groupが作成出来たら、そのGroupを右クリックして、「Add files to &quot;shaders&quot;」を選びます。
 すると、ファイルを選択する画面になるので、シェーダのソースコード (今回の場合には
 render.vertとrender.frag)を選択します。追加が完了すると以下の図のようになるはずです。</p>
-<a class="reference internal image-reference" href="../../_images/adding_shaders.png"><img alt="../../_images/adding_shaders.png" src="../../_images/adding_shaders.png" style="width: 300px;" /></a>
+<a class="reference internal image-reference" href="../../_images/adding_shaders.jpg"><img alt="../../_images/adding_shaders.jpg" src="../../_images/adding_shaders.jpg" style="width: 300px;" /></a>
 <p>Groupにシェーダのソースコードが登録出来たら、次に自動コピーの設定をします。</p>
 <p>画面左側のソースツリー上でプロジェクト名をクリックし、中央上部にある項目の中から、
 「Build Phases」を選びます。すると画面下部に「Copy Files」という項目があるので、
 その項目を以下の図のように設定します。</p>
-<img alt="../../_images/after_adding_shaders.png" src="../../_images/after_adding_shaders.png" />
+<img alt="../../_images/after_adding_shaders.jpg" src="../../_images/after_adding_shaders.jpg" />
 <p>ファイルを新規に追加するときには、下側にある「＋」ボタンを押すと現れるダイアログ上で、
 <strong>shaders</strong> に追加したシェーダのソースコードを選べばOKです。</p>
 <p>これで、サンプルプログラムを実行するための準備は完了ですので、
@@ -400,31 +373,20 @@ render.vertとrender.frag)を選択します。追加が完了すると以下の
 
 
            </div>
-           <div class="articleComments">
-            
-           </div>
+           
           </div>
           <footer>
-  
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="../open_window/index.html" class="btn btn-neutral float-right" title="2. ウィンドウを開く" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="glfw.html" class="btn btn-neutral" title="1.1. GLFWの設定 (初回の設定)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
-    </div>
   
 
   <hr/>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2017, Tatsuya Yatagawa.
+        &copy; Copyright 2017, Tatsuya Yatagawa
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -437,37 +399,15 @@ render.vertとrender.frag)を選択します。追加が完了すると以下の
   
 
 
-  
-
-    <script type="text/javascript">
-        var DOCUMENTATION_OPTIONS = {
-            URL_ROOT:'../../',
-            VERSION:'0.1.0',
-            COLLAPSE_INDEX:false,
-            FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: '.txt'
-        };
-    </script>
-      <script type="text/javascript" src="../../_static/jquery.js"></script>
-      <script type="text/javascript" src="../../_static/underscore.js"></script>
-      <script type="text/javascript" src="../../_static/doctools.js"></script>
-      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-
-  
-
-  
-  
-    <script type="text/javascript" src="../../_static/js/theme.js"></script>
-  
-
-  
-  
   <script type="text/javascript">
       jQuery(function () {
-          SphinxRtdTheme.StickyNav.enable();
+          SphinxRtdTheme.Navigation.enable(true);
       });
   </script>
+
+  
+  
+    
    
 
 </body>
