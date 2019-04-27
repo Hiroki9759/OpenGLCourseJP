@@ -279,7 +279,7 @@
 <span class="n">printf</span><span class="p">(</span><span class="s">&quot;Load OpenGL %d.%d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">GLAD_VERSION_MAJOR</span><span class="p">(</span><span class="n">version</span><span class="p">),</span> <span class="n">GLAD_VERSION_MINOR</span><span class="p">(</span><span class="n">version</span><span class="p">));</span>
 </pre></div>
 </td></tr></table></div>
-<p><code class="docutils literal notranslate"><span class="pre">gladLoadGL</span></code> 関数はライブラリの読み込みに成功するとOpenGLのバージョンを表す3桁の整数を返してします (OpenGL 4.5なら450)。もし読み込みに失敗した場合には <code class="docutils literal notranslate"><span class="pre">0</span></code> が返ってくるので、これを使って読み込みに成功したかどうかを確認しています。</p>
+<p><code class="docutils literal notranslate"><span class="pre">gladLoadGL</span></code> 関数はライブラリの読み込みに成功するとOpenGLのバージョンを表す5桁の整数を返してします (OpenGL 4.5なら40005)。もし読み込みに失敗した場合には <code class="docutils literal notranslate"><span class="pre">0</span></code> が返ってくるので、これを使って読み込みに成功したかどうかを確認しています。</p>
 <p>またその下の <code class="docutils literal notranslate"><span class="pre">printf</span></code> では、実際に期待するバージョンのライブラリが読み込めているかどうかを確認しています。特にMacの場合には設定が正しく行えていない場合にバージョン2.1が読み込まれるので注意してください。</p>
 </div>
 <div class="section" id="id4">
