@@ -329,10 +329,7 @@
 147
 148
 149
-150
-151
-152
-153</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;cstdio&gt;</span><span class="cp"></span>
+150</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;cstdio&gt;</span><span class="cp"></span>
 <span class="cp">#include</span> <span class="cpf">&lt;cmath&gt;</span><span class="cp"></span>
 
 <span class="cp">#define GLFW_INCLUDE_GLU  </span><span class="c1">// GLUライブラリを使用するのに必要</span>
@@ -405,9 +402,6 @@
 <span class="kt">void</span> <span class="nf">paintGL</span><span class="p">()</span> <span class="p">{</span>
     <span class="c1">// 背景色と深度値のクリア</span>
     <span class="n">glClear</span><span class="p">(</span><span class="n">GL_COLOR_BUFFER_BIT</span> <span class="o">|</span> <span class="n">GL_DEPTH_BUFFER_BIT</span><span class="p">);</span>
-
-    <span class="c1">// ビューポート変換の指定</span>
-    <span class="n">glViewport</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">WIN_WIDTH</span><span class="p">,</span> <span class="n">WIN_HEIGHT</span><span class="p">);</span>
 
     <span class="c1">// 座標の変換</span>
     <span class="n">glMatrixMode</span><span class="p">(</span><span class="n">GL_PROJECTION</span><span class="p">);</span>
